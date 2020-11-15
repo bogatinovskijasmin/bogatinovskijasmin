@@ -33,9 +33,10 @@ Logistic regression is a very simple method for classification. It assumes that 
 Formally the problem of logistic regression can be defined as following:
 Let's assume that we are given a training set $D= \{ (x_1, y_1), \dots (x_n, y_n)\}, n \in N, y \in \{0, 1\}$. Let's assume that the score of $p(z=1|x) = \frac{1}{1+e^{-\beta^Tx}}$, then  $p(z=0|x) = 1-\frac{1}{1+e^{-\beta^Tx}}$. We can write a liklihoodd function in the following form (q is the number of 1's):
 
-\begin{equation}
+$$
 L(\beta, X) = \prod_{i=1}^N\frac{1}{1+e^{-\beta^Tx_i}}^{y_{i}}(1-\frac{1}{1+e^{-\beta^Tx_i}})^{1-y_{i}}
-\end{equation}
+$$
+
 Since it is easier to work with log-liklihood we calculate the log likilihood of the equation above:
 \begin{equation}
 l = log(L(\beta, X)) = \sum_{i=1}^Ny_{i}log(\frac{1}{1+e^{-\beta^Tx_i}})+(1-y_{i})log(1-\frac{1}{1+e^{-\beta^Tx_i}})
