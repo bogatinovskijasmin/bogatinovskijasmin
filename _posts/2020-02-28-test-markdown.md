@@ -1,12 +1,3 @@
----
-layout: post
-title: Linear methods
-subtitle: Each post also has a subtitle
-gh-repo: daattali/beautiful-jekyll
-gh-badge: [star, fork, follow]
-tags: [linear methods]
-comments: true
----
 The linear methods, although simple, they can provide very interesting insights for the data being observevd due to this parasimony. They are usually regarded as methods with high bias, meaning that their hypothesis usually does not corresponds to the real world relationship (due to the greater complexity result from various interactions between the features) of the descriptive attributes. In the case of Neural Networks one allows to learn arbitrary relationships between the data. This makes 
 
 In the case for classification the linear models produce a linear decision boundary between the classes. In this work we are going to discuss:
