@@ -9,16 +9,16 @@
 title: My Website
 
 # Your name to show in the footer
-author: Some Person
+author: Jasmin Bogatinovski
 
 # --- List of links in the navigation bar --- #
 
 navbar-links:
   About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+  #Resources:
+  #  - Beautiful Jekyll: "https://beautifuljekyll.com"
+  #  - Learn markdown: "https://www.markdowntutorial.com/"
+  Author's home: "https://github.com/bogatinovskijasmin/bogatinovskijasmin"
 
 # --- Logo --- #
 
@@ -39,10 +39,8 @@ round-avatar: true
 # Select the social network links that you want to show in the footer.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "someone@example.com"
-  facebook: deanattali
-  github: daattali
-  twitter: daattali
+  email: "jasmin.bogatinovski@gmail.com"
+  github: bogatinovskijasmin
 #  patreon: DeanAttali
 #  reddit: yourname
 #  linkedin: daattali
@@ -71,16 +69,15 @@ rss-description: This website is a virtual proof that I'm awesome
 # Select which social network share links to show in posts
 share-links-active:
   twitter: true
-  facebook: true
   linkedin: true
-  vk: false
+  #vk: false
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"
+url-pretty: "WorldOfML.com"
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
-excerpt_length: 50
+excerpt_length: 75
 
 
 # Whether or not to show an excerpt for every blog post in the feed page
@@ -98,7 +95,7 @@ feed_show_tags: true
 
 navbar-col: "#EAEAEA"
 navbar-text-col: "#404040"
-navbar-border-col: "#DDDDDD"
+navbar-border-col: "#4D1E1E"
 page-col: "#FFFFFF"
 text-col: "#404040"
 link-col: "#008AFF"
@@ -187,7 +184,7 @@ date_format: "%B %-d, %Y"
 # --- You don't need to touch anything below here (but you can if you want) --- #
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Toronto"
+timezone: "EU/Berlin"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
