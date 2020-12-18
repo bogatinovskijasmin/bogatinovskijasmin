@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Flake it till you make it
-subtitle: Excerpt from Soulshaping by Jeff Brown
-cover-img: /assets/img/path.jpg
-thumbnail-img: /assets/img/thumb.png
-share-img: /assets/img/path.jpg
-tags: [books, test]
+title: Few words on Neural Networks
+subtitle: A broad overview on the topic of Neural Networks
+cover-img: /assets/img/neural_network_cover_image.png
+thumbnail-img: /assets/img/neural_network_cover_image.png
+share-img: /assets/img/neural_network_cover_image.png
+tags: [neural netwokr, perceptron, universal approximator, compactness, backpropagation, perceptron, training neural network, RNN, CNN, GAN, GNN, RBM, Transformers, DBNs, Ladder networks, Autoencoders, VAE, MLP]
 ---
 ### Neural networks
 
