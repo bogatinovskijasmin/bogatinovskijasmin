@@ -59,9 +59,7 @@ $J(\beta, X) = \sum_{i \in M} -y_{i}(\beta^Tx_i + \beta_o)$
 We can perform gradient descent on this const function with an aim to minimize it. To do this we need the partial derivatives with respect to the parameters $\beta$ and $\beta_o$.
 $\frac{\delta J}{\delta \beta}= \sum_{i \in M} -y_{i}x_i$
 
-\begin{equation}
-\frac{\delta J}{\delta \beta_o}= \sum_{i \in M} -y_{i} 
-\end{equation}
+$\frac{\delta J}{\delta \beta_o}= \sum_{i \in M} -y_{i}$
 
 After several iterations, if the data is **linearly separable** this algortihm will find one, not necesseraly the best line that separates the points. Also it is sensitive to noise and it has great variance with respect to adding new points, however it is an online method since it can adjust the decision boundary. The **linearly separable** is defined as existing a positive quantity C such that $y_i(\beta^Tx_i+\beta_o) \geq C$ for all the points. To train the method instead batch updateds of the gradinets one  can use stochastic or mini batch gradient. This increases the noise of the gradient estimates however it often makes the computation much much faster, theoreticaly the training cost is constant with respect to the number of steps it needs until it converges (it will fall in some local optimal or minimal at one point or another). The speed of convergence also depends on the size of C, the smaller the slower the perceptron will converge. 
 
@@ -85,20 +83,15 @@ The later is in fact a two layer network. Furthermore, the cosine can be approxi
 
 To train a neural network one is using the **Backpropagation** learning algorithm. It is derived and described in the following.
 Let's assume we are give the MSE as a cost function where $y^{\*}$ is the prediction of the network and y is the target, then $E = MSE=\frac{1}{2}(y-y^{\*})^2$. We observe 3 layers in the middle of the architecture. The goal is to find the update of the gradient of the weight in the neural network that is the most suited to the update of the weight. Let the layers be denoted with $l,i$ and $j$. At a neuron at each layer we decompose it at two parts $z_i$ and $a_i$. The $a_i=w_{l1}z_{l1} + \dots + w_{lr}z_{lr}$. The $z_i=\sigma(a_i)$ is some nonlinearity applied on the sum of the inputs. Then, 
-\begin{equation}
-\frac{\delta E}{\delta w_{il}} = \frac{\delta E}{\delta a_i}\frac{\delta a_i}{\delta w_{il}}
-\end{equation}
+$\frac{\delta E}{\delta w_{il}} = \frac{\delta E}{\delta a_i}\frac{\delta a_i}{\delta w_{il}}$
 one of this partial derivatives is straightforward for computation
-\begin{equation}
-\frac{\delta a_i}{\delta w_{il}} = z_{li}
-\end{equation}
+$\frac{\delta a_i}{\delta w_{il}} = z_{li}$
 
 The derviative of one of the gradients is quite straight forward since it is the derivative of the activation.
-However, for computation of $\frac{\delta E}{\delta a_i}$ we aim to rewrite it in the form that depends on the activation in the next layer. $d_i=\frac{\delta E}{\delta a_i}=\sum_j\frac{\delta E}{\delta a_j}\frac{\delta a_j}{\delta a_i} =\sum_j\frac{\delta a_j}{\delta a_i}d_j$. 
+However, for computation of $\frac{\delta E}{\delta a_i}$ we aim to rewrite it in the form that depends on the activation in the next layer. 
+$d_i=\frac{\delta E}{\delta a_i}=\sum_j\frac{\delta E}{\delta a_j}\frac{\delta a_j}{\delta a_i} =\sum_j\frac{\delta a_j}{\delta a_i}d_j$. 
 
-\begin{equation}
-\frac{\delta a_j}{\delta a_i} = w_{ij}\sigma^{'}(a_i)
-\end{equation}
+$\frac{\delta a_j}{\delta a_i} = w_{ij}\sigma^{'}(a_i)$
 
 This reformulation of the loss in fact means that we can rewrite the gradient for the current activation with respect to gradient of the cost function on the next layer. Assuming that the neural network has a finite width and depth, at one point in time we end up in caluclatiton of the last $d_n$ at layer n. Since we can caluclate that value we can know the exact form of the last $d_n$ and we can backpropagete it so at the end we know the exact form of all of the gradients. 
 
