@@ -5,10 +5,8 @@ subtitle: A broad overview on the topic of Neural Networks
 cover-img: /assets/img/neural_network_cover_image.jpg
 thumbnail-img: /assets/img/neural_network_cover_image.jpg
 share-img: /assets/img/neural_network_cover_image.jpg
-tags: [neural network, universal approximator, compactness, backpropagation, perceptron, training neural network, RNN, CNN, GAN, GNN, RBM, Transformers, DBNs, Ladder networks, Autoencoders, MLP, energy-based learning]
+tags: [neural network (NN), universal approximator, compactness, backpropagation, perceptron, training neural network, Recurrent NN, Convolutional NN, Generative Adversarial Networks, Graph NN, Restricted Boltzman Machines RBMs, Transformers, Deep Belief Netorks DBNs, Ladder networks, Autoencoders, Multi-layer Perceptron MLP, energy-based learning]
 ---
-### Neural networks
-
 Neural netowrks are one of the most intereseting learning paradigms. They have one very strong advantage in allowing of learning of arbitrary kernels into their layer-wise strucutre. This in allows exponential decresse in the number of feature that are needed for successfully solving a problem. They are state of the art methods for sequential tasks, images, signal processing and NLP. Many industries and researchers have their focus on developing of new neural network architectures and approaches and application of these methods into various domains. This secition is a small aim to explain what does there exist? What is a neural network? What is a perceptron? Why neural networks are called the unvierasla approximator? Why do they have so called property of compactness? as well several architectures that are most commonly used will be discussed. 
 
 In this section are given:
