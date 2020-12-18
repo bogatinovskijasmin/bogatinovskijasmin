@@ -53,13 +53,11 @@ It intution can be build from studing the 2D space of linearly separable classes
 
 We assume that $Y \in \{-1, 1\}$ and $X \in R^{dxn}$. The main idea behind the perceptron is to use the geometry of the space. So a point can be classified either in the correct or in the wrong side of the decision boundary. One merit of how good the classification is can be seen in the distance of a point to the decision boundary (property 3)). That said, one way to define the cost function is to assume it is the sum of the distancs of the missclassified points. Since the distance is always positive, to account for that we additionally multiply by the true label $y_i$ and also with $-1$ if the point is missclassifed. 
 The cost function is then defined like:
-\begin{equation}
-J(\beta, X) = \sum_{i \in M} -y_{i}(\beta^Tx_i + \beta_o)
-\end{equation}
+
+$J(\beta, X) = \sum_{i \in M} -y_{i}(\beta^Tx_i + \beta_o)$
+
 We can perform gradient descent on this const function with an aim to minimize it. To do this we need the partial derivatives with respect to the parameters $\beta$ and $\beta_o$.
-\begin{equation}
-\frac{\delta J}{\delta \beta}= \sum_{i \in M} -y_{i}x_i 
-\end{equation}
+$\frac{\delta J}{\delta \beta}= \sum_{i \in M} -y_{i}x_i$
 
 \begin{equation}
 \frac{\delta J}{\delta \beta_o}= \sum_{i \in M} -y_{i} 
