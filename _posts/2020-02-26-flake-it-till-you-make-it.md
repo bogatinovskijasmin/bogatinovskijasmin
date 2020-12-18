@@ -5,7 +5,7 @@ subtitle: A broad overview on the topic of Neural Networks
 cover-img: /assets/img/neural_network_cover_image.png
 thumbnail-img: /assets/img/neural_network_cover_image.png
 share-img: /assets/img/neural_network_cover_image.png
-tags: [neural network, perceptron, universal approximator, compactness, backpropagation, perceptron, training neural network, RNN, CNN, GAN, GNN, RBM, Transformers, DBNs, Ladder networks, Autoencoders, VAE, MLP]
+tags: [neural network, universal approximator, compactness, backpropagation, perceptron, training neural network, RNN, CNN, GAN, GNN, RBM, Transformers, DBNs, Ladder networks, Autoencoders, MLP]
 ---
 ### Neural networks
 
