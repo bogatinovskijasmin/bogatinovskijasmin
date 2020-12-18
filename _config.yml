@@ -82,7 +82,6 @@ url-pretty: "MyWebsite.com"
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
 excerpt_length: 50
 
-ext-js: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
 
 # Whether or not to show an excerpt for every blog post in the feed page
 feed_show_excerpt: true
