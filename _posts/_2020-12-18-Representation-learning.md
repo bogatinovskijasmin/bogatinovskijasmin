@@ -7,11 +7,13 @@ thumbnail-img: /assets/img/representation_learning_cover_image.jpg
 share-img: /assets/img/representation_learning_cover_image.jpg
 tags: [representation learning, Principal Component Analyisis (PCA), Kernel PCA, Dual PCA, Supervised PCA, Isomap, FDA, Multi-dimensional scaling (MDS), Local Linear Embedding (LLE), Laplacian Eigenmaps, Maximal Variance Unfolding (MVU), Nystorms approximations (NA), Stochastic Neigbourhood Embeddings (SNE), t-SNE, Canonical Component Analysis (CCA), Independent Component Analysis (ICA), Autoencoders, Variational Autoencoder (VAE), Reucrrent VAE, Beta VAE, PID VAE, Infomax, Hilber Schmid Statistic (HSIC), Fisher Matrix, Natural Gradient, Maximal Mean Discrepancy (MMD), KL divergence]
 ---
-Representation learning is one of the most crucial aspects when dealing with machine learning problem. A good representation has several advantages. It allows for using of simple methods. This results in faster training time and better generalization performance. Usually there will be few examples that are actually relevant for the predictions (e.g. support vectors in SVM for classification). Thus the total time and memory to store the model is smaller. This is especially important if the model should be deployed to an invorment where the resource consumption is of great importance and shoul be saved for crucial tasks. 
+A proper representation of a problem is one of the most crucial aspects for the successful application of machine learning techniques on the given problem. Representation learning is one of the most important aspects when dealing with a machine learning problem. Good representation has several advantages. It allows for using simple methods. This results in faster training time and better generalization performance. Usually, there will be few examples that are relevant for the predictions (e.g. support vectors in SVM for classification). Thus the total time and memory to store the model are smaller. It is especially important if the model should be deployed to an environment where resource consumption is of great importance and should be saved for crucial tasks. The process of feature selection also can be seen as one form of learning representation. In a sense, we learn which features are relevant in the given context and which are not.
 
-In general there are two ways how the desriptors of the problem can be used to represent the problem. First approach is with encoding of domain knowldege about specific important features of the problem (e.g measurments of gene expressions, some phusical phenomena etc.). The second is applying various prespecified functions of the data we refer to as statistic (any function from the data is called statistic). For the later, we furter extend the meaning of the word "appliying functions" to "learning functions from the data" (most often with respect to some loss function).
+In general, there are two ways how the descriptors of the problem can be used to represent the problem. The first approach is with an encoding of domain knowledge about specific relevant features of the problem (e.g measurements of gene expressions, some physical phenomena etc.). The second is applying various prespecified transformation of the data. For the later, we further extend the meaning of the word "applying transformation" to "learning transformations from the data" (most often concerning some loss function).
 
-Many different concepts for representation learning exist e.g. distributed representations (characteristic for languge representation) sparse representation, dimensionality reduction, independent component decomposition, canoncial components extraction, pooling of shared information etc. In the follwoing we are restricting ourselves predominantly to the topic of dimensionality reduction. It is separated into two parts. The first part refers to classical dimensionality reduction and representation techniques: 
+Many different concepts for representation learning exist e.g. distributed representations (characteristic for language representation) sparse representation, dimensionality reduction, independent component decomposition, canonical components extraction, pooling of shared information etc. In the following, we are restricting ourselves predominantly to the topic of dimensionality reduction. It is separated into two parts. The first part refers to classical dimensionality reduction and representation techniques. The latter part describing deep learning approaches for dimensionality reduction. More specifically we will focus on autoencoders, recurrent autoencoders, variational autoencoders and regularized variational autoencoders e.g beta variational autoencoder.
+
+In the following, we are going to present the following methods:
 
 1) PCA, 
 
@@ -49,7 +51,7 @@ Many different concepts for representation learning exist e.g. distributed repre
 
 18) PID-VAE
 
-To define some of this methods we define the following concepts:
+To define some of these methods we define the following concepts:
 
 1) Information
 
@@ -61,9 +63,9 @@ To define some of this methods we define the following concepts:
 
 5) Spectral Clustering
 
-6) cut and ratiocut 
+6) Cut and ratiocut 
 
-7) maximal mean discrepancy (distance between distributions)
+7) Maximal mean discrepancy (MMD)
 
 8) Infomax principle
 
@@ -74,39 +76,34 @@ To define some of this methods we define the following concepts:
 11) Laplacian of a graph
 
 
-
-
-The later part is reserved for Deep Learning approaches. More specifically we will focus on autoencoders, recurrent autoencoders, variational autoencoders and regularized variational autoenocders e.g beta variational autoencoder.
-
 ## Dimensionality reduction
 
-One special instances of representation learning is the dimensionality reduction aspect. As a taks it belongs to the unsupervised learning paradigm. However, there exist methods that can introduce the information from the labels in order to produce better representations. 
+One instance of representation learning is the dimensionality reduction aspect. As a task, it belongs to the unsupervised learning paradigm. However, there exist methods that can introduce information from the labels to produce better representations. 
 
-In general the methods can be grouped into 3 groups: 
+In general, the methods for representation learning can be grouped into 3 groups: 
 
 1) methods that aim to preserve maximal variation in the data with reduced dimensionality
 
 2) methods that try to add sparsity in the representation. This increases the representation dimensions with large parts of the data being sparse. 
 
-3) methods based on statistical properties (like independece testing as in Independent Component Analysis)
+3) methods based on statistical properties (like independence testing as in Independent Component Analysis)
 
+In this work, we are predominantly considered with the first type of representations. The remaining are left for further work. There are two main directions to provide the goal of preserving the maximal variations of the data. The "classical" approach and "modern" deep learning approaches. Although this distinction is arbitrary and very easy some of the "classical" learning techniques can be fit inside the "modern" approaches. As we shall see later, many of the "traditional" approaches can be cast in terms of kernel PCA (either with the predefined or learned kernel). On the other side, the DL approaches (e.g regularized autoencoders with nonlinear activations) can be seen as an equivalence function class as that of kernel PCA. Effectively it allows casting some of the traditional approaches as some special cases of the DL autoencoder framework, as one prominent representative of representation learning approaches from DL paradigm. A disclaimer, deep neural networks can be seen as automatic feature extractors and are automatically "learning" representations.
 
-In this work we are predominantly considered with the first type of representations. The remaining are left for further work. There are two main directions to provide the goal of preserving the maximal variations of the data. The "classicial" approach and "modern" deep learning approaches. Although this distigsion is arbitrary and very easy the deep learning techniques can be fit inside the "classical" approaches. As we shall see later, many of the "traditional" approaches can be cast in terms of kernel PCA (either with predefined or learned kernel). On the other side the DL approaches (e.g regularized autoencoders with nonlinear activations) can be seen as a kernel PCA, thus allowing to set some of the traditional approaches as some special cases of the DL autoencoder framework, as most prominent representatative of representation learning approaches from DL paradigm. 
+Before explaining the traditional approaches for dimensionality reduction, we will introduce some details and refreshers for the programming machinery that hides all the tedious low-level abstraction. This is because the first group of techniques predominantly relies on linear algebra techniques to produce better representations. It uses a different kind of decompositions of similarity, kernel or distance matrices e.g: SVD, QR, LU etc. It is very interesting to observe that these approaches can combine both the descriptive and target attributes. Thus the methods can be both supervised and unsupervised. Most of these approaches are using SVD decompositions. That is why we first consider some basic definitions from linear algebra, some motivation and two simple implementations of methods for extracting eigenvectors and eigenvalues of matrix implemented without using functions from e.g LAPACK. 
 
-The first approach predominantly relys on linear algebra techniques to produce better representations. It uses different kind of transformation of the matricies e.g: SVD, QR, LU etc. It is very interesting to observe that this approaches can combine both the descriptive and targhet attributes in the case of single target classification. Thus the methods can be both supervised and unsupervised. The most of this approaches are using SVD decompositions. That is why we first consider some basic definitions from linear algebra, some motivation and two simple implementations of methods for extracting eigenvectors and eigenvalues of matrix implemented without using functions from e.g LAPACK. 
+It is very important to take a note that dimensionality reduction is only possible in case when the kernel K has a rank(K) much less than the dimensionality of the data. Otherwise does not make sense to examine it since it is computationally very expensive. Geometrically this means that the data live in some submanifold of the currently observed one.
 
-It is very important to take a note that dimensionality reduction is only possible in case when the kernel K has a rank(K) much less then the dimensionality of the data. Otherwise does not make sence to examine it since it is computationaly very expensive. 
-
-**Note** Interesting resources for implementation of QR decomposition of a matrix from scracth in Python https://www.quantstart.com/articles/QR-Decomposition-with-Python-and-NumPy/
+**Note** Interesting resources for the implementation of QR decomposition of a matrix from scratch in Python https://www.quantstart.com/articles/QR-Decomposition-with-Python-and-NumPy/
 
 ### Singular Value Decomposition
 
-Singular Value Decomposition (SVD) is an approach to transform a matrix. It decomposes the matrix to three matricies. Two of them are orthogonal, while one of them is diagonal. The values of the diagonal matrix are called singularvalues. 
-\begin{equation} X = SVD,   X \in C^{nxm}, S \in C^{nxn}, V \in C^{nxm}  D* \in C^{mxm} \end{equation}
+Singular Value Decomposition (SVD) is an approach to transform a matrix. It decomposes the matrix to three matrices. Two of them are orthogonal, while one of them is diagonal. The values of the diagonal matrix are called singular values. 
+$ X = SVD,   X \in C^{nxm}, S \in C^{nxn}, V \in C^{nxm}  D* \in C^{mxm}$
 
-$C$ is the set of complex numbers in most general case. We are interested in situations where X is part of the real number set of numbers since our data usually come in that form. Geometrically one can interpret the generated eigenvectors as rotation axis that transform a unit circle into an elipse with radiuses determined by the corresponding eigenvalues for the 
+$C$ is the set of complex numbers in the most general case. We are interested in situations where X is part of the real number set of numbers since our data usually come in that form. Geometrically one can interpret the generated eigenvectors as rotation axis that transform a unit circle into an ellipse with radiuses determined by the corresponding eigenvalues for the corresponding eigenvector.
 
-The calculation of SVD in most programming languages is using the LAPACK library. It is Fortran library for linear algebra. The core and main advantage of this library is that it allows for efficient running on shared-memory vectors and parallel processors. LAPACK organizes the algorithms to use block matrix operations. This block operations can be organized to account for the hierarchical organization of the memory in the machines thus producing optimal performance. For more read: http://www.netlib.org/lapack/ and https://en.wikipedia.org/wiki/Eigenvalue_algorithm.
+The calculation of SVD in most programming languages is using the LAPACK library. It is Fortran library for linear algebra. The core and main advantages of this library is that it allows for efficient running on shared-memory vectors and parallel processors. LAPACK organizes the algorithms to use block matrix operations. These block operations can be organized to account for the hierarchical organization of the memory in the machines thus producing optimal performance. For more read: http://www.netlib.org/lapack/ and https://en.wikipedia.org/wiki/Eigenvalue_algorithm.
 
 There are various algorithms that can be used for SVD: 
 
@@ -122,10 +119,9 @@ There are various algorithms that can be used for SVD:
 
 More details can be found: http://www.cs.utexas.edu/~inderjit/public_papers/HLA_SVD.pdf
 
+If the matrix is Hermmitian (complex matrix X is equal to its conjugate transpose), there are more efficient methods that can be used to calculate the decomposition. Similar optimizations can be made for different constraints on the matrix form. 
 
-If the matrix is Hermmitian (complex matrix X is equal to its conjucate transponse), there are more efficient methods that can be used to calculate the decomposition. Similar optimizations can be made for different constraints on the matrix form. 
-
-**Note**: Numpy implementaiton of SVD additionaly performs sorting operation to make the eigenvalues from descending to ascending order.
+**Note**: Numpy implementation of SVD (a wrapper around Fortran's LAPACK) additionally performs sorting operation to make the eigenvalues from descending to ascending order.
 
 ____________________________________________________
 ##### Few notes on LAPACK
