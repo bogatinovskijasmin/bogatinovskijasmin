@@ -28,6 +28,8 @@ clustering is an ill-defined problem.
 
 ![image info](../assets/img/clustering/red_truck.png)
 
+------------------------------------------------------------------------
+
 More formally, we can define clustering as follows. A clustering
 function is any function $f$ that takes a set $S$ of $n$ samples with
 pairwise distances between them and returns a partition of $S$. There is
@@ -44,7 +46,6 @@ and the group itself. On top of them, a theorem and
 proof are introduced claiming that all the properties cannot be satisfied at the same time.
 As such Kleinberg provides a theoretical frame for the difficulty of the problem.
 
-------------------------------------------------------------------------
 
 Basic axioms about the groups (Kleinberg 2002) should satisfy are:
 
@@ -76,34 +77,33 @@ clustering should remain unchanged after the T1 and T2 transformation.
 
 ------------------------------------------------------------------------
 
+
+Practical considerations when applying clustering
+======================
+
 When applying some of the common approaches for clustering, several
 usual questions need to be considered:
 
-1.  The number of clusters; It is not clear what is the exact number of
-    clusters existing in a dataset. There are heuristics like the
+1.  The number of clusters; It is not clear what is the exact number of clusters existing in a dataset. There are heuristics like the
     **“elbow-method”** that can be used to find this number. However,
-    these methods should be taken with caution (due to the
-    ill-definition of the clustering problem). Some methods do not
-    require the number of clusters predefined.
+    these methods should be taken with caution (due to the ill-definition of the clustering problem). Some methods do not require the number of clusters predefined.
 
 2.  Having a good **similarity measure**; It is not clear what does a
-    similar and different object look alike. Before applying clustering
-    to a given set of points, one should carefully examine the data and
-    define the similarity appropriately.
+    similar and different object look alike. Before applying clustering to a given set of samples, one should carefully examine the data and define the similarity appropriately.
 
-3.  It is difficult to determine which points are **outliers** and
+3.  It is difficult to determine which samples are **outliers** and
     clusters for themselves, especially in high dimensional space. In
-    high dimensional space, the data points are usually far apart
-    between one another and it can be hard to distunugish between group
-    of points.
+    high dimensional space, the data samples are usually far apart
+    between one another and it can be hard to distinguish between group
+    of samples.
 
 4.  It is difficult to differentiate among overlapping clusters;
 
-A common strategy when solving clustering problem is to apply several
+A common strategy when solving a clustering problem is to apply several
 clustering methods in an ensemble like clustering or sometimes referred
 to as **collaborative clustering**. In such a way one may end up in a
 set of clusters with higher confidence that indeed represent some
-phenomena in the data. \_\_\_ The number of clustering methods is quite
+phenomena in the data. The number of clustering methods is quite
 large. Generally, the approaches are grouped according to the underlying
 paradigm they adopt. Most frequently they are separated into:
 agglomerative, spectral, information-theoretic, centroid-based, methods
@@ -114,16 +114,14 @@ In this post we will consider:
 1.  **K means/k medians**; is a goto method for clustering;
 
 2.  **Hierarchical clustering** (**Agglomerative clustering** with
-    different linkages (distances between set of points) ward, single,
+    different linkages (distances between a set of samples) ward, single,
     complete etc. or **Divisive clustering** e.g tree-like methods such
     as Predictive Clustering Trees);
 
 3.  **Spectral clustering**; Based on graph theory.
 
-4.  **Gaussian Mixture models** (and other Bayesian techniques); This
-    method allows for the term **soft clustering** assigning a point to
-    multiple clusters with a specific confidence. Having this
-    uncertainty can be very neat in some cases.
+4.  **Gaussian Mixture models** (and other Bayesian techniques); This method allows for the term **soft clustering** assigning a point to multiple clusters with a specific confidence.
+Having aforementioned uncertainty can be very neat in some cases.
 
 Additionally in this post, we are going to introduce:
 
@@ -145,7 +143,7 @@ Additionally in this post, we are going to introduce:
 
 9.  **Density estimation**
 
-10. **Graph, (edges, nodes, Laplacian, adjecency, spectral gap, Fiedler
+10. **Graph, (edges, nodes, Laplacian, adjacency, spectral gap, Fiedler
     value, graph cut, ratio cut)**
 
 Methods for clustering
