@@ -26,7 +26,7 @@ and 4; group 2 with samples 2 and 3 or the two groups can be composed of
 group 1 with samples 1 and 2, and group 2 with samples 3 and 4. Thus
 clustering is an ill-defined problem.
 
-![image info](../images/clustering/red_truck.png)
+![image info](../assets/img/red_truck.png)
 
 More formally, we can define clustering as follows. A clustering
 function is any function $f$ that takes a set $S$ of $n$ points with
