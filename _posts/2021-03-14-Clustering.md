@@ -6,9 +6,9 @@ Clustering
 ==========
 
 Clustering is a task from the unsupervised learning paradigm in machine
-learning. The goal of clustering is finding groups of samples sharing
+learning. The goal of clustering is to find groups of samples sharing
 similar characteristics. The properties of the groups are such that the
-samples within the groups are similar between each other, while the
+samples within the groups are similar to each other, while the
 samples between the groups are different. One main challenge in
 clustering is defining “what does it mean for samples to be similar?”.
 As a topic arises from the need to categorize the similarity between a
@@ -16,64 +16,60 @@ set of heterogeneous objects (based on some notion of similarity).
 
 In essence, clustering is an ill-defined problem. When given data
 without labels the notion of similarity is vague. Let’s think of the
-following example: let’s assume we have a dataset with 4 examples. The
+following example: let’s assume we have a dataset with four samples. The
 examples have two features: shape and colour; 1) red square 2) red
 circle 3) blue square 4) blue circle. If we want to find two natural
-groups in this data it is not clear what they are (if we do not have a
-clear goal that we want to separate the red from the blue or squares
-from the circles). The two groups can be either group 1 with samples 1
-and 4; group 2 with samples 2 and 3 or the two groups can be composed of
-group 1 with samples 1 and 2, and group 2 with samples 3 and 4. Thus
+groups in the data, it is not clear what they are (if we do not have a
+clear goal of if we want to separate the red from the blue or squares
+from the circles). The two groups can be either group 1 (samples 1
+and 4;  group 2 (samples 2 and 3) or the two groups can be composed of
+group 1 (samples 1 and 2) and group 2 (samples 3 and 4). Thus
 clustering is an ill-defined problem.
 
 ![image info](../assets/img/clustering/red_truck.png)
 
 More formally, we can define clustering as follows. A clustering
-function is any function $f$ that takes a set $S$ of $n$ points with
+function is any function $f$ that takes a set $S$ of $n$ samples with
 pairwise distances between them and returns a partition of $S$. There is
-no constraint on the points constructing the set $S$. The only
-information we have available for the points are the pairwise distances
+no constraint on the samples constructing the set $S$. The only
+information we have available for the samples are the pairwise distances
 between them.
 
-Clustering is one very interesting topic of research as well as
-application. One very interesting axiomatic theoretical work on
-clustering is the work of [Kleinberg
+Clustering is an interesting topic of research as well as
+application. An interesting work on clustering is the axiomatic framework introduced by Kleinberg [Kleinberg
 2002](http://alexhwilliams.info/itsneuronalblog/papers/clustering/Kleinberg_2002.pdf).
 In this work, Kleinberg makes a set of intuitive assumptions about the
-properties a cluster group should satisfy in respect to the other groups
-and as well the group concerning itself. On top of them, a theorem and
-proof are introduced that all the properties cannot be satisfied at the
-same time. This further justifies the difficulty of the problem.
+properties a cluster group should satisfy with respect to the other groups
+and the group itself. On top of them, a theorem and
+proof are introduced claiming that all the properties cannot be satisfied at the same time.
+As such Kleinberg provides a theoretical frame for the difficulty of the problem.
 
 ------------------------------------------------------------------------
 
 Basic axioms about the groups (Kleinberg 2002) should satisfy are:
 
-1.  **scale-invariant;** The results from the clustering should not
+1.  **scale-invariance;** The results from the clustering should not
     change when the data change their scale.
 
 2.  **consistency:** If we change the distances (shrinking and
-    stretching) between the given points, such that we increase the
+    stretching) between the given samples, such that we increase the
     between cluster distance or decrease the within-cluster distance,
     the results of the clustering should not change;
 
-3.  **rich:** Given is a set of data points for which we do not know
-    anything about their distance. An ideal clustering function would be
-    flexible enough to produce all possible partition/clusterings of
-    this set. This means that all partitions of the set $S$ are
-    achievable.
+3.  **rich:** Given is a set of data points for which we do not know anything about their distance.
+An ideal clustering function would be flexible enough to produce all possible partition/clusterings of this set.
+It means that all partitions of the set $S$ are achievable.
 
-However, one can prove that none of the three properties can hold at the
-same time (but there are many cases where 2 out of 3 can hold). For more
-details, refer to the paper.
+However, one can prove that none of the three properties can hold simultaneously (but there are many cases where 2 out of 3 holds).
+For more details, refer to the paper.
 
-A simple visual illustration for the contradictory obtained is given on
-the following image. Let’s assume that all the three axioms hold. Then
-due to the richness axiom there exist two distance measure $d_1$ and
+A simple visual illustration for the contradictory obtained is depicted in
+the following image. Let’s assume that all the three axioms hold.
+Due to the richness axiom there exist two distance measure $d_1$ and
 $d_2$ that can realize any possible partition on $S$ (top and bottom
 left). We can define a third distance measure $d_3$ that scales $d_2$ so
 that the minimum distance between points in $d_3$ space is larger than
-the maximum distance in $d_1$ space. This leads to a contradiction. The
+the maximum distance in $d_1$ space. It is a clear contradiction. The
 clustering should remain unchanged after the T1 and T2 transformation.
 
 ![image\_proof](../assets/img/clustering/impossability_proof.png)
