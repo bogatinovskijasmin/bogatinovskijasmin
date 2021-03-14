@@ -77,38 +77,6 @@ clustering should remain unchanged after the T1 and T2 transformation.
 
 ------------------------------------------------------------------------
 
-
-Practical considerations when applying clustering
-======================
-
-When applying some of the common approaches for clustering, several
-usual questions need to be considered:
-
-1.  The number of clusters; It is not clear what is the exact number of clusters existing in a dataset. There are heuristics like the
-    **“elbow-method”** that can be used to find this number. However,
-    these methods should be taken with caution (due to the ill-definition of the clustering problem). Some methods do not require the number of clusters predefined.
-
-2.  Having a good **similarity measure**; It is not clear what does a
-    similar and different object look alike. Before applying clustering to a given set of samples, one should carefully examine the data and define the similarity appropriately.
-
-3.  It is difficult to determine which samples are **outliers** and
-    clusters for themselves, especially in high dimensional space. In
-    high dimensional space, the data samples are usually far apart
-    between one another and it can be hard to distinguish between group
-    of samples.
-
-4.  It is difficult to differentiate among overlapping clusters;
-
-A common strategy when solving a clustering problem is to apply several
-clustering methods in an ensemble like clustering or sometimes referred
-to as **collaborative clustering**. In such a way one may end up in a
-set of clusters with higher confidence that indeed represent some
-phenomena in the data. The number of clustering methods is quite
-large. Generally, the approaches are grouped according to the underlying
-paradigm they adopt. Most frequently they are separated into:
-agglomerative, spectral, information-theoretic, centroid-based, methods
-from combinatorial optimization and probabilistic generative models.
-
 In this post we will consider:
 
 1.  **K means/k medians**; is a goto method for clustering;
@@ -143,86 +111,76 @@ Additionally in this post, we are going to introduce:
 
 9.  **Density estimation**
 
-10. **Graph, (edges, nodes, Laplacian, adjacency, spectral gap, Fiedler
-    value, graph cut, ratio cut)**
+10. **Graph, (edges, nodes, Laplacian, adjacency, spectral gap, Fiedler value, graph cut, ratio cut)**
 
-Methods for clustering
-======================
+## Methods for clustering
 
 In the following we present several methods for clustering.
 
-K means/median algorithms
+### K means/median algorithms
 -------------------------
 
-K means is conceptually one of the simplest methods for clustering
-[MacQueen](https://projecteuclid.org/euclid.bsmsp/1200512992).
+**K means** is conceptually one of the simplest methods for clustering
+([MacQueen](https://projecteuclid.org/euclid.bsmsp/1200512992)).
 
-It starts with assumtpion of knowing the number of clusters. Then it
-picks some random points from the data; refered to as centroids (using
-various algorithms such as Loyd’s, or kmeans++). In a second step it
-calculates the distances to all the other points to each of the
-clusters. Each point is assigned to the cluster that has the smallest
-distance to it. This new reorganization of the clusters form the first
+It starts with the assumption of knowing the number of clusters. Then it
+picks some random samples from the data; referred to as centroids (using
+various algorithms such as Loyd’s, or kmeans++). In a second step, it
+calculates the distances to all the other samples to each of the centroids of the clusters.
+Each sample is assigned to the cluster that has the smallest
+distance to it. This new reorganization of the clusters forms the first
 iteration. Then it recalculates the centroids as mean (in case of k
-means or median i case of k median). The same procedure is repeated
+means or median in case of k medians). The same procedure is repeated
 until some specific convergence criterion is not reached. Commonly used
-stopping criteria is the smallest improvement of the sum of squared
-euclidean distances (refered to as inertia) of all points to their
-nearest cluster is smaller then some predefined threshold. Note, replace
-mean with median and you have k-median clustering.
+stopping criteria is the improvement of the sum of squared
+Euclidean distances (referred to as inertia) of all samples to their
+nearest cluster is smaller than some predefined threshold. Note, replace
+mean with median and you have k-median clustering. Sometimes the centroids are referred to as prototypes to emphasis the unique properties of the samples.
+But this is not a generally accepted term.
 
-Algorithmically, this can be written as:
+
+Algorithmically, Kmeans is given as:
 
 **Algorithm**
 
 **Input:** k number of clusters; $X \in R^{nxd}$; convergence criteria
-(e.g no change in cummulative cost function J greater then
+(e.g no change in cumulative cost function J (inertia) greater then
 $\epsilon -> 0$
 
-**Output:** k partitions of total of n points, where each point in $X$
+**Output:** k partitions of the total of n samples, where each sample  in $X$
 is part of one and only one $S_k$
 
-1.  Intiilze the centorids
+1.  initialize the centroids (using kmeans++ or Loyd's method)
 
 2.  while convergence
 
-    2.1. assing points to centroid $i$, such that point $x_i$ is
+    2.1. assing samples to centroid $i$, such that sample $x_i$ is
     assigned to cluster $c_k$ such that $argmin_k (c -  x_i)^2$
 
     2.2. recalucate the centorids as
     $c_k=\frac{1}{n_k}\sum_{i \in k}x_i$
 
-Step by step visualization of the method can be seen on the following
+A step by step visualization of the method is given in the following
 image. The image is taken from the following
 [link](http://www.learnbymarketing.com/methods/k-means-clustering/).
 ![image](../assets/img/clustering/method_k_means_steps_example.png)
 
-There are various measures to measure convergence. The optimization
-function can be written as
+The optimization function optimized by Kmeans can be written as
 $(J(c, \mu)=\sum_{i=1}^m||x^i-\mu_{c(i)})||^2)$. Having the following
-cost function **kmeans** can be defined as **coordiante descent** on the
-cost function **J**. **Coordinate descent** is an optimization algorithm
-that successively minimizes along coordinate directions to find the
-minimum of a function. At each iteration, the algorithm determines a
-coordinate or coordinate block via a coordinate selection rule, then
+cost function, **Kmeans** as an optimization problem can be solved by using a **coordinate descent** on the cost function **J**. **Coordinate descent** is an optimization algorithm that successively minimizes along coordinate directions to find the minimum of a function. At each iteration, the algorithm determines a
+coordinate or coordinate block via a coordinate selection rule. Then
 exactly or inexactly minimizes over the corresponding coordinate
 hyperplane while fixing all other coordinates or coordinate blocks
-[Wiki](https://en.wikipedia.org/wiki/Coordinate_descent). To some extend
-one can consider **kmeans** as example of the **Expectation
-Maximization** principle discussed later in this post. The intuition
+[Wiki](https://en.wikipedia.org/wiki/Coordinate_descent). To some extent,
+one can consider **Kmeans** as an example of the **Expectation
+Maximization (EM)** principle discussed later in this post. The intuition
 behind the EM similarity comes from the fact that during EM, during the
 E step the expectation is calculated (corresponding to the calculation
 of the mean) while during the M step the expectation is maximized
-(corresponding to the assigmnet of each point to the corresponding
+(corresponding to the assignment of each point to the corresponding
 cluster).
 
-### Biclustering
-
-Clustering of tabular data by rows and columns at the same time is
-called **biclustering**. One frequent usage is in gene expression among
-various samples.
-
-Spectral clustering
+### Spectral clustering
 -------------------
 
 Spectral clustering is a clustering approach used to produce groups of
@@ -558,6 +516,42 @@ intesnive. Some limmitaiton of practical usage invole absence of enough
 datapoints for the selected number of clusters. That can result in
 singluarities and the method can diverge. Reuqires prespecification of
 the number of clusters.
+
+
+Practical considerations when applying clustering
+======================
+
+When applying some of the common approaches for clustering, several
+usual questions need to be considered:
+
+1.  The number of clusters; It is not clear what is the exact number of clusters existing in a dataset. There are heuristics like the
+    **“elbow-method”** that can be used to find this number. However,
+    these methods should be taken with caution (due to the ill-definition of the clustering problem). Some methods do not require the number of clusters predefined.
+
+2.  Having a good **similarity measure**; It is not clear what does a
+    similar and different object look alike. Before applying clustering to a given set of samples, one should carefully examine the data and define the similarity appropriately.
+
+3.  It is difficult to determine which samples are **outliers** and
+    clusters for themselves, especially in high dimensional space. In
+    high dimensional space, the data samples are usually far apart
+    between one another and it can be hard to distinguish between group
+    of samples.
+
+4.  It is difficult to differentiate among overlapping clusters;
+
+A common strategy when solving a clustering problem is to apply several
+clustering methods in an ensemble like clustering or sometimes referred
+to as **collaborative clustering**. In such a way one may end up in a
+set of clusters with higher confidence that indeed represent some
+phenomena in the data. The number of clustering methods is quite
+large. Generally, the approaches are grouped according to the underlying
+paradigm they adopt. Most frequently they are separated into:
+agglomerative, spectral, information-theoretic, centroid-based, methods
+from combinatorial optimization and probabilistic generative models.
+
+Clustering of tabular data by rows and columns at the same time is
+called **biclustering**. One frequent usage is in gene expression among
+various samples. Oftentimes it is approached with agglomerative clustering methods.
 
 Density estimation
 ==================
