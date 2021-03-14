@@ -338,7 +338,7 @@ Different types of linkages are:
 
 1.  **Ward**; minimizes the sum of squared differences within all
     clusters. It is a variance-minimizing approach and in this sense is
-    similar to the k-means objective function but tackled with an
+    similar to the k means objective function but tackled with an
     agglomerative hierarchical approach.
 
 2.  **Maximum**; or complete linkage minimizes the maximum distance
@@ -347,46 +347,42 @@ Different types of linkages are:
 3.  **Average** linkage minimizes the average of the distances between
     all observations of pairs of clusters.
 
+
 4.  **Single** linkage minimizes the distance between the closest
     observations of pairs of clusters
-    [sklearn](https://scikit-learn.org/stable/modules/clustering.html).
+    More explanation can be found at the following link [scikit](https://scikit-learn.org/stable/modules/clustering.html).
 
 ### Divisive Clustering
 
 **Predictive clustering trees** PCTs are a generalization of decision
 trees towards the tasks of multi-target regression, multi-target
 classification, multi-label classification and their hierarchical
-variants. These versatility of PCTs allows us to use it in several
+variants. This versatility of PCTs allows us to use it in several
 learning scenarios: clustering, single target prediction and
-multi-target prediction. Tree-based method are more interpretable than
-linear models due to model mismatch effect (e.g linear models tend to be
-more influenced by interaction instead of the marginals of the
-interaction which is hardship for interpretation). PCTs are learned
+multi-target prediction. Another advantage of PCT is that it is interpretable.
+The tree-based methods are more interpretable than
+linear models due to the model mismatch effect (e.g linear models tend to be more influenced by interaction instead of the marginals of the
+interaction which is a hardship for interpretation). PCTs are learned
 using the standard top-down induction of decision trees algorithm. The
 heuristic function minimizes the intra-cluster variance to learn the
 trees. PCTs, use specific instantiations of their heuristic and the
 prototype function to address the specific tasks one is interested in
 solving.
 
-Before explaining Gaussian Mixture models we will explain the EM
-principle.
 
-Gaussian Mixture Models
------------------------
 
-In the following we present the Gaussian Mixture models. Before
-explaining them we will introduce two concepts Jensen inequality and
-Expectation Maximization principle before defining GMM.
+### Gaussian Mixture Models
+
+In the following, we present the Gaussian Mixture models (GMM). Before
+explaining those concepts, we will introduce two other ideas: 1) Jensen's inequality and 2) the Expectation Maximization principle before defining GMM.
 
 ### Jensen’s inequality
 
-In order to define EM we need to first define the Jensen’s inequality.
-This is a mathematical inequality that comes very neet in defining the
-EM algorithm. It actually allows to plug in expectation in a function
-and vice versa.
+To define EM we need to first define the Jensen’s inequality.
+This is an inequality that comes very neet in defining the
+EM algorithm. It is beneficial because it allows to plug in expectation in a function and vice versa.
 
-Jensen’s inequality: Let’s assume we are given a convex function $f(x)$
-(has a second derivative greater then 0), and $x$ is a random variable.
+**Jensen’s inequality:** Let’s assume we are given a convex function $f(x)$ (has a second derivative greater then 0), and $x$ is a random variable.
 Then:
 
 $$f(E(x)) \leq E[f(x)]$$
@@ -406,8 +402,8 @@ In the following image one can intuitivly understand the ineqaulity.
 
 ### Expectation maximization
 
-Expectaiton maximization is a procedure for obtaining local maximum
-liklihood (MLE) estimates. It is composed of two steps:
+Expectation maximization is a procedure for obtaining local maximum
+likelihood (MLE) estimates. It is composed of two steps:
 
 1.  **expectation calculation** and
 
@@ -421,29 +417,28 @@ distribution given the parameter $\theta$ of the distribtuition:
 
 $$l(\theta) = \sum_{i=1}^mlog(p(x^{i};\theta)) = \sum_{i=1}^mlog\sum_{z^{i}}p(x^{i}, z^{i};\theta)$$
 
-This joint distribution is presumably hard to minimize since we are
-minimize its log. In that sitaution it turns out that the sum will come
+This joint distribution is presumably hard to maximize since we optimizing its log. In that situation, it turns out that the sum will come
 in the denominator (when we calculate the gradient of the log
 $\nabla l(\theta)$), which makes the overall function subject to
-optimization untractable. Thus we use Jensens inequality to circle
-arount this problem.
+optimization untractable. Thus we use Jensen's inequality to circle
+around this problem.
 
-Intuitivly the EM first tries to find a tight lowerbound of the joint
-distribution subject to maximization. Then it optimizes this lower bound
-obtaining some new parameters $\theta$ for the lower-bound which is used
-in the next iteration. Doing this over the course of several times, the
-method converges to local MLE estimate of the joint distribution. This
+Intuitively the EM first tries to find a tight lower-bound of the joint
+distribution subject to maximization. It optimizes this lower bound and
+obtains some new parameters $\theta$ for the lower-bound. Those parameters are further used in the next iteration.
+Repeating the same process over the course of several iterations, the
+method converges to a local MLE estimate of the joint distribution. This
 iteration makes the method slow and dependent on the initialization. On
-the positive side there is no learning rate involved and each iteration
-improves the liklihood.
+the positive side, there is no learning rate involved and each iteration
+improves the likelihood.
 
-The step by step procedure can be seen on the following image:
+The step by step procedure can be seen in the following image:
 
 ![img](../assets/img/clustering/EM.png)
 
 **EM proof**
 
-We start with maximiazaiton of the joint probablilty.
+We start with the maximization of the joint probability function.
 
 $$max \sum_{i}log\sum_{z^i}p(x^i, z^i;\theta)$$
 
@@ -455,7 +450,7 @@ mathematical expectaiton and we have the following set of equations:
 
 $$max \sum_{i}log\sum_{z^i}p(x^i, z^i;\theta)\frac{Q(z)}{Q(z)} = \sum_{i}log(E_{z^{i}}[\frac{p(x^i, z^i;\theta)}{Q(z)}]).$$
 
-On the last equation we use the Jensens inequality of the form:
+On the last equation we use the Jensen's inequality of the form:
 $f(E(x)) \geq E[f(x)]$. This allows us to plug in the log function into
 the expectation:
 
@@ -472,19 +467,19 @@ constant
 
 $$\frac{p(x^i, z^i;\theta)}{Q(z)}=const <=> p(x^i, z^i;\theta)=cQ(z)$$
 
-we should recall also that $Q(z)$ is probability distribtuion. After
-some steps we come into situation where
+we should recall also that $Q(z)$ is a probability distribution. After
+some steps we come into a situation where
 
 $$Q_i(z^i) = \frac{p(x^i, z^i;\theta)}{\sum_i z^{i}p(x^i, z^i;\theta)} = p(z^i| x^i; \theta)$$
 
 which by definition is the marginal of z over x.
 
-In such a way the EM algortihm can be written as following: EM
+In such a way the EM algorithm can be written as following: EM
 algorithm:
 
-Step 1) Initilize $\theta_{0}=rand$
+Step 1) Initialise $\theta_{0}=rand$
 
-Step 2) Iteratie until convergence
+Step 2) Iterate until convergence
 
 Step 2.1) Calculate Expectation $q^t(z) = p(z|x;\theta^t)$
 
@@ -492,24 +487,24 @@ Step 2.2) Maximize the expectation
 $\theta^{t+1}=argmax_{\theta}\sum_z g^t(z) log p (x,z;\theta^t)$ \_\_\_
 where $t$ refers to the current iteration.
 
+The convergence criteria can be defined as the absence of improving the likelihood over the course of a predefined number of steps.
+
 Set the joint probability to Gaussian and you will obtain Gaussian
 mixture models. One can use other extensions e.g variational inference
 to extend this method and make it more robust.
 
 ### Gaussian Mixture Models {#gaussian-mixture-models}
 
+### Gaussian Mixture Models
+
 Gaussian mixture models are one example of the **soft clustering**. It
 is derived as a special case of the EM procedure. The power of this
-method for clustering is that it allows for one point to belong to all
-of the clusters with specific confidence. Also it follows very standard
-principle that each object can be represented with a sum of many
-gaussian distribution, thus it often promising for clustering. The
-problem is that for large scale clustering problems it computationaly
-intesnive. Some limmitaiton of practical usage invole absence of enough
-datapoints for the selected number of clusters. That can result in
-singluarities and the method can diverge. Reuqires prespecification of
-the number of clusters.
-
+clustering method is that it allows for one point to belong to all
+of the clusters with a specific confidence. Also, it follows a very natural scientific assumption that each object can be represented with a sum of many Gaussian distributions.
+As such it is suitable for clustering. The problem is that for large scale clustering problems it is computationally
+expensive. Some limitations of practical usage involve the absence of enough samples for the selected number of clusters. This can result in
+singularities and the method can diverge. Additionally, it requires a specification of the number of clusters.
+-----------------------
 
 Practical considerations when applying clustering
 ======================
@@ -517,18 +512,18 @@ Practical considerations when applying clustering
 When applying some of the common approaches for clustering, several
 usual questions need to be considered:
 
-1.  The number of clusters; It is not clear what is the exact number of clusters existing in a dataset. There are heuristics like the
-    **“elbow-method”** that can be used to find this number. However,
-    these methods should be taken with caution (due to the ill-definition of the clustering problem). Some methods do not require the number of clusters predefined.
+1.  The **number of clusters;** It is not clear what is the exact number of clusters existing in a dataset. There are heuristics like the
+    **“elbow-method”** that can be used to find this number. However,these methods should be taken with caution (due to the ill-definition of the clustering problem).
+    Some methods do not require the number of clusters predefined.
 
-2.  Having a good **similarity measure**; It is not clear what does a
-    similar and different object look alike. Before applying clustering to a given set of samples, one should carefully examine the data and define the similarity appropriately.
+2.  Having a good **similarity measure**; It is not clear what does a similar and different object look alike.
+    Before applying clustering to a given set of samples, one should carefully examine the data and define the similarity appropriately.
 
 3.  It is difficult to determine which samples are **outliers** and
     clusters for themselves, especially in high dimensional space. In
     high dimensional space, the data samples are usually far apart
     between one another and it can be hard to distinguish between group
-    of samples.
+    of samples and outliers.
 
 4.  It is difficult to differentiate among overlapping clusters;
 
@@ -549,27 +544,26 @@ various samples. Oftentimes it is approached with agglomerative clustering metho
 Density estimation
 ==================
 
-Although is fairly distant task from clustering, the problem of density
-estimation is one very important challange in unsupervised learning.
-Oftentimes, given the data a quick estimates of the distributions of the
-features can reviel important properties about the problem. Some
+Although is a fairly distant task from clustering, the problem of density
+estimation is one very important challenge in unsupervised learning.
+Oftentimes, given the data, a quick estimate of the distributions of the
+features can reveal important properties about the problem. Some
 successful application of density estimation is in anomaly detection and
-outlier removal. That is why we briefly mention this important topic.
+outlier removal. That is why we briefly mention this important topic as part of unsupervised learning.
 
 We care about density estimation since we analyze some source of data.
-We are interested in how that source behavies. This can help us to
-explore the data, to visualize the data in some cases, or describe it
-with sufficient statistcs. Also one can use it to generate new data or
-unsupervised anaomly detection even.
+We are interested in how that source behaves.
+Density estimation can help us to explore the data, to visualize the data in some cases, or describe it with sufficient statistics.
+Also, one can use it to generate new data in a generative setting or can use it for unsupervised anomaly detection.
 
-There are two general faimly of methods:
+There are two general families of methods for density estimation:
 
 1.  **Parametric methods:** we assume that the data comes from some
-    density e.g Gaussian or Poisson or exponental etc, and try to fit
-    the parameters of the corresponding distribtuion against the data;
+    density e.g Gaussian or Poisson or exponential etc., and try to fit
+    the parameters of the corresponding distribution against the data;
 
-2.  **Non-parameteric methods;** they are data-driven. We estimate the
-    density with as less assumptions as possible;
+2.  **Non-parametric methods;** are data-driven. We estimate the
+    the density with as fewer assumptions as possible;
 
 We introduce three methods for density estimation:
 
@@ -577,38 +571,37 @@ We introduce three methods for density estimation:
 
 2.  **Kernel density estimation**
 
-3.  **Maxmimum liklihood density estimation**
+3.  **Maximum likelihood density estimation**
 
 **Normalized histograms**. One way for representing a distribution is
-with normalized histograms. Normalized histograms is calculated
-following the bottom steps: 1) select a number of bins; 2) place the
-bins along the dimension of the groups; 3) count the number of points in
-each bin; 4) normalize the count such that the sum over all the bins
-sums to 1. The problem with histograms is the placement of the bins.
-Kernel density estimation allows for data driven placement of the bins.
+with normalized histograms. Normalized histograms are calculated
+following the following steps: 1) select some bins (an object with predefined volume);
+2) place the bins along the dimensions (features) of the groups;
+3) count the number of samples in each bin;
+4) normalize the count such that the sum over all the bins sums to 1.
+One challenge with normalized histograms is the problem of placement of the bins.
+Kernel density estimation allows for a data-driven placement of the bins.
+
 
 **Kernel density estimation** tries to bridge the problem of placing the
 bins. It starts with fitting a fixed volume around each data point. The
-number of points in that volume are count and all of that is normalized.
+number of points in that volume is counted and is normalized.
 We can imagine that we have a **kernel** e.g.
 
 $$H(u) = 1, x \in (-\frac{1}{2}, \frac{1}{2}),$$
 
 $$H(u)=0, x \not\in (-\frac{1}{2}, \frac{1}{2})$$
 
-The density estimate **(“glding/sliding historgram”)** is then
-calcualted as
+The density estimate **(“gliding/sliding histogram”)** is then
+calculated as
 
 $$P(x;h) = \frac{1}{h}\frac{1}{p}\sum_{i=1}^pH(\frac{x-x^{i}}{h})$$
 
-where $x^{i}$ is a point from the dataset. There are $p$ number of
-points and $h$ is the number of bins. The $x$ denotes a point from the
-set (recall that each point has an avialble volume it occupy). It is
-called **sliding** since we are sliding through all the points and
-caluculate the similarity to other points occuping the same volume as
-the current point we have slight to. One parameter of the density
-estimates is the type of kernel used. Frequent forms of kernels that are
-used are:
+where $x^{i}$ is a sample from the dataset. There are $p$ numbers of
+samples and $h$ is the number of bins. The $x$ denotes a sample from the set (recall that each sample has an available volume it occupies).
+It is called **sliding** since we are sliding through all the samples and
+calculate the similarity to other samples occupying the overlapping volume as the current sample we have slight to.
+One parameter of the density estimates is the type of kernel used. Frequent forms of kernels that are used are:
 
 1.  **gaussian**
 
@@ -620,14 +613,14 @@ used are:
 
 5.  **cosine**
 
-The width (defined with the intervals in the above equation) of the
+The **width** (defined with the intervals in the above equation) of the
 kernel function matters and should be selected via validation.
 
-**Maximal liklihood estimation** of density yields a model that tries to
-find a generative distribution that puts higher probability for samples
-that occure more frequently. It yiealds a non-zero probability for
-samples that resamble the observed data. Usually we are trying to
-minimize the negative log-liklihood since it is numericall more stable
-to calculate. This belongs to the parameteric family of methods. One
-need to take account about the bias and variance of the estimators of
-the uknown parameters. Take a note that this is different bias
+**Maximal likelihood estimation** of density, yields a model that tries to
+find a generative distribution that puts a higher probability for samples
+that occur more frequently. It yields a non-zero probability for
+samples that resemble the observed data. Usually, we are trying to
+minimize the negative log-likelihood since it is numerically more stable
+to calculate. This belongs to the parametric family of methods. One
+needs to take into account the bias and variance of the estimators for
+the unknown parameters.
