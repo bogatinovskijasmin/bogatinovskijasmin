@@ -212,33 +212,34 @@ Laplacian matrix of the graph to build the subgraphs. More specifically,
 to find the number of clusters we look for the **maximal gap** in the
 eigenvalues of the Laplacian.
 
-In the following we provide a mathematical proof to verify that finding
+In the following, we provide mathematical proof to verify that finding
 the clusters in spectral clustering is equivalent to performing
 eigenvalue decomposition of the Laplacian. The
 [cut](https://en.wikipedia.org/wiki/Cut_(graph_theory))
-of the graph is a partition of verticies that splits the verticies into
-two disjoint sets. We denote the cut as $cut(A, A^{l})=\sum_{i,j}w_{ij}$,
-where A and $A^{l}$ are two disjoint sets of verticies (data points) $i$ is
-a point from set A, and $j$ is a point from set $A^{l}$ and $w_{ij}$ is a
-distance measure between the points.
+of the graph, formally, is defined as a partition of vertices that splits the vertices of the graph into two disjoint sets.
+We denote the **cut** as $cut(A, A^{l})=\sum_{i,j}w_{ij}$, where A and $A^{l}$ are two disjoint sets of vertices (data points) $i$ is a point from set A, and $j$ is a point from set $A^{l}$ and $w_{ij}$ is the distance between the points. The distance is usually Euclidean.
 
-Given the graph $G=(V, E)$ where $V=A$U$A^{l}$ and $A$ and $A^{l}$ are
-disjoint sets of verticies, the goal is to find the optimal set of
-verticies such that $argmin_{A, A^{l}}cut(A, A^{l})=\sum_{i,j}w_{ij}$ is
+
+Given the graph $G=(V, E)$ where $V=A$U$A^{l}$ and $A$ and $A^{l}$ are disjoint sets of vertices, the goal is to find the optimal set of
+vertices such that $argmin_{A, A^{l}}cut(A, A^{l})=\sum_{i,j}w_{ij}$ is
 minimized. The problem with this formulation of the problem is that it
 can be highly influenced by outlier points. They will have large
 distances $w_{ij}$ to the other points and the partitioning can fail. To
-that end we opt to minimize the **ratiocut**. **Ratiocut** is a
-similarity measure between two sets of verticies from the graph that
-accoutns for the large differences in their distances.
+that end, we opt to minimize the **ratiocut**. **Ratiocut** is a
+similarity measure between two sets of vertices from the graph that
+accounts for the large differences in their distances.
 
 It is given as:
 
 $$ratiocut(A, A^{l}) = \frac{cut(A, A^{l})}{|A|} + \frac{cut( A^{l},A)}{|A^{l}|}$$
 
+, where $|A|$ denotes the cardinality (the number of points in the group).
+
+
 Our optimization problem is to minimize this function. We cannot do it
-directly, that is why we find an equivalence function that we can
+directly. Thus we find an equivalence function that we can
 minimize.
+
 
 First we inroduce a label for each point as:
 
@@ -247,9 +248,10 @@ $$f_{i} = \sqrt{\frac{|A^{l}|}{|A|}}, i \in A$$
 $$f_{i} = -\sqrt{\frac{|A|}{|A^{l}|}}, i \in A^{l}$$
 
 The introduction of this label with respect to being part of the sets
-allows to write the ratiocut loss function in terms of
+allows writing the **ratiocut** in terms of the labels as:
 
 $$min_w \sum_{ij}w_{ij}(f_i-f_j)^2$$
+
 
 **Proof:**
 
@@ -260,23 +262,24 @@ $$(\frac{|A^{l}|}{|A|} + \frac{|A|}{|A^{l}|}+2)(\sum_{i \in A j \in A^{l}}w_{ij}
 $$=
 K(cut(A, A^{l}) + cut(A^{l}, A))=K(\frac{cut(A, A^{l})}{|A|} + \frac{cut(A^{l}, A)}{|A^{l}|}) => ratiocut(A, A^{l})$$
 
-, where K is being a constant.
+, where K is a constant.
 
-Furthermore, with straiightforward calculation of $f^TLf = f^T(D-A)f$
+Furthermore, with a straightforward calculation of $f^TLf = f^T(D-A)f$
 one can show that $f^TLf <=> \frac{1}{2}\sum_{ij}w_{ij}(f_i-f_j)^2$,
-where L is the Laplacian of the connected graph, A is the adjacencny
+where L is the Laplacian of the connected graph, A is the adjacency
 matrix of the graph and D is the degree matrix of each node in the
-graph. Adding the contraint $f^Tf=I$, one can show that the optimial
-solution for the f’s being the $p+1$ eigenvectors of the matrix L. The
+graph. Adding the constraint $f^Tf=I$, one can show that the optimal
+solution for the $f$ is the $p+1$ eigenvectors of the matrix L. The
 last column represents the number of partitions the graph has. D is
-diagional matrix and the sum of the rows of A equal the corresponding
-diagonal element in the row. Note that this is minimization problem.
+a diagonal matrix and the sum of the rows of A equal the corresponding
+diagonal element in the row. Note that this is a minimization problem.
 
-In order to do more clusters, one is prespecifing the number of clusters
-$p$ it wants and runs coresponding k-means algorthim on the $p+1$
+To do more clusters, one is prespecified the number of clusters
+$p$ it wants and runs another clustering approach (e.g k means algorithm) on the $p+1$
 eigenvectors corresponding to the $p+1$ minimal eigenvalues.
 
-**Algorithm:**\[algorithm\]
+------------------------------------------------------------------------
+**Algorithm:**
 
 **Input:** Similarity matrix $S \in R^{nxn}$;
 
@@ -284,7 +287,7 @@ number $k$ of clusters to construct.
 
 **Output:** Clusters $A_1 \dots A_k$ with $A_i = \{j| y_j \in C_i\}$.
 
-------------------------------------------------------------------------
+
 
 Step 1) Construct a similarity graph. Let A be its weighted adjacency
 matrix.
@@ -305,32 +308,30 @@ of $U$.
 Step 5.2) Cluster the points $y_i$ $i=1, \dots n$ in $R^k$ with the
 **kmeans** algorithm into clusters $C_1 \dots C_k$.
 
-Agglomerative clustering
-------------------------
+### Agglomerative clustering
 
-### Hierarchical clustring
+
+#### Hierarchical clustring
 
 Another approach for clustering is hierarchical clustering. It appears
-in two forms: **agglomerative** and **divisive**. The bottomline is that
-one wants to build a hierarchy of the datapoints as they can be
-organized in one large group sets of points in time. Predictive
-clustering trees are also building a hierarchy but in a process of
+in two forms: **agglomerative** and **divisive**. The bottom line is that
+one wants to build a hierarchy of the samples according to their similarity.
+Agglomerative approaches build the hierarchy in a bottom-up approach, while divisive in a top-down approach. For example, predictive clustering trees are also building a hierarchy but in a process of
 growing a tree.
 
-The agglomerative clustering appraoch starts with all datapoints being
-grouped in separate cluster (one point one cluster). At each iteration
-it calculates their pairwise distances and trys to merge them into one
-larger set (cluster). With time there are sets of points instead of
-single point, one needs to define distance between the points in the
-sets. The used terminology for this process is **linkage**. There are
-several types of linkges: single, complete, average and Ward being the
-most popular. The joining of the sets of points accroding to the linkage
-leads to a structure called **dendrogram**. As a strucutre it provide a
-clear way to visaulze all the clusters and induce the most optimal ones.
-The distance between the points being calculated is usally Euclidean.
-However, this method generalizes to differnt measures (as long as they
+The agglomerative clustering approach starts with all samples being
+grouped in a separate cluster (one point one cluster). At each iteration,
+it calculates their pairwise distances and tries to merge them into one
+larger set (cluster). With time there are sets of samples instead of
+a single sample. One needs to define a distance between the samples in the sets. The used terminology for this process is **linkage**. There are
+several types of linkages: single, complete, average and Ward being the
+most popular. The joining of the sets of samples according to the linkage
+leads to a structure called **dendrogram**. As a structure, it provides a
+clear way to visualize all the clusters and induce the most optimal ones.
+The distance between the samples being calculated is usually Euclidean.
+However, this method generalizes to different measures (as long as they
 are metrics). Note that not all linkages are applicable with any
-distance metric. Despite Euclidean, other Lp distances, correlation
+distance metric. Despite Euclidean, other Lp distances and correlation
 distance are commonly used as well.
 
 Different types of linkages are:
