@@ -273,14 +273,14 @@ the clusters in spectral clustering is equivalent to performing
 eigenvalue decomposition of the Laplacian. The
 [cut](https://en.wikipedia.org/wiki/Cut_(graph_theory))
 of the graph is a partition of verticies that splits the verticies into
-two disjoint sets. We denote the cut as $cut(A, A^{i})=\sum_{i,j}w_{ij}$,
-where A and $A^{i}$ are two disjoint sets of verticies (data points) $i$ is
-a point from set A, and $j$ is a point from set $A^{i}$ and $w_{ij}$ is a
+two disjoint sets. We denote the cut as $cut(A, A^{*})=\sum_{i,j}w_{ij}$,
+where A and $A^{*}$ are two disjoint sets of verticies (data points) $i$ is
+a point from set A, and $j$ is a point from set $A^{*}$ and $w_{ij}$ is a
 distance measure between the points.
 
-Given the graph $G=(V, E)$ where $V=A$U$A^{i}$ and $A$ and $A^{i}$ are
+Given the graph $G=(V, E)$ where $V=A$U$A^{*}$ and $A$ and $A^{*}$ are
 disjoint sets of verticies, the goal is to find the optimal set of
-verticies such that $argmin_{A, A^{i}}cut(A, A^{i})=\sum_{i,j}w_{ij}$ is
+verticies such that $argmin_{A, A^{*}}cut(A, A^{*})=\sum_{i,j}w_{ij}$ is
 minimized. The problem with this formulation of the problem is that it
 can be highly influenced by outlier points. They will have large
 distances $w_{ij}$ to the other points and the partitioning can fail. To
