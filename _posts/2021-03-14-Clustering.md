@@ -26,7 +26,7 @@ and 4; group 2 with samples 2 and 3 or the two groups can be composed of
 group 1 with samples 1 and 2, and group 2 with samples 3 and 4. Thus
 clustering is an ill-defined problem.
 
-![image info](../assets/img/red_truck.png)
+![image info](../assets/img/clustering/red_truck.png)
 
 More formally, we can define clustering as follows. A clustering
 function is any function $f$ that takes a set $S$ of $n$ points with
@@ -76,7 +76,7 @@ that the minimum distance between points in $d_3$ space is larger than
 the maximum distance in $d_1$ space. This leads to a contradiction. The
 clustering should remain unchanged after the T1 and T2 transformation.
 
-![image\_proof](../images/clustering/impossability_proof.png)
+![image\_proof](../assets/img/clustering/impossability_proof.png)
 
 ------------------------------------------------------------------------
 
@@ -201,7 +201,7 @@ is part of one and only one $S_k$
 Step by step visualization of the method can be seen on the following
 image. The image is taken from the following
 [link](http://www.learnbymarketing.com/methods/k-means-clustering/).
-![image](../images/clustering/method_k_means_steps_example.png)
+![image](../assets/img/clustering/method_k_means_steps_example.png)
 
 There are various measures to measure convergence. The optimization
 function can be written as
@@ -457,7 +457,7 @@ if f(x) is concave then:
 $$f(E(x)) \geq E[f(x)]$$
 
 In the following image one can intuitivly understand the ineqaulity.
-![image](../images/clustering/jensenIneq.png)
+![image](../assets/img/clustering/jensenIneq.png)
 
 ### Expectation maximization
 
@@ -494,7 +494,7 @@ improves the liklihood.
 
 The step by step procedure can be seen on the following image:
 
-![img](../images/clustering/EM.png)
+![img](../assets/img/clustering/EM.png)
 
 **EM proof**
 
