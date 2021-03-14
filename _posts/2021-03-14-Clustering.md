@@ -75,7 +75,7 @@ clustering should remain unchanged after the T1 and T2 transformation.
 
 ![image\_proof](../assets/img/clustering/impossability_proof.png)
 
-------------------------------------------------------------------------
+
 
 In this post we will consider:
 
@@ -118,11 +118,9 @@ Additionally in this post, we are going to introduce:
 In the following we present several methods for clustering.
 
 ### K means/median algorithms
--------------------------
 
 **K means** is conceptually one of the simplest methods for clustering
 ([MacQueen](https://projecteuclid.org/euclid.bsmsp/1200512992)).
-
 It starts with the assumption of knowing the number of clusters. Then it
 picks some random samples from the data; referred to as centroids (using
 various algorithms such as Loyd’s, or kmeans++). In a second step, it
@@ -137,7 +135,6 @@ Euclidean distances (referred to as inertia) of all samples to their
 nearest cluster is smaller than some predefined threshold. Note, replace
 mean with median and you have k-median clustering. Sometimes the centroids are referred to as prototypes to emphasis the unique properties of the samples.
 But this is not a generally accepted term.
-
 
 Algorithmically, Kmeans is given as:
 
@@ -155,7 +152,7 @@ is part of one and only one $S_k$
 2.  while convergence
 
     2.1. assing samples to centroid $i$, such that sample $x_i$ is
-    assigned to cluster $c_k$ such that $argmin_k (c -  x_i)^2$
+    assigned to cluster $c_k$ such that $argmin_k (c_k -  x_i)^2$
 
     2.2. recalucate the centorids as
     $c_k=\frac{1}{n_k}\sum_{i \in k}x_i$
@@ -177,48 +174,43 @@ Maximization (EM)** principle discussed later in this post. The intuition
 behind the EM similarity comes from the fact that during EM, during the
 E step the expectation is calculated (corresponding to the calculation
 of the mean) while during the M step the expectation is maximized
-(corresponding to the assignment of each point to the corresponding
+(corresponding to the assignment of each sample to the corresponding
 cluster).
 
 ### Spectral clustering
--------------------
 
-Spectral clustering is a clustering approach used to produce groups of
-data given a set of $n$ unlabelled observations on which we can define
-some similairty measure. As a method it draws close connections to graph
-theory.
+Spectral clustering is used to produce groups of different samples originating from a  set of $n$ unlabelled observations on which we can define some similarity measure.
+As a method, it originates from graph theory. We first introduce some basic concepts from graph theory.
 
-**Graph** is a mathematical abstraction that is useful for modeling
-various set of problems. Formaly, it is composed of two sets of objects.
-The first set is a set of **verticies**, while the second is refered to
-as set of **edges**. The edges are connecting two verticies in the
-graph. Subset of connected verticies and their edges form a subgraph. A
-**connected component** is a maximal subgraph of nodes which all have
-paths to the rest of the nodes in the subgraph. In some sence, the goal
-of spectral clustering is identifiying such subgraphs. A graph can be
+**Graph** is a mathematical abstraction that is useful for modelling
+a various set of problems. Formally, a graph object is composed of two sets of objects.
+The first set is a set of **vertices**, while the second is referred to as a set of **edges**.
+The edges are connecting two vertices in the graph.
+A subset of connected vertices and their edges form a subgraph.
+A **connected component** is a maximal subgraph of nodes that all have paths to the rest of the nodes in the subgraph.
+In some sense, the goal of spectral clustering is to identify such subgraphs. A graph can be
 further represented with is **adjacency matrix**. Adjacency matrix ($A$)
-is a matrix where the rows and columns represent the verticies, while
-the corresponding intersections indicates if there is connection between
-two verticies. Another important component is the **degree matrix**.
-Degree matrix ($D$) is a diagonal matrix that shows how many verticies a
+is a matrix where the rows and columns represent the vertices, while
+the corresponding intersections indicate if there is a connection between
+two vertices. Another important component is the **degree matrix**.
+Degree matrix ($D$) is a diagonal matrix that shows how many vertices a
 given vertex is connected to. **Laplacian matrix** is obtained when the
 values from the **degree matrix** are substracted with the values from
-the **adjacency matrix** $L=D-A$. The eigenvalues of the Laplacian are
+the **adjacency matrix** $L=D-A$. Important for spectral clustering is that the eigenvalues of the Laplacian are
 related to the number of connected components. The first nonzero
-eigenvalue is called the **spectral gap**. The second eigenvalue is
-called the **Fiedler value**. It approximates the minimum **graph cut**
+eigenvalue is further called the **spectral gap**. The second eigenvalue is called the **Fiedler value**. It approximates the minimum **graph cut**
 needed to separate the graph into two connected components.
 
-Given a set of points we can imagine that they are connected between one
-another. We can define a cut on that graph. The points belonging to the
+Given this terminology, we can build first some intuition about what spectral clustering is all about.
+Given a set of samples from some set $S$, we can imagine that they are vertices connected with edges that are part of some graph $G$. We can define a split on the graph such that each of the vertices is grouped into two smaller subsets. The samples belonging to the
 two different partitions form separate clusters. As such, spectral
 clustering can be viewed as a way to produce subgraphs of the original
-graph where each point is the most similar with the points in the
+graph where each point is the most similar to the samples in the
 subgraph it belongs. The natural question arises into how to create the
-cut. Spectral clustering uses information from the eigenvalues of the
+separation or formally referred to as **cut of the graph**. Spectral clustering uses information from the eigenvalues of the
 Laplacian matrix of the graph to build the subgraphs. More specifically,
-to find the number of clusters we look for the maximal gap in the
-eigenvalues.
+to find the number of clusters we look for the **maximal gap** in the
+eigenvalues of the Laplacian.
 
 In the following we provide a mathematical proof to verify that finding
 the clusters in spectral clustering is equivalent to performing
@@ -341,7 +333,7 @@ are metrics). Note that not all linkages are applicable with any
 distance metric. Despite Euclidean, other Lp distances, correlation
 distance are commonly used as well.
 
-Different types of linkaes are:
+Different types of linkages are:
 
 1.  **Ward**; minimizes the sum of squared differences within all
     clusters. It is a variance-minimizing approach and in this sense is
