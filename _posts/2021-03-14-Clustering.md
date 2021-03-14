@@ -273,14 +273,14 @@ the clusters in spectral clustering is equivalent to performing
 eigenvalue decomposition of the Laplacian. The
 [cut](https://en.wikipedia.org/wiki/Cut_(graph_theory))
 of the graph is a partition of verticies that splits the verticies into
-two disjoint sets. We denote the cut as $cut(A, A^{*})=\sum_{i,j}w_{ij}$,
-where A and $A^{*}$ are two disjoint sets of verticies (data points) $i$ is
-a point from set A, and $j$ is a point from set $A^{*}$ and $w_{ij}$ is a
+two disjoint sets. We denote the cut as $cut(A, A^{l})=\sum_{i,j}w_{ij}$,
+where A and $A^{l}$ are two disjoint sets of verticies (data points) $i$ is
+a point from set A, and $j$ is a point from set $A^{l}$ and $w_{ij}$ is a
 distance measure between the points.
 
-Given the graph $G=(V, E)$ where $V=A$U$A^{*}$ and $A$ and $A^{*}$ are
+Given the graph $G=(V, E)$ where $V=A$U$A^{l}$ and $A$ and $A^{l}$ are
 disjoint sets of verticies, the goal is to find the optimal set of
-verticies such that $argmin_{A, A^{*}}cut(A, A^{*})=\sum_{i,j}w_{ij}$ is
+verticies such that $argmin_{A, A^{l}}cut(A, A^{l})=\sum_{i,j}w_{ij}$ is
 minimized. The problem with this formulation of the problem is that it
 can be highly influenced by outlier points. They will have large
 distances $w_{ij}$ to the other points and the partitioning can fail. To
@@ -290,7 +290,7 @@ accoutns for the large differences in their distances.
 
 It is given as:
 
-$$ratiocut(A, A^{*}) = \frac{cut(A, A^{*})}{|A|} + \frac{cut( A^{*},A)}{|A^{*}|}$$
+$$ratiocut(A, A^{l}) = \frac{cut(A, A^{l})}{|A|} + \frac{cut( A^{l},A)}{|A^{l}|}$$
 
 Our optimization problem is to minimize this function. We cannot do it
 directly, that is why we find an equivalence function that we can
@@ -298,9 +298,9 @@ minimize.
 
 First we inroduce a label for each point as:
 
-$$f_{i} = \sqrt{\frac{|A^{*}|}{|A|}}, i \in A$$
+$$f_{i} = \sqrt{\frac{|A^{l}|}{|A|}}, i \in A$$
 
-$$f_{i} = -\sqrt{\frac{|A|}{|A^{*}|}}, i \in A^{*}$$
+$$f_{i} = -\sqrt{\frac{|A|}{|A^{l}|}}, i \in A^{l}$$
 
 The introduction of this label with respect to being part of the sets
 allows to write the ratiocut loss function in terms of
@@ -309,12 +309,12 @@ $$min_w \sum_{ij}w_{ij}(f_i-f_j)^2$$
 
 **Proof:**
 
-$$min_w \sum_{ij}w_{ij}(f_i-f_j)^2 = \sum_{i \in A j \in A^{*}}w_{ij}(\sqrt{\frac{|A^{*}|}{|A|}} + \sqrt{\frac{|A|}{|A^{*}|}})^2 +  \sum_{i \in A^{*} j \in A}w_{ij}(\sqrt{\frac{|A^{*}|}{|A|}} - \sqrt{\frac{|A|}{|A^{*}|}})^2 =$$
+$$min_w \sum_{ij}w_{ij}(f_i-f_j)^2 = \sum_{i \in A j \in A^{l}}w_{ij}(\sqrt{\frac{|A^{l}|}{|A|}} + \sqrt{\frac{|A|}{|A^{l}|}})^2 +  \sum_{i \in A^{l} j \in A}w_{ij}(\sqrt{\frac{|A^{l}|}{|A|}} - \sqrt{\frac{|A|}{|A^{l}|}})^2 =$$
 
-$$(\frac{|A^{*}|}{|A|} + \frac{|A|}{|A^{*}|}+2)(\sum_{i \in A j \in A^{*}}w_{ij}+\sum_{ i \in A^{*}, j \in A}w_{ij})$$
+$$(\frac{|A^{l}|}{|A|} + \frac{|A|}{|A^{l}|}+2)(\sum_{i \in A j \in A^{l}}w_{ij}+\sum_{ i \in A^{l}, j \in A}w_{ij})$$
 
 $$=
-K(cut(A, A^{*}) + cut(A^{*}, A))=K(\frac{cut(A, A^{*})}{|A|} + \frac{cut(A^{*}, A)}{|A^{*}|}) => ratiocut(A, A^{*})$$
+K(cut(A, A^{l}) + cut(A^{l}, A))=K(\frac{cut(A, A^{l})}{|A|} + \frac{cut(A^{l}, A)}{|A^{l}|}) => ratiocut(A, A^{l})$$
 
 , where K is being a constant.
 
