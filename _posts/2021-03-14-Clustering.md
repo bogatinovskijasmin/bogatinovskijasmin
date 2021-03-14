@@ -1,5 +1,5 @@
 ---
-title: Clustering
+title: Unsupervised learning: Part 1
 ---
 
 Clustering
@@ -271,7 +271,7 @@ eigenvalues.
 In the following we provide a mathematical proof to verify that finding
 the clusters in spectral clustering is equivalent to performing
 eigenvalue decomposition of the Laplacian. The
-[cut](https://en.wikipedia.org/wiki/Cut_(graph_theory)#:~:text=In%20graph%20theory%2C%20a%20cut,each%20subset%20of%20the%20partition)
+[cut](https://en.wikipedia.org/wiki/Cut_(graph_theory))
 of the graph is a partition of verticies that splits the verticies into
 two disjoint sets. We denote the cut as $cut(A, A*)=\sum_{i,j}w_{ij}$,
 where A and $A*$ are two disjoint sets of verticies (data points) $i$ is
