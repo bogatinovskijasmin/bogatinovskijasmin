@@ -4,10 +4,12 @@ title: Hi there!
 subtitle: A few words on me
 ---
 
-I am a research assistant in the field of AIOps (Artificial Intelligence for IT Operations) at the group of Distributed and Operating Systems [DOS](https://www.dos.tu-berlin.de/menue/distributed_and_operating_systems/) at Technical University Berlin, supervised by [Prof. Dr. Odej Kao](https://scholar.google.si/citations?user=mvOSfFAAAAAJ&hl=en&oi=ao). My work covers broad domain of interdisciplinary topics including machine learning (with particular focus on meta learning and multi-label classification) and IT operations (log analysis for reliability engineering). I am an external collaborator with the Department of [Knowledge Technologies](http://kt.ijs.si/) at Institute Jozef Stefan [IJS](https://www.ijs.si/ijsw/JSI), Ljubljana, Slovenia. I have obtained my Master Thesis at IJS under supervision of [Dr. Dragi Kocev](https://scholar.google.si/citations?user=o9JGwN4AAAAJ&hl=en) and co-supervision of [Prof. Dr. Saso Džeroski](https://scholar.google.com/citations?user=_aIV-aEAAAAJ&hl=en). Previously, I received my Bachelor in Robotics and Control System Engineering at the Automation System Institute at FEEIT, Skopje.
+I am a research assistant in the field of AIOps (Artificial Intelligence for IT Operations) at the group of Distributed and Operating Systems [DOS](https://www.dos.tu-berlin.de/menue/distributed_and_operating_systems/) at Technical University Berlin, supervised by [Prof. Dr. Odej Kao](https://scholar.google.si/citations?user=mvOSfFAAAAAJ&hl=en&oi=ao). My work covers broad domain of interdisciplinary topics including machine learning (with particular focus on meta learning and multi-label classification) and IT operations (log analysis for reliability engineering). I am an external collaborator with the Department of [Knowledge Technologies](http://kt.ijs.si/) at Institute Jožef Stefan [IJS](https://www.ijs.si/ijsw/JSI), Ljubljana, Slovenia. I have obtained my Master Thesis at IJS under supervision of [Dr. Dragi Kocev](https://scholar.google.si/citations?user=o9JGwN4AAAAJ&hl=en) and co-supervision of [Prof. Dr. Saso Džeroski](https://scholar.google.com/citations?user=_aIV-aEAAAAJ&hl=en). Previously, I received my Bachelor in Robotics and Control System Engineering at the Automation System Institute at FEEIT, Skopje.
 
 
 ## Research
+My research interest relates to developing useful novel ML methods and extensive application of the existing ones in the area of log analysis. Some of the learning tasks include anomaly detection, fault localization, assessment of the quality of log messages and transfer learning.
+Furthermore, I am also interested in explaining the strengths and weaknesses of ML methods through the lens of comprehensible meta learning (see as an example my line of studies on the task of multi-label classification).
 
 ### **Journals**
 
@@ -37,7 +39,7 @@ In Proceedings of the 42nd International Convention on Information and Communica
 
 *Self-Supervised Log Parsing*  
 **Bogatinovski J.**, Nedelkoski S., Acker A., J Cardoso, Kao O.  
-In Proceedings ECML PKDD 2020  
+In Proceedings of the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases, ECML-PKDD 2020
 [arXiv](https://arxiv.org/abs/2003.07905)
 
 *Multi-Source Anomaly Detection in Distributed IT Systems*  
@@ -97,7 +99,7 @@ In Proceedings of the 10th Jožef Stefan International Postgraduate School Stude
 
 1) IJCAI 2019
 
-2) ICDM 2019, 2020
+2) IEEE ICDM 2019, 2020
 
 3) NIPS 2020, Meta Learning workshop
 
