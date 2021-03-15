@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Few words on me
+title:
 subtitle: Have the courage to use your own understanding
 ---
 
@@ -12,6 +12,8 @@ Some cool stuff is coming soon ;)
 ### Reseach
 
 **Journals**
+
+
 
 
 **Conference proceedings**
