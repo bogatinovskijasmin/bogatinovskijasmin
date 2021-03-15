@@ -4,7 +4,7 @@ title: Hi there!
 subtitle: A few words on me
 ---
 
-I am a research assistant in the field of AIOps (Artificial Intelligence for IT Operations) at Technical University Berlin, supervised by [Prof. Dr. Odej Kao](https://scholar.google.si/citations?user=mvOSfFAAAAAJ&hl=en&oi=ao). My work covers broad domain of interdisciplinary topics including machine learning (with particular focus on meta learning and multi-label classification) and IT operations (log analysis for reliability engineering). I am an external collaborator with the Department of [Knowledge Technologies](http://kt.ijs.si/) at Institute Jozef Stefan [IJS](https://www.ijs.si/ijsw/JSI), Ljubljana, Slovenia. I have obtained my Master Thesis at IJS under supervision of [Dr. Dragi Kocev](https://scholar.google.si/citations?user=o9JGwN4AAAAJ&hl=en) and co-supervision of [Prof. Dr. Saso Džeroski](https://scholar.google.com/citations?user=_aIV-aEAAAAJ&hl=en). Previously, I received my Bachelor in Robotics and Control System Engineering at the Automation System Institute at FEEIT, Skopje.
+I am a research assistant in the field of AIOps (Artificial Intelligence for IT Operations) at the group of Distributed and Operating Systems [DOS](https://www.dos.tu-berlin.de/menue/distributed_and_operating_systems/) at Technical University Berlin, supervised by [Prof. Dr. Odej Kao](https://scholar.google.si/citations?user=mvOSfFAAAAAJ&hl=en&oi=ao). My work covers broad domain of interdisciplinary topics including machine learning (with particular focus on meta learning and multi-label classification) and IT operations (log analysis for reliability engineering). I am an external collaborator with the Department of [Knowledge Technologies](http://kt.ijs.si/) at Institute Jozef Stefan [IJS](https://www.ijs.si/ijsw/JSI), Ljubljana, Slovenia. I have obtained my Master Thesis at IJS under supervision of [Dr. Dragi Kocev](https://scholar.google.si/citations?user=o9JGwN4AAAAJ&hl=en) and co-supervision of [Prof. Dr. Saso Džeroski](https://scholar.google.com/citations?user=_aIV-aEAAAAJ&hl=en). Previously, I received my Bachelor in Robotics and Control System Engineering at the Automation System Institute at FEEIT, Skopje.
 
 
 ## Research
@@ -56,7 +56,7 @@ In Proceedings of ICSE 2021 Workshop on Cloud Intelligence 2021
 
 *Self-Supervised Anomaly Detection from Distributed Traces*  
 **Bogatinovski J.**, Nedelkoski S., Cardoso J., Kao O. 2020  
-IEEE/ACM 13th International Conference on Utility and Cloud Computing UCC2021  
+IEEE/ACM 13th International Conference on Utility and Cloud Computing UCC 2020  
 [arXiv](https://www.computer.org/csdl/proceedings-article/ucc/2020/239400a342/1pZ0YLZTfLG)
 
 *Self-attentive classification-based anomaly detection in unstructured logs*  
