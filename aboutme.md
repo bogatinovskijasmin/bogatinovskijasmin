@@ -19,7 +19,7 @@ I am a research assistant in the field of AIOps (Artificial Intelligence for IT 
 **Bogatinovski, J.**, Todorovski, L., Džeroski, S., & Kocev, D. (2021)  
 (submitted)
 
-*Ontology of multi-label datasets*  
+*MetaMLC: A repository of multi-label classification datasets*  
 **Bogatinovski, J.**, Kostovska, A., Džeroski, S., Kocev, D., & Panov, P. (2021)  
 (submitted)
 
