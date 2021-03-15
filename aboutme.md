@@ -1,16 +1,41 @@
 ---
 layout: page
-title: About me
+title: Jasmin Bogatinovski
 subtitle: Why you'd want to go on a date with me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+Hi there! I am a research assistant in the field of AIOps (Artificial Intelligence for IT Operations) at Technical University Berlin, supervised by Prof. Dr. Odej Kao. My work covers broad domain of interdisciplinary topics including machine learning (with particular focus on meta learning and multi-label classification) and IT operations (log analysis for reliability engineering). I am an external collaborator with the Department of Knowledge Technologies at Institute Jo\{v}zev Stefan (IJS), Ljubljana, Slovenia. I have obtained my Master Thesis at IJS under supervision of Dr. Dragi Kocev and co-supervision of Prof. Dr. Sa\{v}so D\{v}zeroski. Previously, I received my Bachelor in Robotics and Control System Engineering at the Automation System Institute at FEEIT, Skopje.
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+### Recent news
+Some cool stuff is coming soon ;)
 
-What else do you need?
+### Reseach
 
-### My story
+**Journals**
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+
+**Conference proceedings**
+
+
+
+
+### Service to the community
+
+**Organization committee**
+
+1) ECML-PKDD 2017, Skopje, North Macedonia
+
+2) AIOPS 2020 First International Workshop on Artificial Intelligence 2020, collocated with International Conference on Service Oriented Computing (ICSOC 2020).
+
+
+**Program committee**
+
+1) IJCAI 2019
+
+2) ICDM 2019, 2020
+
+3) NIPS 2020, Meta Learning workshop
+
+4) IEEE BIBM 2019
+
+5) AIOPS 2020
