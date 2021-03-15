@@ -7,20 +7,23 @@ subtitle: A few words on me
 I am a research assistant in the field of AIOps (Artificial Intelligence for IT Operations) at Technical University Berlin, supervised by [Prof. Dr. Odej Kao](https://scholar.google.si/citations?user=mvOSfFAAAAAJ&hl=en&oi=ao). My work covers broad domain of interdisciplinary topics including machine learning (with particular focus on meta learning and multi-label classification) and IT operations (log analysis for reliability engineering). I am an external collaborator with the Department of [Knowledge Technologies](http://kt.ijs.si/) at Institute Jozef Stefan [IJS](https://www.ijs.si/ijsw/JSI), Ljubljana, Slovenia. I have obtained my Master Thesis at IJS under supervision of [Dr. Dragi Kocev](https://scholar.google.si/citations?user=o9JGwN4AAAAJ&hl=en) and co-supervision of [Prof. Dr. Saso Džeroski](https://scholar.google.com/citations?user=_aIV-aEAAAAJ&hl=en). Previously, I received my Bachelor in Robotics and Control System Engineering at the Automation System Institute at FEEIT, Skopje.
 
 
-### Research
+## Research
 
-**Journals**
+### **Journals**
 
-**Bogatinovski, J.**, Džeroski, S., & Kocev, D. (2021). Comprehensive Comparative Study of Multi-Label Classification Methods. [arXiv](https://arxiv.org/abs/2102.07113)
+*Comprehensive Comparative Study of Multi-Label Classification Methods*
+**Bogatinovski, J.**, Džeroski, S., & Kocev, D. (2021).  [arXiv](https://arxiv.org/abs/2102.07113)
 
-**Bogatinovski, J.**, Todorovski, L., Džeroski, S., & Kocev, D. (2021). Explaining the Performance of Multi-label Classification Methods with Data Set Properties. (submitted)
+*Explaining the Performance of Multi-label Classification Methods with Data Set Properties*
+**Bogatinovski, J.**, Todorovski, L., Džeroski, S., & Kocev, D. (2021).  (submitted)
 
-**Bogatinovski, J.**, Kostovska, A., Džeroski, S., Kocev, D., & Panov, P. (2021). Ontology of
-multi-label datasets. (submitted)
+*Ontology of multi-label datasets.*
+**Bogatinovski, J.**, Kostovska, A., Džeroski, S., Kocev, D., & Panov, P. (2021) (submitted)
 
-Eftimov, T., Petkovič, M., **Bogatinovski, J.**, & Kocev, D. (2021). Unification of the evaluation measures for multi-label classification. (submitted)
+*Unification of the evaluation measures for multi-label classification.*
+Eftimov, T., Petkovič, M., **Bogatinovski, J.**, & Kocev, D. (2021).  (submitted)
 
-**Conference proceedings**
+### **Conference proceedings**
 
 Feature extraction for heartbeat classification in single-lead ECG. **Bogatinovski, J.**, Kocev, D., Rashkovska, A. (2019). In Proceedings of the 42nd International Convention on Information and Communication Technology, Electronics and Microelectronics - MIPRO (pp. 339–345). **Exceptional and outstanding paper award.** Opatija,
 Croatia: [IEEE Explore.](https://ieeexplore.ieee.org/document/8757135)
@@ -59,7 +62,7 @@ ICSE21 Workshop on Cloud Intelligence	2021 [HAL](https://hal.inria.fr/hal-031557
 Students’ Conference and 12th Young Researchers (p. 31)
 
 
-### Service to the community
+## Service to the community
 
 **Organization committee**
 
