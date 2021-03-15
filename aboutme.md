@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Jasmin Bogatinovski
-subtitle: Why you'd want to go on a date with me
+title: Few words on me
+subtitle: Have the courage to use your own understanding
 ---
 
 Hi there! I am a research assistant in the field of AIOps (Artificial Intelligence for IT Operations) at Technical University Berlin, supervised by Prof. Dr. Odej Kao. My work covers broad domain of interdisciplinary topics including machine learning (with particular focus on meta learning and multi-label classification) and IT operations (log analysis for reliability engineering). I am an external collaborator with the Department of Knowledge Technologies at Institute Jo\{v}zev Stefan (IJS), Ljubljana, Slovenia. I have obtained my Master Thesis at IJS under supervision of Dr. Dragi Kocev and co-supervision of Prof. Dr. Sa\{v}so D\{v}zeroski. Previously, I received my Bachelor in Robotics and Control System Engineering at the Automation System Institute at FEEIT, Skopje.
