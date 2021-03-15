@@ -11,7 +11,9 @@ I am a research assistant in the field of AIOps (Artificial Intelligence for IT 
 
 ### **Journals**
 
-*Comprehensive Comparative Study of Multi-Label Classification Methods*  \  **Bogatinovski, J.**, Džeroski, S., & Kocev, D. (2021).  [arXiv](https://arxiv.org/abs/2102.07113)
+*Comprehensive Comparative Study of Multi-Label Classification Methods*
+
+ **Bogatinovski, J.**, Džeroski, S., & Kocev, D. (2021).  [arXiv](https://arxiv.org/abs/2102.07113)
 
 *Explaining the Performance of Multi-label Classification Methods with Data Set Properties*  \  **Bogatinovski, J.**, Todorovski, L., Džeroski, S., & Kocev, D. (2021).  (submitted)
 
