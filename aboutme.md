@@ -49,7 +49,7 @@ In Proceedings International Conference on Service Oriented Computing (ICSOC 202
 
 *Robust and Transferable Anomaly Detection in Log Data using Pre-Trained Language Models*  
 **Bogatinovski J.**, Ott H., Acker A., Nedelkoski S., Kao O.  
-In Proceedings of ICSE 2021 Workshop on Cloud Intelligence 2021  
+In Proceedings of the 43th International Conference on Software Engineering (ICSE 2021) Workshop on Cloud Intelligence	2021 Workshop on Cloud Intelligence 2021  
 [arXiv](https://arxiv.org/abs/2102.11570)
 
 *Self-Supervised Anomaly Detection from Distributed Traces*  
