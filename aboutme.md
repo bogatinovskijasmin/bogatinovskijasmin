@@ -81,7 +81,7 @@ Wu L., Tordsson J., **Bogatinovski J.**, Elmroth E., Kao O.
 In Proceedings of the 43th International Conference on Software Engineering (ICSE 2021) Workshop on Cloud Intelligence	2021  
 [HAL](https://hal.inria.fr/hal-03155797/)
 
-Meta learning for multi target regression.  
+*Meta learning for multi target regression*
 **Bogatinovski J.**, Kocev, D., & Džeroski, S. (2018)  
 In Proceedings of the 10th Jožef Stefan International Postgraduate School Students’ Conference and 12th Young Researchers
 
@@ -105,6 +105,6 @@ In Proceedings of the 10th Jožef Stefan International Postgraduate School Stude
 
 3) NIPS 2020, Meta Learning workshop [link](https://nips.cc/virtual/2020/public/workshop_16141.html)
 
-4) IEEE BIBM 2019 [link](https://ieeebibm.org/BIBM2019/)
+4) IEEE BIBM 2019 (on behalf of Prof. Dr. Saso Džeroski) [link](https://ieeebibm.org/BIBM2019/)
 
 5) AIOPS 2020 [link](https://aiopsworkshop.github.io/index.html)
