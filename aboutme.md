@@ -57,14 +57,14 @@ In Proceedings of the 43th International Conference on Software Engineering (ICS
 IEEE/ACM 13th International Conference on Utility and Cloud Computing UCC 2020  
 [arXiv](https://www.computer.org/csdl/proceedings-article/ucc/2020/239400a342/1pZ0YLZTfLG)
 
+*Artificial Intelligence for IT Operations (AIOPS) Workshop White Paper*  
+**Bogatinovski J.**, Nedelkoski S., Acker A., Schmidt F., Wittkopp T., Becker S., Cardoso J., Kao O.  
+[arXiv](https://arxiv.org/abs/2101.06054)
+
 *Self-attentive classification-based anomaly detection in unstructured logs*  
 Nedelkoski S., **Bogatinovski J.**, Acker A., Cardoso J., Kao O.  
 ICDM 2020: IEEE International Conference on Data Mining (ICDM 2020)  
 [arXiv](https://arxiv.org/abs/2008.09340)
-
-*Artificial Intelligence for IT Operations (AIOPS) Workshop White Paper*  
-**Bogatinovski J.**, Nedelkoski S., Acker A., Schmidt F., Wittkopp T., Becker S., Cardoso J., Kao O.  
-[arXiv](https://arxiv.org/abs/2101.06054)
 
 *Multi-source distributed system data for AI-powered analytics*  
 Nedelkoski S., **Bogatinovski J.**, Mandapati AK., Becker S., Cardoso J., Kao O.  
