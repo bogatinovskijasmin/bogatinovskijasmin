@@ -39,7 +39,7 @@ In Proceedings of the 42nd International Convention on Information and Communica
 
 *Self-Supervised Log Parsing*  
 **Bogatinovski J.**, Nedelkoski S., Acker A., J Cardoso, Kao O.  
-In Proceedings of the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases, ECML-PKDD 2020
+In Proceedings of the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases, ECML-PKDD 2020  
 [arXiv](https://arxiv.org/abs/2003.07905)
 
 *Multi-Source Anomaly Detection in Distributed IT Systems*  
@@ -73,7 +73,7 @@ In Proceedings of European Conference on Service-Oriented and Cloud Computing (E
 
 *Superiority of Simplicity: A Lightweight Model for Network Device Workload Prediction*  
 Acker A., Wittkopp T., Nedelkoski S., **Bogatinovski J.**, Kao O.  
-In Proceedings of the 15th Conference on Computer Science and Information Systems (FedCSIS) 2020
+In Proceedings of the 15th Conference on Computer Science and Information Systems (FedCSIS) 2020  
 [arXiv](https://arxiv.org/abs/2007.03568)
 
 *MicroDiag: Fine-grained Performance Diagnosis for Microservice Systems*  
