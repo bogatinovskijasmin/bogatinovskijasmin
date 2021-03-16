@@ -90,7 +90,7 @@ In Proceedings of the 10th Jožef Stefan International Postgraduate School Stude
 
 **Organization committee**
 
-1) AIOPS 2020 First International Workshop on Artificial Intelligence 2020, collocated with International Conference on Service Oriented Computing (ICSOC 2020) [link](https://aiopsworkshop.github.io/index.html)
+1) AIOPS 2020 First International Workshop on Artificial Intelligence 2020, collocated with International Conference on Service Oriented Computing (ICSOC 2020), Dubai, UAE (virtual) [link](https://aiopsworkshop.github.io/index.html)
 
 2) ECML-PKDD 2017, Skopje, North Macedonia [link](http://ecmlpkdd2017.ijs.si/)
 
