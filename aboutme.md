@@ -52,10 +52,6 @@ In Proceedings International Conference on Service Oriented Computing (ICSOC 202
 In Proceedings of ICSE 2021 Workshop on Cloud Intelligence 2021  
 [arXiv](https://arxiv.org/abs/2102.11570)
 
-*Artificial Intelligence for IT Operations (AIOPS) Workshop White Paper*  
-**Bogatinovski J.**, Nedelkoski S., Acker A., Schmidt F., Wittkopp T., Becker S., Cardoso J., Kao O.  
-[arXiv](https://arxiv.org/abs/2101.06054)
-
 *Self-Supervised Anomaly Detection from Distributed Traces*  
 **Bogatinovski J.**, Nedelkoski S., Cardoso J., Kao O. 2020  
 IEEE/ACM 13th International Conference on Utility and Cloud Computing UCC 2020  
@@ -65,6 +61,10 @@ IEEE/ACM 13th International Conference on Utility and Cloud Computing UCC 2020
 Nedelkoski S., **Bogatinovski J.**, Acker A., Cardoso J., Kao O.  
 ICDM 2020: IEEE International Conference on Data Mining (ICDM 2020)  
 [arXiv](https://arxiv.org/abs/2008.09340)
+
+*Artificial Intelligence for IT Operations (AIOPS) Workshop White Paper*  
+**Bogatinovski J.**, Nedelkoski S., Acker A., Schmidt F., Wittkopp T., Becker S., Cardoso J., Kao O.  
+[arXiv](https://arxiv.org/abs/2101.06054)
 
 *Multi-source distributed system data for AI-powered analytics*  
 Nedelkoski S., **Bogatinovski J.**, Mandapati AK., Becker S., Cardoso J., Kao O.  
