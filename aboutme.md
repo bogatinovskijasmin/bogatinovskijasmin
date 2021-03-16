@@ -90,21 +90,21 @@ In Proceedings of the 10th Jožef Stefan International Postgraduate School Stude
 
 **Organization committee**
 
-1) AIOPS 2020 First International Workshop on Artificial Intelligence 2020, collocated with International Conference on Service Oriented Computing (ICSOC 2020), Dubai, UAE (virtual) [link](https://aiopsworkshop.github.io/index.html)
+1) [AIOPS 2020](https://aiopsworkshop.github.io/index.html) First International Workshop on Artificial Intelligence 2020, collocated with International Conference on Service Oriented Computing (ICSOC 2020), Dubai, UAE (virtual)
 
-2) ECML-PKDD 2017, Skopje, North Macedonia [link](http://ecmlpkdd2017.ijs.si/)
+2) [ECML-PKDD 2017](http://ecmlpkdd2017.ijs.si/), Skopje, North Macedonia
 
-3) IEEE ICCA 2017, Ohrid, North Macedonia [link](https://www.aconf.org/conf_99534.2017_13th_IEEE_International_Conference_on_Control_&_Automation.html)
+3) [IEEE ICCA 2017](https://www.aconf.org/conf_99534.2017_13th_IEEE_International_Conference_on_Control_&_Automation.html), Ohrid, North Macedonia
 
 
 **Program committee**
 
-1) IJCAI 2019 [link](https://www.ijcai19.org/)
+1) [IJCAI 2019](https://www.ijcai19.org/)
 
-2) IEEE ICDM 2019, 2020 [link](http://icdm2020.bigke.org/)
+2) [IEEE ICDM 2019, 2020](http://icdm2020.bigke.org/)
 
-3) NIPS 2020, Meta Learning workshop [link](https://nips.cc/virtual/2020/public/workshop_16141.html)
+3) [NIPS 2020, Meta Learning workshop](https://nips.cc/virtual/2020/public/workshop_16141.html)
 
-4) IEEE BIBM 2019 (on behalf of Prof. Dr. Saso Džeroski) [link](https://ieeebibm.org/BIBM2019/)
+4) [IEEE BIBM 2019](https://ieeebibm.org/BIBM2019/) (on behalf of Prof. Dr. Saso Džeroski)
 
-5) AIOPS 2020 [link](https://aiopsworkshop.github.io/index.html)
+5) [AIOPS 2020](https://aiopsworkshop.github.io/index.html)
