@@ -53,7 +53,7 @@ In Proceedings of ICSE 2021 Workshop on Cloud Intelligence 2021
 [arXiv](https://arxiv.org/abs/2102.11570)
 
 *Artificial Intelligence for IT Operations (AIOPS) Workshop White Paper*  
-**Bogatinovski J.**, Nedelkoski S., Acker A., Schmidt F., Wittkopp T., Becker S., Cardoso J., Kao O.
+**Bogatinovski J.**, Nedelkoski S., Acker A., Schmidt F., Wittkopp T., Becker S., Cardoso J., Kao O.  
 [arXiv](https://arxiv.org/abs/2101.06054)
 
 *Self-Supervised Anomaly Detection from Distributed Traces*  
@@ -63,12 +63,12 @@ IEEE/ACM 13th International Conference on Utility and Cloud Computing UCC 2020
 
 *Self-attentive classification-based anomaly detection in unstructured logs*  
 Nedelkoski S., **Bogatinovski J.**, Acker A., Cardoso J., Kao O.  
-ICDM 2020: IEEE International Conference on Data Mining (ICDM)  
+ICDM 2020: IEEE International Conference on Data Mining (ICDM 2020)  
 [arXiv](https://arxiv.org/abs/2008.09340)
 
 *Multi-source distributed system data for AI-powered analytics*  
 Nedelkoski S., **Bogatinovski J.**, Mandapati AK., Becker S., Cardoso J., Kao O.  
-In Proceedings of European Conference on Service-Oriented and Cloud Computing 2020  
+In Proceedings of European Conference on Service-Oriented and Cloud Computing (ECSOC 2020)  
 [Zenodo](https://zenodo.org/record/3484801)
 
 *Superiority of Simplicity: A Lightweight Model for Network Device Workload Prediction*  
@@ -78,7 +78,7 @@ In Proceedings of the 15th Conference on Computer Science and Information System
 
 *MicroDiag: Fine-grained Performance Diagnosis for Microservice Systems*  
 Wu L., Tordsson J., **Bogatinovski J.**, Elmroth E., Kao O.  
-ICSE21 Workshop on Cloud Intelligence	2021  
+In Proceedings of the 43th International Conference on Software Engineering (ICSE 2021) Workshop on Cloud Intelligence	2021  
 [HAL](https://hal.inria.fr/hal-03155797/)
 
 Meta learning for multi target regression.  
@@ -90,19 +90,21 @@ In Proceedings of the 10th Jožef Stefan International Postgraduate School Stude
 
 **Organization committee**
 
-1) AIOPS 2020 First International Workshop on Artificial Intelligence 2020, collocated with International Conference on Service Oriented Computing (ICSOC 2020)
+1) AIOPS 2020 First International Workshop on Artificial Intelligence 2020, collocated with International Conference on Service Oriented Computing (ICSOC 2020) [link](https://aiopsworkshop.github.io/index.html)
 
-2) ECML-PKDD 2017, Skopje, North Macedonia
+2) ECML-PKDD 2017, Skopje, North Macedonia [link](http://ecmlpkdd2017.ijs.si/)
+
+3) IEEE ICCA 2017, Ohrid, North Macedonia [link](https://www.aconf.org/conf_99534.2017_13th_IEEE_International_Conference_on_Control_&_Automation.html)
 
 
 **Program committee**
 
-1) IJCAI 2019
+1) IJCAI 2019 [link](https://www.ijcai19.org/)
 
-2) IEEE ICDM 2019, 2020
+2) IEEE ICDM 2019, 2020 [link](http://icdm2020.bigke.org/)
 
-3) NIPS 2020, Meta Learning workshop
+3) NIPS 2020, Meta Learning workshop [link](https://nips.cc/virtual/2020/public/workshop_16141.html)
 
-4) IEEE BIBM 2019
+4) IEEE BIBM 2019 [link](https://ieeebibm.org/BIBM2019/)
 
-5) AIOPS 2020
+5) AIOPS 2020 [link](https://aiopsworkshop.github.io/index.html)
