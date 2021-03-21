@@ -3,7 +3,7 @@ _site
 .sass-cache
 .vagrant
 posts_working
-.assets/img/clustering/
+assets/img/clustering/
 
 # general
 .DS_Store
