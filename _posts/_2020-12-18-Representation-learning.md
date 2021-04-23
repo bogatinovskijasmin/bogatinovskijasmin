@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Representation Learning
-subtitle: An exntesive overview of novel and traditional representation learning 
+subtitle: An exntesive overview of novel and traditional representation learning
 cover-img: /assets/img/representation_learning_cover_image.jpg
 thumbnail-img: /assets/img/representation_learning_cover_image.jpg
 share-img: /assets/img/representation_learning_cover_image.jpg
@@ -15,7 +15,7 @@ Many different concepts for representation learning exist e.g. distributed repre
 
 In the following, we are going to present the following methods:
 
-1) PCA, 
+1) PCA,
 
 2) Dual PCA (DPCA),
 
@@ -23,23 +23,23 @@ In the following, we are going to present the following methods:
 
 4) Supervised PCA (SPCA),
 
-5) Fishier Discriminat Analysis (FDA), 
+5) Fishier Discriminat Analysis (FDA),
 
 6) MultiDimensional Scaling (MDS),
 
-7) Isomap, 
+7) Isomap,
 
 8) Local Linear Embedding (LLE),
 
 9) Laplacian Eigenmaps
 
-10) Maximal Variance Unfolding (MVU) 
+10) Maximal Variance Unfolding (MVU)
 
 11) Nystorms approximations
 
-12) t-SNE 
+12) t-SNE
 
-13) Canonical Component Analysis (CCA), 
+13) Canonical Component Analysis (CCA),
 
 14) Independent Component Analysis (ICA),
 
@@ -63,13 +63,13 @@ To define some of these methods we define the following concepts:
 
 5) Spectral Clustering
 
-6) Cut and ratiocut 
+6) Cut and ratiocut
 
 7) Maximal mean discrepancy (MMD)
 
 8) Infomax principle
 
-9) Fisher matrix 
+9) Fisher matrix
 
 10) Natural gradient
 
@@ -78,19 +78,19 @@ To define some of these methods we define the following concepts:
 
 ## Dimensionality reduction
 
-One instance of representation learning is the dimensionality reduction aspect. As a task, it belongs to the unsupervised learning paradigm. However, there exist methods that can introduce information from the labels to produce better representations. 
+One instance of representation learning is the dimensionality reduction aspect. As a task, it belongs to the unsupervised learning paradigm. However, there exist methods that can introduce information from the labels to produce better representations.
 
-In general, the methods for representation learning can be grouped into 3 groups: 
+In general, the methods for representation learning can be grouped into 3 groups:
 
 1) methods that aim to preserve maximal variation in the data with reduced dimensionality
 
-2) methods that try to add sparsity in the representation. This increases the representation dimensions with large parts of the data being sparse. 
+2) methods that try to add sparsity in the representation. This increases the representation dimensions with large parts of the data being sparse.
 
 3) methods based on statistical properties (like independence testing as in Independent Component Analysis)
 
 In this work, we are predominantly considered with the first type of representations. The remaining are left for further work. There are two main directions to provide the goal of preserving the maximal variations of the data. The "classical" approach and "modern" deep learning approaches. Although this distinction is arbitrary and very easy some of the "classical" learning techniques can be fit inside the "modern" approaches. As we shall see later, many of the "traditional" approaches can be cast in terms of kernel PCA (either with the predefined or learned kernel). On the other side, the DL approaches (e.g regularized autoencoders with nonlinear activations) can be seen as an equivalence function class as that of kernel PCA. Effectively it allows casting some of the traditional approaches as some special cases of the DL autoencoder framework, as one prominent representative of representation learning approaches from DL paradigm. A disclaimer, deep neural networks can be seen as automatic feature extractors and are automatically "learning" representations.
 
-Before explaining the traditional approaches for dimensionality reduction, we will introduce some details and refreshers for the programming machinery that hides all the tedious low-level abstraction. This is because the first group of techniques predominantly relies on linear algebra techniques to produce better representations. It uses a different kind of decompositions of similarity, kernel or distance matrices e.g: SVD, QR, LU etc. It is very interesting to observe that these approaches can combine both the descriptive and target attributes. Thus the methods can be both supervised and unsupervised. Most of these approaches are using SVD decompositions. That is why we first consider some basic definitions from linear algebra, some motivation and two simple implementations of methods for extracting eigenvectors and eigenvalues of matrix implemented without using functions from e.g LAPACK. 
+Before explaining the traditional approaches for dimensionality reduction, we will introduce some details and refreshers for the programming machinery that hides all the tedious low-level abstraction. This is because the first group of techniques predominantly relies on linear algebra techniques to produce better representations. It uses a different kind of decompositions of similarity, kernel or distance matrices e.g: SVD, QR, LU etc. It is very interesting to observe that these approaches can combine both the descriptive and target attributes. Thus the methods can be both supervised and unsupervised. Most of these approaches are using SVD decompositions. That is why we first consider some basic definitions from linear algebra, some motivation and two simple implementations of methods for extracting eigenvectors and eigenvalues of matrix implemented without using functions from e.g LAPACK.
 
 It is very important to take a note that dimensionality reduction is only possible in case when the kernel K has a rank(K) much less than the dimensionality of the data. Otherwise does not make sense to examine it since it is computationally very expensive. Geometrically this means that the data live in some submanifold of the currently observed one.
 
@@ -98,14 +98,14 @@ It is very important to take a note that dimensionality reduction is only possib
 
 ### Singular Value Decomposition
 
-Singular Value Decomposition (SVD) is an approach to transform a matrix. It decomposes the matrix to three matrices. Two of them are orthogonal, while one of them is diagonal. The values of the diagonal matrix are called singular values. 
+Singular Value Decomposition (SVD) is an approach to transform a matrix. It decomposes the matrix to three matrices. Two of them are orthogonal, while one of them is diagonal. The values of the diagonal matrix are called singular values.
 $ X = SVD,   X \in C^{nxm}, S \in C^{nxn}, V \in C^{nxm}  D* \in C^{mxm}$
 
 $C$ is the set of complex numbers in the most general case. We are interested in situations where X is part of the real number set of numbers since our data usually come in that form. Geometrically one can interpret the generated eigenvectors as rotation axis that transform a unit circle into an ellipse with radiuses determined by the corresponding eigenvalues for the corresponding eigenvector.
 
 The calculation of SVD in most programming languages is using the LAPACK library. It is Fortran library for linear algebra. The core and main advantages of this library is that it allows for efficient running on shared-memory vectors and parallel processors. LAPACK organizes the algorithms to use block matrix operations. These block operations can be organized to account for the hierarchical organization of the memory in the machines thus producing optimal performance. For more read: http://www.netlib.org/lapack/ and https://en.wikipedia.org/wiki/Eigenvalue_algorithm.
 
-There are various algorithms that can be used for SVD: 
+There are various algorithms that can be used for SVD:
 
 **1)** Golub–Reinsch SVD
 
@@ -119,7 +119,7 @@ There are various algorithms that can be used for SVD:
 
 More details can be found: http://www.cs.utexas.edu/~inderjit/public_papers/HLA_SVD.pdf
 
-If the matrix is Hermmitian (complex matrix X is equal to its conjugate transpose), there are more efficient methods that can be used to calculate the decomposition. Similar optimizations can be made for different constraints on the matrix form. 
+If the matrix is Hermmitian (complex matrix X is equal to its conjugate transpose), there are more efficient methods that can be used to calculate the decomposition. Similar optimizations can be made for different constraints on the matrix form.
 
 **Note**: Numpy implementation of SVD (a wrapper around Fortran's LAPACK) additionally performs sorting operation to make the eigenvalues from descending to ascending order.
 
@@ -133,7 +133,7 @@ ____________________________________________________
 It is generalization of the eigenvalue decomposition of a matrix. The **eigenvalue** decomposition of a matrix holds for **square matricies**, while SVD does not have that assumption. Furthermore, If the matrix is positive-definite its eigenvalues are all real numbers. **Orthogonal matrix** is a matrix where each of the columng vectors are orthogonal vectors.  **Orthognal vectors** have their dot product equal to 0 meaning they are normal vectors. **Orthonormal vectors** are orthogonal vectors with norm 1. **Norm** is a function that maps a vector from dimension $R^{d}$ to $R^{1}$.
 
 
-We implemet the **power method** for calcluating the eigenvector with highest eigenvalue. Very nice explanation can be found: https://www.youtube.com/watch?v=OzeDqsVoTFc. 
+We implemet the **power method** for calcluating the eigenvector with highest eigenvalue. Very nice explanation can be found: https://www.youtube.com/watch?v=OzeDqsVoTFc.
 
 --------------------------------------------------------------
 **INPUT**: A matrix of $X \in R^{nxn}$, convergence_threshold
@@ -169,7 +169,7 @@ def power_method(A, eps):
         else:
             v = u
             cnt += 1
-            
+
 ```
 
 Sometetimes we are faced to produce the eigenvector corresponding to the smallest eigenvalue. The **power method** returns just the eigenvector corresponding to the largest eigenvalue. To achive our goal of finding the eigenvector corresponding to the smallest eigenvalue we use the **inverse power method**. The pseudo code is given in the follwoing:
@@ -217,7 +217,7 @@ def inverse_power_method(A, eps):
             cnt += 1
 
 
-            
+
 X = np.array([[10, 20, 40], [50, 17, 244], [1, 2, 10]])
 eps = 0.0001
 
@@ -234,9 +234,9 @@ print("Output from sklearn \n", np.linalg.eig(X))
     The eigenvectors are [[-0.97086049  0.44120115]
      [-0.12332233  0.89604137]
      [ 0.20547873  0.04951163]]
-    
-    
-    Output from sklearn 
+
+
+    Output from sklearn
      (array([ 55.10431606, -22.17906212,   4.07474607]), array([[ 0.44122479,  0.49229127, -0.97085933],
            [ 0.89602962, -0.86956769, -0.12332992],
            [ 0.04951375,  0.03874706,  0.20547966]]))
@@ -244,8 +244,8 @@ print("Output from sklearn \n", np.linalg.eig(X))
 
 ## Principle Component Analysis (PCA)
 
-Principle component analysis is a dimensionality reduction technique. To be applied, it asssumes that the data exist on a linear manifold. 
-It provides a transformation method to be applied for auto of sample estimates. 
+Principle component analysis is a dimensionality reduction technique. To be applied, it asssumes that the data exist on a linear manifold.
+It provides a transformation method to be applied for auto of sample estimates.
 
 The main idea is to find vectors that can transform the data in a way that the preserved variance in the data will be maximized. We refer to this vectors as principle components. The first principle component maximizes the variance of the overall data, the second principle components maximize the projection of the data on the first component and so on.
 
@@ -253,7 +253,7 @@ Let's assume that we are given X and vector w.
 Following a simple rules from basic probability course we know that given a random variable x with mean $mean(x)$ and variance $var(x)$, if we multiply its mean by a constant c, then the mean transforms as $mean(cx)=c*mean(x)$, while the variance (sample covariance matrix) transforms as $VAR(cx)=c^{2}*VAR(x)$. Similalry, for X being mutlivariate we have, $mean(wx)=w*mean(x)$, while for the variance we have $VAR(wX)=w^{T}*VAR(x)*w$.
 
 Since the definition of the first principle component is cast as maximization problem, following the previous described rule we can write the problem as $argmax_{w} w^{T}VAR(X)w$.
-This is ill-constrained problem, from an optimmization procedure since it does not poses constrain on the w. However, we are just interested in finding the direction of the maximal variation of the data. Hence any arbitrary constraint on the vector $w$ will suffice. 
+This is ill-constrained problem, from an optimmization procedure since it does not poses constrain on the w. However, we are just interested in finding the direction of the maximal variation of the data. Hence any arbitrary constraint on the vector $w$ will suffice.
 
 Thus the PCA problem can be defined as following:
 
@@ -264,7 +264,7 @@ Thus the PCA problem can be defined as following:
     w^{T}w = I
 \end{equation}
 
-To solve this problem we can adopt any optimization strategy e.g. utilizing the Lagrangian method. 
+To solve this problem we can adopt any optimization strategy e.g. utilizing the Lagrangian method.
 
 \begin{equation}
     L(w, \lambda) = w^{T}VAR(X)w + \lambda(I-w^{T}w)
@@ -276,7 +276,7 @@ To solve this problem we can adopt any optimization strategy e.g. utilizing the 
     VAR(X)w = \lambda w
 \end{equation}
 
-This is a standard eigendecomposition problem. The optimal solution for $w$ is the eigenvector with corresponding to the largest eigenvalue and the same time it preservse the direction of maximal variation in the data. One can prove this with replacing the last equation into the optimization function and replacing the constraint $w^{T}w=I$. The mean can be denoted as $mean(X)=\mu_{x}$. The $k$ representest the number of dimension to preserve the $X$. 
+This is a standard eigendecomposition problem. The optimal solution for $w$ is the eigenvector with corresponding to the largest eigenvalue and the same time it preservse the direction of maximal variation in the data. One can prove this with replacing the last equation into the optimization function and replacing the constraint $w^{T}w=I$. The mean can be denoted as $mean(X)=\mu_{x}$. The $k$ representest the number of dimension to preserve the $X$.
 
 ### The algorihm for PCA is as follows:
 --------------------------------------------------------------
@@ -293,7 +293,7 @@ This is a standard eigendecomposition problem. The optimal solution for $w$ is t
 
 **Anomaly Detection** $anomaly\_score(x_{i}) = ||U_{k:}^{T}x_{i}||_{2}^2$
 
-**Noise Removal** $X_{noise\_reduced} = U_{:k}Y_{reconsturction}$ + Undo Centring 
+**Noise Removal** $X_{noise\_reduced} = U_{:k}Y_{reconsturction}$ + Undo Centring
 
 
 -----------------------------------------------------------
@@ -301,14 +301,14 @@ This is a standard eigendecomposition problem. The optimal solution for $w$ is t
 
 -----------------------------------------------------------
 
-PCA has many different applications. Desipte dimensionality reduction it can be used for noise removal, anomaly detection, face recognition using eigenfaces etc. A strong point of PCA is its ability to produce a mapping for uknown test sample and to reconstruct original samples. A week points of PCA is that is not robust to outliers in the data, sicne they significanlty contribute to the variance and it requires the data to lie in linear manifold. 
+PCA has many different applications. Desipte dimensionality reduction it can be used for noise removal, anomaly detection, face recognition using eigenfaces etc. A strong point of PCA is its ability to produce a mapping for uknown test sample and to reconstruct original samples. A week points of PCA is that is not robust to outliers in the data, sicne they significanlty contribute to the variance and it requires the data to lie in linear manifold.
 
-The observation of why the SVD decompositon of X is sufficent resideds in the fact that $U$ is eigenvectors of $XX^{T}$,  $V$ is eigenvectors of $X^{T}X$ and the eingevalues are square roots of $XX^{T}$. This is usually done since the caluclation of the SVD is numerically more stable. 
+The observation of why the SVD decompositon of X is sufficent resideds in the fact that $U$ is eigenvectors of $XX^{T}$,  $V$ is eigenvectors of $X^{T}X$ and the eingevalues are square roots of $XX^{T}$. This is usually done since the caluclation of the SVD is numerically more stable.
 
 
 ### Dual PCA
 
-If one is familier with kernels, it can immidatly recognize that $X^{T}X$ is a linear kernel calculated on data $X$. This allows us to define a whole family of approaches that are closely related with PCA or are its generalization e.g dual, kernel and supervised PCA. Dual PCA is beneficial in the case where $d>n$. Then we perform singular value decomposition on smaller matrix. Utilzing the fact that it is cheaper to calculate the eigenvectors of $X^{T}X$ in the desribed step we aim to rewrite the PCA algorithm such that we replace $U$ with expression that depends on $X$, $\lambda$ and $V$. 
+If one is familier with kernels, it can immidatly recognize that $X^{T}X$ is a linear kernel calculated on data $X$. This allows us to define a whole family of approaches that are closely related with PCA or are its generalization e.g dual, kernel and supervised PCA. Dual PCA is beneficial in the case where $d>n$. Then we perform singular value decomposition on smaller matrix. Utilzing the fact that it is cheaper to calculate the eigenvectors of $X^{T}X$ in the desribed step we aim to rewrite the PCA algorithm such that we replace $U$ with expression that depends on $X$, $\lambda$ and $V$.
 \begin{equation}
 X = U \lambda V^{T} /V
 \end{equation}
@@ -316,15 +316,15 @@ X = U \lambda V^{T} /V
 XV = U \lambda /\lambda^{-1}
 \end{equation}
 \begin{equation}
-XV\lambda^{-1} = U 
+XV\lambda^{-1} = U
 \end{equation}
 
 To project data in p-dimensional space (we assume that we are working with the truncated matricies):
 \begin{equation}
-U^{T}/ X = U \lambda V^{T} 
+U^{T}/ X = U \lambda V^{T}
 \end{equation}
 \begin{equation}
-Y = U^{T}X = \lambda V^{T} 
+Y = U^{T}X = \lambda V^{T}
 \end{equation}
 
 To reconsturct training data:
@@ -358,7 +358,7 @@ K(X, X) = \phi{(X)}^T \phi{(X)}
 
 The main benefit is that we are not required to know the exact form of $\phi{(X)}$, that in the most general case can be a mapping to inifite dimensional space (e.g Gaussian kernel). Thus, there does not exist any inverse mapping (or reverse image). The kernel can be seen as similarity (recall cosine similariy) between two functions of our input in arbitrary dimensional space. In such high dimensional space the "curse of dimensionality" becomes "bless of dimensionality" since the poitns are easly separable (e.g a linear classifier can be very effective since almost everything is linear there).
 
-To derive the Kernel PCA method we can refer to the Dual PCA and whenver we have X we will replace it with $\phi{(X)}$. 
+To derive the Kernel PCA method we can refer to the Dual PCA and whenver we have X we will replace it with $\phi{(X)}$.
 
 
 \begin{equation}
@@ -368,15 +368,15 @@ To derive the Kernel PCA method we can refer to the Dual PCA and whenver we have
 \phi{(X)}V = U \lambda /\lambda^{-1}
 \end{equation}
 \begin{equation}
-\phi{(X)}V\lambda^{-1} = U 
+\phi{(X)}V\lambda^{-1} = U
 \end{equation}
 
 To project data in p-dimensional space (we assume that we are working with the truncated matricies):
 \begin{equation}
-U^{T}/ \phi{(X)} = U \lambda V^{T} 
+U^{T}/ \phi{(X)} = U \lambda V^{T}
 \end{equation}
 \begin{equation}
-Y = U^{T}\phi{(X)} = \lambda V^{T} 
+Y = U^{T}\phi{(X)} = \lambda V^{T}
 \end{equation}
 
 To reconsturct training data:
@@ -399,7 +399,7 @@ for one point $x$ out of sample reconsturction:
 x_{rec} = UY = \phi{(X)}V\lambda^{-1}\lambda^{-1}V^{T}\phi{(X)}^{T}\phi{(x_{new})}
 \end{equation}
 
-Recalling that in most general form we do not know what is the mapping $\phi{(X)}$, it is pretty obvious that not all steps from the Dual PCA are possible. We can project a new point to the $p-$dimensional space and can provide out of sample reconstruction. However, we cannot project back any training point back to the orignal space, nor can recounstruct out of sample point back, because they explicitly involve the mapping $\phi{(X)}$ not their dot-product. Again as in the case of Dual PCA, we need to calculate the right eigenvectors and the eigenvalues of the kernel matrix. Additional catch one should take in care is that it needs to centralize the kernel data in the kernel space (an operation that boils down to summation and substraction of kernels). The summation of two kernels is again a kernel function so we do not have any problems there. 
+Recalling that in most general form we do not know what is the mapping $\phi{(X)}$, it is pretty obvious that not all steps from the Dual PCA are possible. We can project a new point to the $p-$dimensional space and can provide out of sample reconstruction. However, we cannot project back any training point back to the orignal space, nor can recounstruct out of sample point back, because they explicitly involve the mapping $\phi{(X)}$ not their dot-product. Again as in the case of Dual PCA, we need to calculate the right eigenvectors and the eigenvalues of the kernel matrix. Additional catch one should take in care is that it needs to centralize the kernel data in the kernel space (an operation that boils down to summation and substraction of kernels). The summation of two kernels is again a kernel function so we do not have any problems there.
 
 
 ###### Autoencoders
@@ -426,12 +426,12 @@ The last equation allows to define the arbitrary transformations U such that it 
 min_{u} ||\phi{(X)} - decode(encode(\phi{(X)}))||_{2}^{2}
 \end{equation}
 
-Thus at the final end this results in an encode-decoder structure, or we refer to as autoencoder. One can imagine 
+Thus at the final end this results in an encode-decoder structure, or we refer to as autoencoder. One can imagine
 that the encoder is a neural network architecture as well as the decoder. With their joint optimization (e.g via backproapagation) one can solve this problem and learn a very powerful representations. The autoencoder is a powerful mechanism for dimensionality reduction and learning representations.
 
-In kernel terms it corresponds to learning of arbitrary kernels instead of prespcifiying them as in the case of kernel PCA. 
+In kernel terms it corresponds to learning of arbitrary kernels instead of prespcifiying them as in the case of kernel PCA.
 
-Very often adding additional regularization terms, either in terms of KL divergence between the reconstruction and arbitrary distribution, or $L_{1}$ or $L_{2}$ norms of the weights or playing with the size of the inner representation or adding a bit Gaussian or Laplacian noise to the inputs, one can create powerful representations. We will later recall some of this stractures, especially Variational Autoencoder (and its sequential companion Recurrent Variational auto-encoder), and the $\beta$-autoencoder, which are especially interesting and one of major building blocks of the research in the time of writting. 
+Very often adding additional regularization terms, either in terms of KL divergence between the reconstruction and arbitrary distribution, or $L_{1}$ or $L_{2}$ norms of the weights or playing with the size of the inner representation or adding a bit Gaussian or Laplacian noise to the inputs, one can create powerful representations. We will later recall some of this stractures, especially Variational Autoencoder (and its sequential companion Recurrent Variational auto-encoder), and the $\beta$-autoencoder, which are especially interesting and one of major building blocks of the research in the time of writting.
 
 There are furthermore: suffcient dimenisonality reduction, where the goal is to find $P(y|x) = P(y|u^{T}x)$. Or metric learning where the goal is to find the semi-positive definitiness matrix A such that it is optimized some criteria involving the Mahalanobis distance.
 
@@ -453,12 +453,12 @@ To build some intuition for **HSIC** we start with an example. Imagine that we a
 Second important part of HSCI is the definition of independence of two random variables. **Two random variables are independent if any bounded continious function of those random variables are independent.** This is important assumption since combining with the first one intuition we can say "Imagine that there exist a mapping that caputre all of the bounded functions (similalry as in the case with the example when all moments are preserved, e.g the infinite RBF kernel), then measuring the correlation between the mappings will result in measure of dependence. To capture the **dependence** in one number we calculate the **norm** of the matrix as one number desribing the matrix. If this number is large there is dependence between the variables, otherwise they are independent". This is not entierly true in mathematical sence, since we define cross-covariance operator instead of correlation matrix (the RBF kernel corresponds to infinite mapping), however it is sufficient for intuition. HSIC norm is similar to the Frobenious norm but it does not apply to vectors instead to the **mappings**.
 
 **MMD (maxiamal mean discrepancy)**.
-Third important considiration for HSIC is related to the maximal mean disrepancey as a distance measure between probabilties functions of two random variables.  It is given as: 
+Third important considiration for HSIC is related to the maximal mean disrepancey as a distance measure between probabilties functions of two random variables.  It is given as:
 \begin{equation}
 MMD(X, Y)=||\frac{1}{n}\phi(X) - \frac{1}{m}\phi(Y)||_{2}^{2} = (\frac{1}{n}\phi(X) - \frac{1}{n}\phi(Y))^{T}(\frac{1}{n}\phi(X) - \frac{1}{m}\phi(Y))= \frac{1}{n^2}\sum_{i,j}(\phi(X_i)^{T}\phi(X_j)) + \frac{1}{m^2}\sum_{i,j}(\phi(Y_i)^{T}\phi(Y_j))-\frac{2}{mn}\sum_{i,j}(\phi(X_i)^{T}\phi(Y_j))
 \end{equation}
 
-where X and Y are random variables obtained from n observations drawn from $p(x,y)$. This is in fact a metric distance between two distributions that satisfy all the properties of a metric. It is used in the same context as KL divergence but the later does not have the metric properties, hence it is divergence. 
+where X and Y are random variables obtained from n observations drawn from $p(x,y)$. This is in fact a metric distance between two distributions that satisfy all the properties of a metric. It is used in the same context as KL divergence but the later does not have the metric properties, hence it is divergence.
 
 
 Combining this 3 preqrequsists one can derive the **Hilber-Schmidt Independnce Criteria (HSIC)** as testing for independence between two random variables:
@@ -470,18 +470,18 @@ Using MMD we can derive the expression for HSIC:
 ||p(x, y) - p(x)p(y)||_2^2
 \end{equation}
 \begin{equation}
-HSIC(X, Y) = \frac{1}{(n-2)^2}Tr(KHBH), 
+HSIC(X, Y) = \frac{1}{(n-2)^2}Tr(KHBH),
 \end{equation}
 where $K,H,B \in R^{nxn}$ $K_{i,j}=k(x_i, x_j), B_{i,j}=b(y_i, y_j)$ and $H=I-\frac{1}{n}ee^T$ and k and b are positive semi-definite kernels. H is a centring matrix. One can center just the right or just the left kernel it does not matter. HSIC is a measure of the dependence of the random variables.
 
-The intuiton behind the HSIC is that we can know the correlation between two random variables if we measure the norm of the covariance matrix. This norm is the Hilber-Schmidt norm. Furthermore, it is important that we pick kernel such as  **RBF** that allows comparison accross all of the moments of the distributions. Small values for the norm indicate independce between the variables since HSCI is a measure of dependence. Large values for the norm indicate dependence between the variables. 
+The intuiton behind the HSIC is that we can know the correlation between two random variables if we measure the norm of the covariance matrix. This norm is the Hilber-Schmidt norm. Furthermore, it is important that we pick kernel such as  **RBF** that allows comparison accross all of the moments of the distributions. Small values for the norm indicate independce between the variables since HSCI is a measure of dependence. Large values for the norm indicate dependence between the variables.
 
 #### Supervised PCA (SPCA)
 Input $\{(x_i, y_i)\}$ where $x \in R^{d}$ and $y \in R^{q}$, and the HSIC formula. We define:
 
-**GOAL:** The goal is to find a mapping $U^TX$, such that $U^TX$ has the maximal **dependency** to Y. 
+**GOAL:** The goal is to find a mapping $U^TX$, such that $U^TX$ has the maximal **dependency** to Y.
 
-1) Make a linear kernl on $U^TX$ which is $K=X^TUU^TX$ we make 
+1) Make a linear kernl on $U^TX$ which is $K=X^TUU^TX$ we make
 
 2) Make a kernel B over Y
 
@@ -520,24 +520,24 @@ subject to \begin{equation}
 \beta^TK(X, X)\beta=I
 \end{equation}
 
-The solution of this problem is generalized eigen decomposition. So to calculate the $\beta$'s one should perform eigendecomposition on the cross-covariance operator $HBHK$. After the calculation of the parameters all operations as followed in the KPCA can be applied. 
+The solution of this problem is generalized eigen decomposition. So to calculate the $\beta$'s one should perform eigendecomposition on the cross-covariance operator $HBHK$. After the calculation of the parameters all operations as followed in the KPCA can be applied.
 
 ## Fisher Discriminat Analysis (FDA)
-Another supervised approach for dimensionality reduction recides in the method of Fisher Discriminant Analysis (FDA). This method tries to find a projection of the data such that the distance of the means of the lower dimensional projection of the data is maximized, while the within variation of the projection is minimized. 
+Another supervised approach for dimensionality reduction recides in the method of Fisher Discriminant Analysis (FDA). This method tries to find a projection of the data such that the distance of the means of the lower dimensional projection of the data is maximized, while the within variation of the projection is minimized.
 
 Recall that: $\mu(cx)=c\mu(x)$ and $VAR(cx)=c^2VAR(x)$, $Tr(a)=a$ and $||*||$ is a scalar.
 
-The previous descripiton of the FDA approach can be written as: 
+The previous descripiton of the FDA approach can be written as:
 \begin{equation}
 ||w^T\mu_{x1} - w^T\mu_{x2}||_2^2 = (w^T\mu_{x1} - w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2}) = \mu_{x1}^Tww^T\mu_{x1} - 2\mu_{x2}^TTww^T\mu_{x1}  + \mu_{x2}^Tww^T\mu_{x2}
-\end{equation}, 
-where $\mu_{x1}$ and $\mu_{x2}$ denote the means of class 1 and class 2. 
+\end{equation},
+where $\mu_{x1}$ and $\mu_{x2}$ denote the means of class 1 and class 2.
 \begin{equation}
-\sigma_{b} = Tr(||w^T\mu_{x1} - w^T\mu_{x2}||_2^2) = Tr((w^T\mu_{x1} - w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2})) = Tr(\mu_{x1}^Tww^T\mu_{x1} - 2\mu_{x2}^TTww^T\mu_{x1}  + \mu_{x2}^Tww^T\mu_{x2}) = 
+\sigma_{b} = Tr(||w^T\mu_{x1} - w^T\mu_{x2}||_2^2) = Tr((w^T\mu_{x1} - w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2})) = Tr(\mu_{x1}^Tww^T\mu_{x1} - 2\mu_{x2}^TTww^T\mu_{x1}  + \mu_{x2}^Tww^T\mu_{x2}) =
 Tr(w^T\mu_{x1}\mu_{x1}^Tw - 2w^T\mu_{x1}\mu_{x2}^TTw  + w^T\mu_{x2}\mu_{x2}^Tw) = Tr(w^T(\mu_{x1}-\mu_{x2})(\mu_{x1}-\mu_{x2})^Tw) = Tr(w^T\sigma_{between}w)
-\end{equation}, 
+\end{equation},
 
-$\sigma_{between}$ is a rank 1 matrix in the k=2 class dimensionl case, or k-1 in k dimensional case.For the covariance matrix we have: 
+$\sigma_{between}$ is a rank 1 matrix in the k=2 class dimensionl case, or k-1 in k dimensional case.For the covariance matrix we have:
 \begin{equation}
 \sigma_{total}=w^T\sigma_{x1}w + w^T\sigma_{x2}w  = w^T(\sigma_{x1} + \sigma_{x2})w  = w^T\sigma_{within}w
 \end{equation}
@@ -586,8 +586,8 @@ Additional versions can involve normalization like Sammons mapping. This kind of
 
 ## Isomap
 
-Isomap is MDS where insetead of Euclidean distance we are using Geodesic distance. This method assumes that the data lie on a manifold. First we construct a graph of all of the points. The distance between point is defined as the minimal critical distance between the points in the graph. 
-We refer to this distance as Geodesic distance since it takes into account the structure of the graph. This method works by projecting the geodestic distance into a lower dimensionl space using the geodesic distance. 
+Isomap is MDS where insetead of Euclidean distance we are using Geodesic distance. This method assumes that the data lie on a manifold. First we construct a graph of all of the points. The distance between point is defined as the minimal critical distance between the points in the graph.
+We refer to this distance as Geodesic distance since it takes into account the structure of the graph. This method works by projecting the geodestic distance into a lower dimensionl space using the geodesic distance.
 
 -------------------------
 Input: X, k
@@ -597,7 +597,7 @@ Input: X, k
 
 **Step 2** Compute shortest path between all points as estimation $D^{g}(X) = geodesic_distance(X)$
 
-**Step 3** $K = -0.5HKH$, H is centring matrix $H = I - \frac{1}{n}ee^T$ 
+**Step 3** $K = -0.5HKH$, H is centring matrix $H = I - \frac{1}{n}ee^T$
 
 **Step 4** V, $\lambda$ = eig(K), V is eigenvectors of K, $\lambda$ are eigenvalues of K
 
@@ -605,14 +605,14 @@ Input: X, k
 
 **Step 6** $Y_{new} = U^TG(X_{new})$ NO!!
 
-As it can be seen by Step 6 this method is usefull for the representation of the training data. It is not able to provide out of sample estimates since it requires construction of the graph of all points to find the neighbours of the $X_{new}$. 
+As it can be seen by Step 6 this method is usefull for the representation of the training data. It is not able to provide out of sample estimates since it requires construction of the graph of all points to find the neighbours of the $X_{new}$.
 
-One important detail is that K may not be positve-semidefinite matrix. Thus there is no gurantee that one can decompose the K matrix to positive eigenvalues. To solve this one needs to map the K matrix to a cone of a semi-positive matrix e.g via applying $abs(K(X))$. 
+One important detail is that K may not be positve-semidefinite matrix. Thus there is no gurantee that one can decompose the K matrix to positive eigenvalues. To solve this one needs to map the K matrix to a cone of a semi-positive matrix e.g via applying $abs(K(X))$.
 
 It is very important for the graph to be connected so the distances can be calculated correctly.
 
 ## Local-linear embedding (LLE)
-LLE is another approach for dimensionality reduction. It assumes that the data locally lie on a subspace. It tires to capture the locallity properties of the manifold given the data and then reconsturcts the same locallities in the lower-dimensional space. 
+LLE is another approach for dimensionality reduction. It assumes that the data locally lie on a subspace. It tires to capture the locallity properties of the manifold given the data and then reconsturcts the same locallities in the lower-dimensional space.
 
 It assumes that each point is linearly related with $k$-neighbouring data points. As such it allows to calculate the linear dependency of a particular point to the others. Afterwards, tries to find a subset of points of smaller size that adhere to the same local linear properties as the original subspaces, patches, in the original space.
 The goal in both cases is to minimize the corresponding functions in sequential order.
@@ -631,7 +631,7 @@ After the $w$ weights are obtined with simple linear regression fits, then the s
 _________________________
 Input X, k
 
-**Step 1** Construct a k-nearest neighbour graph 
+**Step 1** Construct a k-nearest neighbour graph
 
 **Step 2** Compute $W_{ij}$ via minimization $\sum_{i}||x_{i}-\sum_{j}^{k}w_{i,j}x_{i}||_2^2$ for all points i. to be a well defined problem we further assume $\sum_{i,j} w_{i,j}=1$
 
@@ -654,7 +654,7 @@ w_i = [w_{i1}; ... w_{ik};] \in R^{kx1}
 x_i = x_ie_i^Tw_i
 \end{equation}
 
-It is very important for the graph to be connected so the distances can be calculated correctly. Small k results in disconnected graph. Large k results in linear method since we no longer have locallity. Same as ISOMAP. Appropriate choice of k is mandatory. 
+It is very important for the graph to be connected so the distances can be calculated correctly. Small k results in disconnected graph. Large k results in linear method since we no longer have locallity. Same as ISOMAP. Appropriate choice of k is mandatory.
 
 Using the above definition of the matricies we rewrite them in the following way:
 
@@ -669,7 +669,7 @@ The solution can be done with writting the Lagrangian:
 \begin{equation}
 w_{i}=\frac{\lambda}{2}G^{-1}e
 \end{equation}
-as long as $\sum{w_i}=1$ the value for $\lambda$ does not matter. 
+as long as $\sum{w_i}=1$ the value for $\lambda$ does not matter.
 
 
 
@@ -715,16 +715,16 @@ The solution of the optmial values for Y are the eigenvectors corresponding to t
 
 ### Spectral clustering
 
-Spectral clustering is an unsupervised approach used to produce groups of data given a set of $n$ unlabelled observations on which we can define some similairty measure. It creates the maximal connected graph out of them. Since the goal of spectral clustering is to produce subgraphs of the original graph where each point is the most similar with the points in the group it belongs to we need to choose where to cut the original graph. 
+Spectral clustering is an unsupervised approach used to produce groups of data given a set of $n$ unlabelled observations on which we can define some similairty measure. It creates the maximal connected graph out of them. Since the goal of spectral clustering is to produce subgraphs of the original graph where each point is the most similar with the points in the group it belongs to we need to choose where to cut the original graph.
 
-In graph theory this is know as the $cut(A, A*)=\sum_{i,j}w_{ij}$ problem. Given the graph $G=(V, E)$ where $V=A$U$A*$ and A and A* are disjoint sets of verticies, the goal is to find the optimal set of verticies such that $cut(A, A*)=\sum_{i,j}w_{ij}$ is minimized. The problem with this formulation of the problem is that it can be highly influenced by the distances $w_{ij}$ that are very dissmilar. Those distance will be high and than we will have issues. To that end we opt to minimize the ratiocut. Ratiocut is a similarity measure between two sets of verticies from a graph that accoutns for the large differences in similarities. 
+In graph theory this is know as the $cut(A, A*)=\sum_{i,j}w_{ij}$ problem. Given the graph $G=(V, E)$ where $V=A$U$A*$ and A and A* are disjoint sets of verticies, the goal is to find the optimal set of verticies such that $cut(A, A*)=\sum_{i,j}w_{ij}$ is minimized. The problem with this formulation of the problem is that it can be highly influenced by the distances $w_{ij}$ that are very dissmilar. Those distance will be high and than we will have issues. To that end we opt to minimize the ratiocut. Ratiocut is a similarity measure between two sets of verticies from a graph that accoutns for the large differences in similarities.
 
 It is given as:
 \begin{equation}
 ratiocut(A, A^{*}) = \frac{cut(A, A^{*})}{|A|} + \frac{cut( A^{*},A)}{|A^{*}|}
 \end{equation}
 
-In order to minimize this function we find an equivalence function that we minimize. To this end we first introduce 
+In order to minimize this function we find an equivalence function that we minimize. To this end we first introduce
 label for each point given as:
 \begin{equation}
 f_{i} = \sqrt{\frac{|A^{*}|}{|A|}}, i \in A
@@ -733,14 +733,14 @@ f_{i} = \sqrt{\frac{|A^{*}|}{|A|}}, i \in A
 f_{i} = -\sqrt{\frac{|A|}{|A^{*}|}}, i \in A^{*}
 \end{equation}
 
-The introduction of this label with respect to the being part of the sets allows to write the loss function in temrs of 
+The introduction of this label with respect to the being part of the sets allows to write the loss function in temrs of
 \begin{equation}
 min_w \sum_{ij}w_{ij}(f_i-f_j)^2
 \end{equation}
 
 Proof:
 \begin{equation}
-min_w \sum_{ij}w_{ij}(f_i-f_j)^2 = \sum_{i \in A j \in A^{*}}w_{ij}(\sqrt{\frac{|A^{*}|}{|A|}} + \sqrt{\frac{|A|}{|A^{*}|}})^2 +  \sum_{i \in A^{*} j \in A}w_{ij}(-\sqrt{\frac{|A^{*}|}{|A|}} - \sqrt{\frac{|A|}{|A^{*}|}})^2 = 
+min_w \sum_{ij}w_{ij}(f_i-f_j)^2 = \sum_{i \in A j \in A^{*}}w_{ij}(\sqrt{\frac{|A^{*}|}{|A|}} + \sqrt{\frac{|A|}{|A^{*}|}})^2 +  \sum_{i \in A^{*} j \in A}w_{ij}(-\sqrt{\frac{|A^{*}|}{|A|}} - \sqrt{\frac{|A|}{|A^{*}|}})^2 =
 (\frac{|A^{*}|}{|A|} + \frac{|A|}{|A^{*}|}+2)(\sum_{i \in A j \in A^{*}}w_{ij}+\sum_{ i \in A^{*}, j \in A}w_{ij})=
 K(cut(A, A^{*}) + cut(A^{*}, A))=K(\frac{cut(A, A^{*})}{|A|} + \frac{cut(A^{*}, A)}{|A^{*}|}) => ratiocut(A, A^{*})
 \end{equation}
@@ -758,15 +758,15 @@ Laplacian eigenmaps as a dimensionality reduction technique is concerned with fi
 
 All the methods for dimensionality redcution discussed so far are KPCAs with different kernels. Follwing this observation the question that arises is related to: Can we learn kernels from the data?
 
-This can be done via semi-definite programming casting of the problem. 
-Let's assume $x \in R^{dxn}$ and $y \in R^{pxn}$. The kernels are able to preserve the local properties of the data (e.g nearest neighbour). 
+This can be done via semi-definite programming casting of the problem.
+Let's assume $x \in R^{dxn}$ and $y \in R^{pxn}$. The kernels are able to preserve the local properties of the data (e.g nearest neighbour).
 \begin{equation}
 |x_{i}-x_{j}|^2 =  |\phi(x_{i})-\phi(x_{j})|^2 = K_{ii} + K_{jj} -2K_{ij}
 \end{equation}
 
 We are lookging for a kernel such that, if $x_{i}$ and $x_{j}$ are neighbours:$|x_{i}-x_{j}|^2 = K_{ii} + K_{jj} -2K_{ij}$. Since K is kernel in need to be positie-semi definite, K should be also be symmetric and centered. Next, we need to define a cost fucntion to optmize. This is very easy. If we recall that the PCA was performing maximization of the variance, as a natural step is to do maximization of $Tr(K)$ as a measure of variance of the embedding.
 
-Finally, the first part of the problem for Maximum Variance Unfolding can be formulated as: 
+Finally, the first part of the problem for Maximum Variance Unfolding can be formulated as:
 \begin{equation}
 \max_{k}Tr(K)
 \end{equation}
@@ -774,7 +774,7 @@ subject to the following three constraints:
 
 Centered:
 \begin{equation}
-\sum_{ij}K_{ij}=0 
+\sum_{ij}K_{ij}=0
 \end{equation}
 
 Non-negative:
@@ -784,31 +784,31 @@ K \geq 0
 
 Preserving the locallity:
 \begin{equation}
-||x_{i}-x_{j}||^2_2 = K_{ii}^2 + K_{jj}^2 -2K_{ij}^2 
+||x_{i}-x_{j}||^2_2 = K_{ii}^2 + K_{jj}^2 -2K_{ij}^2
 \end{equation}
 
 
 This problem belongs to the cateogry of semi-definite programming and it can be solved using standard approaches from semi-definite progrmming for solution. Once the kernel is found, run kernel PCA on top of it and you will obtain the solution of MVU. One solver is by Helnberg-Kojima-Monterio interior point method.
 
-### Nystorm approximation 
+### Nystorm approximation
 
-One issue with all of the discussed methods is that they do not scale well. Nystorm apprpximation is a technique that makes the methods scalable. 
+One issue with all of the discussed methods is that they do not scale well. Nystorm apprpximation is a technique that makes the methods scalable.
 
 Lets assume we are given a matrix $K=[A | B; B^T | C]$. The claim is that if we know A and B we can reconstruct C.
-One can show that $C = B^TA^{-1}B$. If the rank(C)=m, and we choose m rows for the matrix A, we can reconsutct C,  otherwise we cannot. Knowing some partial distances put constraint on where the other points in the space can be located. 
+One can show that $C = B^TA^{-1}B$. If the rank(C)=m, and we choose m rows for the matrix A, we can reconsutct C,  otherwise we cannot. Knowing some partial distances put constraint on where the other points in the space can be located.
 
 To spped up the computations one adhers to calculating of the properties locally and try to appriximate the other points with Nystorm approximation. As long as we choose good values for m (being above the rank(K)) we are good even if we do that at random.
 
-Proof that Nystorm approximation works: 
-Let K is a kernel function such that $K=X^TX$ and $X \in R^{dxn}$. Let m be an integer representing the number of chosen rows of the matrix K. We will write $X=[R; S]$ where $R \in R^{dxm}$ and $S \in R^{dxn-m}$. Then the matrix 
+Proof that Nystorm approximation works:
+Let K is a kernel function such that $K=X^TX$ and $X \in R^{dxn}$. Let m be an integer representing the number of chosen rows of the matrix K. We will write $X=[R; S]$ where $R \in R^{dxm}$ and $S \in R^{dxn-m}$. Then the matrix
 $K=[R^TR | R^TS; S^TR | S^TS] = [A|B; B^T|C]$.
 
 The matrix R can be found as an SVD decomposition of matrix A. $R = \sigma^{0.5} U$, where $\sigma$ and $U$ are the diagonal matrix of eigenvalues and eigenvectors of matrix A. $B=R^TS$, replacing the solution for R we have $B=U\sigma^{0.5}S <=> U^TB=\sigma^{0.5}S <=> \sigma^{-0.5}U^TB=S$. Since $C=S^TS$, replacing for S we have $C=S^TS=B^T\sigma^{-0.5}\sigma^{-0.5}U^TB=B^TU\sigma{-1}U^TB <=>C=B^TA^{-1}B$.
 This approximation is exact if rank(K) is at most m.
 
-Under this umbrella we can fit all the fast versions of the methods: FastMDS,  Fast ISOPMAP etc. 
+Under this umbrella we can fit all the fast versions of the methods: FastMDS,  Fast ISOPMAP etc.
 Fast MDS: 1) Select $m<<n$ data points; 2) calculate pairwisie distance between the m points; 3) calculate the distance between m and all other n-m points.
-There is a paper that shows that all fast (or landmark) works are different reinventions of the Nystorm approximation method. 
+There is a paper that shows that all fast (or landmark) works are different reinventions of the Nystorm approximation method.
 
 ### Non-negative matrix factorization.
 
@@ -820,19 +820,19 @@ There are many algorthims one can use to solve this problem. One for example is 
 \max_{W, H} ||A-WH||_2^2
 \end{equation}
 
-starting from some initial random values (or some careful intialization) one can find both the bases (W) and the factors (H). 
+starting from some initial random values (or some careful intialization) one can find both the bases (W) and the factors (H).
 Also, one can use the R1D algortihm to find the bases. The intution follows from "Leading singular value of a nonnegative matrix is nonnegative. (Theorem)". Utilizing this notion one can write the problem of fidning W and H as eigenvectors.
 
 ### Stochastic neighbour embedding (SNE)
 
-Stochastic neighbour embedding is used for representation of the data in a lower space. The main idea is that it assumes that the local neighbourhood of a datapoint in the original high dimensional $X \in R^{dxn}$ space can be embedd under a Gaussian. This results in conversion of distances to probabilitites. The same assumption is made for the lower dimensional representation $Y \in R^{pxn}, p<<d$ . Then it tries to minimize the KL divergence between these two distributions in an iterative way. 
+Stochastic neighbour embedding is used for representation of the data in a lower space. The main idea is that it assumes that the local neighbourhood of a datapoint in the original high dimensional $X \in R^{dxn}$ space can be embedd under a Gaussian. This results in conversion of distances to probabilitites. The same assumption is made for the lower dimensional representation $Y \in R^{pxn}, p<<d$ . Then it tries to minimize the KL divergence between these two distributions in an iterative way.
 The conversion of distances to proabiltities is given with:
 
 \begin{equation}
 p_{j|i}=\frac{\frac{e^|x_{i}-x_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}\frac{e^|x_{i}-x_{j}|^2}{2\sigma_{i}}}
 \end{equation}
 
-where each $\sigma_{i}$ is different for each point. 
+where each $\sigma_{i}$ is different for each point.
 
 \begin{equation}
 q_{j|i}=\frac{\frac{e^|y_{i}-y_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}\frac{e^|y_{i}-y_{j}|^2}{2\sigma_{i}}}
@@ -847,7 +847,7 @@ J=\min_{y_i, y_j}KL(P||Q) = \sum_{i,j}p_{j|i}log\frac{p_{j|i}}{q_{j|i}}
 
 
 
-One of the problem we are faced with such formulation is the "crowding" problem. This problem arises in the case when we want to map data from higher dimension to lower dimension due to the uneven volumes of the both spaces. It usually will result that the points that are on medium and large distance in a higher dimensionl space to be mapped very far from one another in the lower dimensional space. To eliveiate this problem in SNE, tSNE is introduced. 
+One of the problem we are faced with such formulation is the "crowding" problem. This problem arises in the case when we want to map data from higher dimension to lower dimension due to the uneven volumes of the both spaces. It usually will result that the points that are on medium and large distance in a higher dimensionl space to be mapped very far from one another in the lower dimensional space. To eliveiate this problem in SNE, tSNE is introduced.
 
 
 #### t-SNE
@@ -868,7 +868,7 @@ where each $\sigma$ is the same. We again optmize $KL(P||Q)$, for y.
 ### Component analysis
 
 Canonical Component Analysis (CCA)
-The main idea behind this method is that given $X \in R{n}$ and $Y \in R{m}$ find a representation Z such that it is maximaly related to both of them. One can look as X and Y being conditionally independent given Z. 
+The main idea behind this method is that given $X \in R{n}$ and $Y \in R{m}$ find a representation Z such that it is maximaly related to both of them. One can look as X and Y being conditionally independent given Z.
 
 Find the projections $w_x \in R^{m}$ and  $w_y\in R^{n}$. The objective function can be formulates as:
 \begin{equation}
@@ -923,8 +923,8 @@ Combining all of these results in a block matrix form we get:
 [0| C_{xy}; C_{yx} | 0][w_x; w_y] = \alpha [C_{xx}| 0; 0 | C_{yy}][w_x; w_y]  
 \end{equation}
 
-This is a generalized eigenvalue equation solvable with standard eingenvalue solver. 
-It can be extended on more then 2 variables and we can utlized also Kernel versions of it. 
+This is a generalized eigenvalue equation solvable with standard eingenvalue solver.
+It can be extended on more then 2 variables and we can utlized also Kernel versions of it.
 To capture nonlinear dependecies use kernel. Hence we have **kCCA** (kernel Canoical Component Analysis).
 
 \begin{equation}
@@ -958,7 +958,7 @@ There are various view points of the ICA method and various approaches to it. He
 
 #### InfoMax ICA
 Let's assume that there $s$  comes from uknown densitiy $P_s{(s)}$, parametarized with $W$ or it can be written as $P_s{(Wx)}$. Our goal is to estimate this probability $P^*_{s}{(s)}=\prod_{i=1}^N P_{s_i}^{*}(s_i)$ given the obesrvations, under the independence assumption.
-Thus we can write our cost functions as minimization of the KL divergence of these two probabilities with respect to the unmixing matrix W. 
+Thus we can write our cost functions as minimization of the KL divergence of these two probabilities with respect to the unmixing matrix W.
 \begin{equation}
 D_{KL} = D_{KL}[P_s(s), P^*_{s}(s)] = \int dsP_s(s)ln\frac{P_s(s)}{\prod_{i=1}^N P_{s_i}^{*}(s_i)} (1)
 \end{equation}
@@ -982,7 +982,7 @@ The problem with this equaton is that we cannot calculate the integral. One work
 E^T=ln(|det(W)|) + \frac{1}{p}\sum_{\alpha=1}^p \sum_{l=1}^N f^{*'}_l(\sum_{k=1}^Nw_{lk}x_k^{\alpha}))
 \end{equation}
 
-This formulation of the problem can be solved using the gradient ascent algorithm. However, there is a problem with this formulation. It requires calculation of a determinant of the matrix. To go around that problem one may use the Natural gradient instead of the gradient. The natural gradient acts is similar to normal gradient descient with a difference that instead of finding the optimal step for the current update of the parameter in the Euclidiean space, it tries to find optmial updated in a space of distributions. This allows to eliminate the calculation of the gradient of the determinant of the unmixing matrix and provide a solution for the problem. 
+This formulation of the problem can be solved using the gradient ascent algorithm. However, there is a problem with this formulation. It requires calculation of a determinant of the matrix. To go around that problem one may use the Natural gradient instead of the gradient. The natural gradient acts is similar to normal gradient descient with a difference that instead of finding the optimal step for the current update of the parameter in the Euclidiean space, it tries to find optmial updated in a space of distributions. This allows to eliminate the calculation of the gradient of the determinant of the unmixing matrix and provide a solution for the problem.
 
 ##### A few words on Natural gradient descent:
 
@@ -1002,7 +1002,7 @@ In practice it is difficult to compute F matrix (it is the negative Hessian). Fi
 
 ### Variational Autoencoder
 
-VAE is using variational inference to provide esimates of untractable probabiltitites. 
+VAE is using variational inference to provide esimates of untractable probabiltitites.
 
 To define all the things we need we start with first defining what is information
 **Information** is quantified with the $I=-log(p(x))$, where x is some event. For example, the probability of raining snow in July is low, since it is very unlikly. However, if someone tells that the snow will rain that means that that information has very great information within.
@@ -1011,11 +1011,11 @@ To define all the things we need we start with first defining what is informatio
 The average of information is **entropy**. The mathematical expectation of the information is entorpy $E(x)= \int -p(x)log(p(x)dx$.
 
 
-Similarly as MMD (maximal mean discrepancy) **KL divergence** measures the dissimilarity between two different distributions. As opposed to MMD the KL divergence is not symmetric. It is always positive. 
+Similarly as MMD (maximal mean discrepancy) **KL divergence** measures the dissimilarity between two different distributions. As opposed to MMD the KL divergence is not symmetric. It is always positive.
 
 For easier remambering we can observe the **KL divergence** as difference between entropie of two distributions. This is not true but helps for better remamberinng:
 \begin{equation}
-KL(p||q) ~= \sum -q(x)log q(x) + \sum p(x)log(p(x)) 
+KL(p||q) ~= \sum -q(x)log q(x) + \sum p(x)log(p(x))
 \end{equation}
 The truth is
 \begin{equation}
@@ -1027,32 +1027,32 @@ The properties of the KL divergence are: it is positive and it is not symmetric.
 $p(z|x) = p(x,z)/p(x)$
 
 It is difficult to compute p(x)
-To that end we use: 
-1) Monte Carlo methods or 
+To that end we use:
+1) Monte Carlo methods or
 2) Variational inference
 
 With variational inference, we try to approximate p(z|x) with a known q(z).
-We want to make q close to p. That means we want to 
+We want to make q close to p. That means we want to
 \begin{equation}
 min KL(q(z)||p(z|x)) = -\sum q(z) log \frac{p(z|x)}{q(z)}.
 \end{equation}tli
-This can further be decomposed and equivalent 
+This can further be decomposed and equivalent
 \begin{equation}
 p(z|x) = \frac{p(x|z)p(z)}{p(x)}= \frac{p(x,z)}{p(x)} = -\sum q(z)log \frac{\frac{p(x,z)}{p(x)}}{q(z)} = -\sum q(z) log \frac{p(x,z)}{q(z)} * \frac{1}{p(x)} = - \sum q(z)[log \frac{p(x, z)}{q(z)} -log p(x)] = -\sum_z q(z)log \frac{p(x,z)}{q(z)} + \sum_z q(z)log p(x) = -\sum_z q(z) log \frac{p(x,z)}{q(z)} + log p(x) * \sum_z p(z) -> 1 <=> log p(x) = KL (q(z) || p(z|x)) +  \sum q(z) log \frac{p(x,z)}{q(z)}
 \end{equation}
 
 
-$log p(x) = const.$ it is fixed number if x is given. That means it does not depends on q(z). 
-Since the objective is to minizie the  KL divergnece. that means that we want to maximize the lower bound $L=\sum q(z) log \frac{p(x,z)}{q(z)}$. This is called a variational lower bound. We can maximize this variational bound instead of minimizing the KL divergence. However, this bound is not tight and that will have additional reflections in the result since the KL divergence will not exactly be minimized. 
+$log p(x) = const.$ it is fixed number if x is given. That means it does not depends on q(z).
+Since the objective is to minizie the  KL divergnece. that means that we want to maximize the lower bound $L=\sum q(z) log \frac{p(x,z)}{q(z)}$. This is called a variational lower bound. We can maximize this variational bound instead of minimizing the KL divergence. However, this bound is not tight and that will have additional reflections in the result since the KL divergence will not exactly be minimized.
 
 
 \begin{equation}
-max L = \sum q(z) \frac{p(x,z)}{q(z)}  = \sum q(z)[log(p(x|z) + log\frac{p(z)}{q(z)}] = \sum q(z)log(p(x|z)) + \sum q(z)\frac{p(z)}{q(z)} = \sum q(z)log(p(x|z)) - KL(q(z)||p(z)) = E_{q(z)}logp(x|z) - KL(q(z)||p(z)) 
+max L = \sum q(z) \frac{p(x,z)}{q(z)}  = \sum q(z)[log(p(x|z) + log\frac{p(z)}{q(z)}] = \sum q(z)log(p(x|z)) + \sum q(z)\frac{p(z)}{q(z)} = \sum q(z)log(p(x|z)) - KL(q(z)||p(z)) = E_{q(z)}logp(x|z) - KL(q(z)||p(z))
 \end{equation}
 
 In fact if we interpret VAE as a graphical model: one can use $z->x$ and map it to probability p(z|x), while at the same time it can make assumpuion of exsiting recursive relationship $x->z$ to represent the mapping $q(x|z)$. Then the later can be seen as encoder, and the former as decoder. This practically means that we choose some distribution for $z$ that we want to reconstruct. With minizmiation of the above quantity one can actually try to learn how to map the corresponding chosen distribution.
 
-In case of Gaussian E_{q(z)}logp(x|z) results in $E_{q(z)}log(exp(-|x-x^*|^2)$ which is equivalent to minimization of the reconstruction error thus: 
+In case of Gaussian E_{q(z)}logp(x|z) results in $E_{q(z)}log(exp(-|x-x^*|^2)$ which is equivalent to minimization of the reconstruction error thus:
 \begin{equation}
 \max E_{q(z)}logp(x|z) - KL(q(z)||p(z))  <=> \max -E_{q(z)}logp(x|z) - KL(q(z)||p(z)) <=> \min recon\_error +  KL(q(z)||p(z))
 \end{equation}
@@ -1075,7 +1075,7 @@ Algorithm
 
 2.4) $\theta, \phi$ <- update parameters using g
 
-3) return $\theta$ and $\phi$ 
+3) return $\theta$ and $\phi$
 
 
-There are various difference ascepts of the VAE framework. Adding a regularizing parameter infront of the KL term, allows to implicitly contorl for the amount of independece enforced on the output. Thus one can either use simmulated annealing, or add it as large constant (e.g beta VAE). Thus one can end up in representations with different richness. For example, with large beta's one allows for emphasised independance between the latent factors enfored with the isotropic covarince of the latent factor embedding that encodes it. This is has interesting observation in causality learning. Another interesting extension is the recurrent variational autoencoder. It is extension of the VAE framework but at the same time it takes into account the previos state encoded by a hidden layer in an LSTM for example. Another interesting extension is regularizing the value for beta using a closed-loop system when the value for the regularization parameter using the KL divergence as input. 
+There are various difference ascepts of the VAE framework. Adding a regularizing parameter infront of the KL term, allows to implicitly contorl for the amount of independece enforced on the output. Thus one can either use simmulated annealing, or add it as large constant (e.g beta VAE). Thus one can end up in representations with different richness. For example, with large beta's one allows for emphasised independance between the latent factors enfored with the isotropic covarince of the latent factor embedding that encodes it. This is has interesting observation in causality learning. Another interesting extension is the recurrent variational autoencoder. It is extension of the VAE framework but at the same time it takes into account the previos state encoded by a hidden layer in an LSTM for example. Another interesting extension is regularizing the value for beta using a closed-loop system when the value for the regularization parameter using the KL divergence as input.

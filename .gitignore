@@ -4,6 +4,7 @@ _site
 .vagrant
 posts_working
 assets/img/clustering/
+assets/img/kernels/
 
 # general
 .DS_Store
