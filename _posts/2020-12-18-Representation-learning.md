@@ -242,7 +242,7 @@ It provides a transformation function applicable for out of sample estimates.
 
 The main idea is to find vectors that can transform the data in a way that the preserved variance in the data will be maximized. We refer to these vectors as principal components. The first principle component maximizes the variance of the overall data, the second principle components maximize the projection of the data on the first component and so on.
 
-Let's assume that we are given $X\inR^{d}$ and vector w.
+Let's assume that we are given $X \in R^{d}$ and vector w.
 Following a simple rules from basic probability course we know that given a random variable x with mean $mean(x)$ and variance $var(x)$, if we multiply its mean by a constant c, then the mean transforms as $mean(cx)=c\*mean(x)$, while the variance (sample covariance matrix) transforms as $VAR(cx)=c^{2}*VAR(x)$. Similalry, for X being mutlivariate we have, $mean(wx)=w*mean(x)$, while for the variance we have $VAR(wX)=w^{T}*VAR(x)*w$.
 
 Since the definition of the first principle component given as maximization problem, following the previously described rule, we can write the problem as $argmax_{w} w^{T}VAR(X)w$.
