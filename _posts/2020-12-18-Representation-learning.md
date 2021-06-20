@@ -400,9 +400,9 @@ x_{rec} = UY = \phi{(X)}V\lambda^{-1}\lambda^{-1}V^{T}\phi{(X)}^{T}\phi{(x_{new}
 Recalling that in the most general form we do not know what is the mapping $\phi{(X)}$, it is pretty obvious that not all steps from the Dual PCA are possible. We can project a new point to the $p-$dimensional space. However, we cannot project back any training point back to the original space, nor can reconstruct out of sample point back, because they explicitly involve the mapping $\phi{(X)}$ not their dot-product. Again as in the case of Dual PCA, we need to calculate the right eigenvectors and the eigenvalues of the kernel matrix. An additional catch one should take into care is that it needs to centralize the kernel data in the kernel space (an operation that boils down to summation and subtraction of kernels). The summation of two kernels is again a kernel function so we do not have any problems there.
 
 
-###### Autoencoders
+###### Autoencoders and its relation to PCA
 
-One interesting thing that can be also observed with such formulation of the problems, we will come later back to is the definition of an algorithm like PCA (and its variants) as an optimization problem in the following form:
+The formulation of PCA is given with the following equations:
 \begin{equation}
 Y = U^{T}X
 \end{equation}
@@ -412,7 +412,7 @@ X = UY = UU^{T}X
 \end{equation}
 
 \begin{equation}
-min_{u} ||X - UU^{T}X||_{2}^{2}
+argmin_{u} ||X - UU^{T}X||_{2}^{2}
 \end{equation}
 
 or more in the nonlinear case where the data are transformed
@@ -421,21 +421,19 @@ or more in the nonlinear case where the data are transformed
 min_{u} ||\phi{(X)} - UU^{T}\phi{(X)}||_{2}^{2}
 \end{equation}
 
-NOTE: PCA and autoenocders do not result in the same solution, one can more think of this as very similar methods, to better understand the autoencoders.
+One interesting thing that can be also observed with such formulation of the problems is that one can try to directly address the problem with a neural network, where both $U$ and $U^{T}$ are modelled with one. This is a general formulation of the problem solved by autoencoders. PCA and autoencoders do not result in the same solution, one can more think of this as equivalent methods.
 
-The last equation allows to define the arbitrary transformations U such that it closly resambles the Kernel PCA algorithm, however the transformation U is not always the same. Moreover, the last equation we can rewrite it in plain English as:
+The last equation allows to define the arbitrary transformations U such that it closely resembles the Kernel PCA algorithm, however the transformation U is not always the same. Moreover, the last equation we can rewrite it in plain English as:
 \begin{equation}
 min_{u} ||\phi{(X)} - decode(encode(\phi{(X)}))||_{2}^{2}
 \end{equation}
 
-Thus at the final end this results in an encode-decoder structure, or we refer to as autoencoder. One can imagine
-that the encoder is a neural network architecture as well as the decoder. With their joint optimization (e.g via backproapagation) one can solve this problem and learn a very powerful representations. The autoencoder is a powerful mechanism for dimensionality reduction and learning representations.
+Thus, in the end, this results in an encode-decoder structure, or we refer to as autoencoder. One can imagine
+that the encoder is a neural network architecture as well as a decoder. With their joint optimization (e.g via backpropagation) one can solve this problem and learn very powerful representations. The autoencoder is a powerful mechanism for dimensionality reduction and learning representations.
 
-In kernel terms it corresponds to learning of arbitrary kernels instead of prespcifiying them as in the case of kernel PCA.
+In kernel terms, it corresponds to learning of arbitrary kernels instead of prespecifying them as in the case of kernel PCA.
 
-Very often adding additional regularization terms, either in terms of KL divergence between the reconstruction and arbitrary distribution, or $L_{1}$ or $L_{2}$ norms of the weights or playing with the size of the inner representation or adding a bit Gaussian or Laplacian noise to the inputs, one can create powerful representations. We will later recall some of this stractures, especially Variational Autoencoder (and its sequential companion Recurrent Variational auto-encoder), and the $\beta$-autoencoder, which are especially interesting and one of major building blocks of the research in the time of writting.
-
-There are furthermore: suffcient dimenisonality reduction, where the goal is to find $P(y|x) = P(y|u^{T}x)$. Or metric learning where the goal is to find the semi-positive definitiness matrix A such that it is optimized some criteria involving the Mahalanobis distance.
+Very often adding additional regularization terms, either in terms of KL divergence between the reconstruction and arbitrary distribution, or $L_{1}$ or $L_{2}$ norms of the weights or playing with the size of the inner representation or adding a bit Gaussian or Laplacian noise to the inputs, one can result in different versions of autoencoders and very diverse set of representations. We will later recall some of these structures, especially Variational Autoencoder (and its sequential companion Recurrent Variational auto-encoder).
 
 
 # Supervised representation learning techniques
@@ -1079,3 +1077,7 @@ Algorithm
 
 
 There are various difference ascepts of the VAE framework. Adding a regularizing parameter infront of the KL term, allows to implicitly contorl for the amount of independece enforced on the output. Thus one can either use simmulated annealing, or add it as large constant (e.g beta VAE). Thus one can end up in representations with different richness. For example, with large beta's one allows for emphasised independance between the latent factors enfored with the isotropic covarince of the latent factor embedding that encodes it. This is has interesting observation in causality learning. Another interesting extension is the recurrent variational autoencoder. It is extension of the VAE framework but at the same time it takes into account the previos state encoded by a hidden layer in an LSTM for example. Another interesting extension is regularizing the value for beta using a closed-loop system when the value for the regularization parameter using the KL divergence as input.
+
+
+
+In dimensionality reduction there are other dimensions and areas of research like 1) sufficient dimensionality reduction, where the goal is to find $P(y\|x) = P(y\|u^{T}x)$;  or 2) metric learning where the goal is to find the semi-positive definiteness matrix A such that it is optimized some criteria involving the Mahalanobis distance. However, we give them here as keywords, without going further in detail. The curious reader may further investigate these terms.
