@@ -246,7 +246,7 @@ Let's assume that we are given $X \in R^{d}$ and vector w.
 Following a simple rules from basic probability course we know that given a random variable x with mean $mean(x)$ and variance $var(x)$, if we multiply its mean by a constant c, then the mean transforms as $mean(cx)=c\*mean(x)$, while the variance (sample covariance matrix) transforms as $VAR(cx)=c^{2}\*VAR(x)$. Similalry, for X being mutlivariate we have, $mean(wx)=w\*mean(x)$, while for the variance we have $VAR(wX)=w^{T}\*VAR(x)\*w$.
 
 Since the definition of the first principle component given as maximization problem, following the previously described rule, we can write the problem as $argmax_{w} w^{T}VAR(X)w$.
-The latter is an ill-constrained problem, from an optimization perspective because it does not poses constrain on the w. However, we are just interested in finding the direction of the maximal variation of the data. Therefore, any arbitrary constraint on the vector $w$ will suffice.
+The latter is an ill-constrained problem, from an optimization perspective because it does not poses constrain on the w. However, we are just interested in finding the direction of the maximal variation of the data. Therefore, any arbitrary constraint, for example on the magnitude on the vector $w$, on the vector $w$ will suffice.
 
 Thus the PCA problem can be defined as follows:
 
@@ -283,14 +283,12 @@ It is a standard eigendecomposition problem. The optimal solution for $w$ is the
 
 **Step 3:** U, $\lambda$ $V^{T}$ = $SVD(X)$ or $EIG(C)$, prefer former for stability
 
-**Dimensionality Reduction** $Y_{reconsturction}=U_{:k}^{T}X$
+**Dimensionality Reduction** $Y_{reconstruction}=U_{:k}^{T}X$
 
-**Anomaly Detection** $anomaly\_score(x_{i}) = ||U_{k:}^{T}x_{i}||_{2}^2$
+**Anomaly Detection** $anomaly score(x_{i}) = \|\|U_{k:}^{T}x_{i}\|\|_{2}^2$
 
-**Noise Removal** $X_{noise\_reduced} = U_{:k}Y_{reconsturction}$ + Undo Centring
+**Noise Removal** $X_{noise reduced} = U_{:k}Y_{reconstruction}$ + Undo Centering
 
-
------------------------------------------------------------
 **OUTPUT** $Y_{reconsturction}$ or $anomaly\_score(X)$ or $X_{noise\_reduced}$
 
 -----------------------------------------------------------
