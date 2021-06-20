@@ -2,9 +2,9 @@
 layout: post
 title: Representation Learning
 subtitle: An exntesive overview of novel and traditional representation learning
-cover-img: /assets/img/representation_learning_cover_image.jpg
+<!-- cover-img: /assets/img/representation_learning_cover_image.jpg
 thumbnail-img: /assets/img/representation_learning_cover_image.jpg
-share-img: /assets/img/representation_learning_cover_image.jpg
+share-img: /assets/img/representation_learning_cover_image.jpg -->
 tags: [representation learning, Principal Component Analyisis (PCA), Kernel PCA, Dual PCA, Supervised PCA, Isomap, FDA, Multi-dimensional scaling (MDS), Local Linear Embedding (LLE), Laplacian Eigenmaps, Maximal Variance Unfolding (MVU), Nystorms approximations (NA), Stochastic Neigbourhood Embeddings (SNE), t-SNE, Canonical Component Analysis (CCA), Independent Component Analysis (ICA), Autoencoders, Variational Autoencoder (VAE), Reucrrent VAE, Beta VAE, PID VAE, Infomax, Hilber Schmid Statistic (HSIC), Fisher Matrix, Natural Gradient, Maximal Mean Discrepancy (MMD), KL divergence]
 ---
 Representation learning is one of the most important aspects when dealing with a machine learning problem. A proper representation of a problem is one of the most crucial aspects for the successful application of machine learning techniques on the given problem. Good problem representation has several advantages. It allows for using simple methods. It results in faster training time and better generalization performance; the total time and memory to store the model are smaller. It is especially important in applications where the resources are limited and should be saved for crucial tasks. Finally, good representation can boost interpretability, distilling knowledge, making insights and improving the decision process in a data-driven manner. Additionally, a compact problem representation can make the process of debugging the models much easier and potentially mitigating existing biases.
