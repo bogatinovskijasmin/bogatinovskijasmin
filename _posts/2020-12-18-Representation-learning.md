@@ -133,15 +133,15 @@ We implement the **power method** for calculating the eigenvector with the highe
 **INPUT**: A matrix of $X \in R^{nxn}$, convergence_threshold
 
 
-**Step 1:** initialize u = numpy.ones(n, 1)
+**Step 1.** initialize u = numpy.ones(n, 1)
 
-**Step 2:** iterate until convergence
+**Step 2.** iterate until convergence
 
-**Step 2.1:** update $u_{k+1}$ = $\frac{A*u_{k}}{||A*u_{k}||_{2}}$
+  **Step 1.** update $u_{k+1}$ = $\frac{Au_{k}}{|Au_{k}||_{2}}$
 
-**Step 3:** max_eigenvector = u
+**Step 3.** max_eigenvector = u
 
-**Step 4:** max_lambda = $||A*u||_{2}$
+**Step 4.** max_lambda = $||A*u||_{2}$
 
 -----------------------------------------------------------
 **OUTPUT** max_eigenvector, max_lambda
