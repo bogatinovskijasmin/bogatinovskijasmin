@@ -301,7 +301,12 @@ The observation of why the SVD decomposition of X is sufficient resides in the f
 
 ### Dual PCA
 
-If one is familier with kernels, it can immidatly recognize that $X^{T}X$ is a linear kernel calculated on data $X$. This allows us to define a whole family of approaches that are closely related with PCA or are its generalization e.g dual, kernel and supervised PCA. Dual PCA is beneficial in the case where $d>n$. Then we perform singular value decomposition on smaller matrix. Utilzing the fact that it is cheaper to calculate the eigenvectors of $X^{T}X$ in the desribed step we aim to rewrite the PCA algorithm such that we replace $U$ with expression that depends on $X$, $\lambda$ and $V$.
+If one is familiar with kernels, one can immediately recognize that $X^{T}X$ is a linear kernel calculated on data $X \in R{dxn}$. This allows us to define a whole family of approaches that are closely related to PCA or are its generalization e.g dual, kernel and supervised PCA.
+Dual PCA is beneficial in the case where $d>n$. The advantage resides in the fact that we perform singular value decomposition on a smaller matrix. Utilizing the fact that it is cheaper to calculate the eigenvectors of $X^{T}X$ in the described step we aim to rewrite the PCA algorithm.
+
+We start by replacing $U$ with an expression that depends on $X$, $\lambda$ and $V$.
+
+
 \begin{equation}
 X = U \lambda V^{T} /V
 \end{equation}
