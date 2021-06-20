@@ -289,13 +289,14 @@ It is a standard eigendecomposition problem. The optimal solution for $w$ is the
 
 **Noise Removal** $X_{noise reduced} = U_{:k}Y_{reconstruction}$ + Undo Centering
 
-**OUTPUT** $Y_{reconstruction}$ or $anomaly score(X)$ or $X_{noise reduced}$
+**OUTPUT** $Y_{reconstruction}$ or $anomaly score(x_{i})$ or $X_{noise reduced}$
 
 -----------------------------------------------------------
 
-PCA has many different applications. Desipte dimensionality reduction it can be used for noise removal, anomaly detection, face recognition using eigenfaces etc. A strong point of PCA is its ability to produce a mapping for uknown test sample and to reconstruct original samples. A week points of PCA is that is not robust to outliers in the data, sicne they significanlty contribute to the variance and it requires the data to lie in linear manifold.
+PCA has many different applications. Despite dimensionality reduction, it can be used for noise removal, anomaly detection, face recognition using eigenfaces etc. A strong point of this "linear" version of PCA is its ability to produce mapping for the unknown test sample and to reconstruct original samples. A weak point of PCA is that it is not robust to outliers in the data. The outliers significantly contribute to the variance;  PCA assumes that the data lie in a linear manifold.
 
-The observation of why the SVD decompositon of X is sufficent resideds in the fact that $U$ is eigenvectors of $XX^{T}$,  $V$ is eigenvectors of $X^{T}X$ and the eingevalues are square roots of $XX^{T}$. This is usually done since the caluclation of the SVD is numerically more stable.
+The observation of why the SVD decomposition of X is sufficient resides in the fact that $U$ is eigenvectors of $XX^{T}$,  $V$ is eigenvectors of $X^{T}X$ and the eigenvalues are the square roots of $XX^{T}$. One prefers SVD decomposition before eigenvalue decomposition because the former is numerically more stable to compute.
+
 
 
 ### Dual PCA
