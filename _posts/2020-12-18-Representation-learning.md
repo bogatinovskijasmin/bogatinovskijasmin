@@ -129,7 +129,6 @@ SVD decomposition can be seen as a generalization of the eigenvalue decompositio
 
 We implement the **power method** for calculating the eigenvector with the highest eigenvalue. A very nice explanation can be found here: [https://www.youtube.com/watch?v=OzeDqsVoTFc](https://www.youtube.com/watch?v=OzeDqsVoTFc).
 
-UPDATE
 
 --------------------------------------------------------------
 **INPUT**: A matrix of $X \in R^{nxn}$, convergence_threshold
@@ -143,7 +142,7 @@ UPDATE
 
 **Step 3.** max_eigenvector = u
 
-**Step 4.** max_lambda = $||A*u||_{2}$
+**Step 4.** max_lambda = $\|\|A*u\|\|_{2}$
 
 -----------------------------------------------------------
 **OUTPUT** max_eigenvector, max_lambda
@@ -181,11 +180,11 @@ Sometimes we are faced to produce the eigenvector corresponding to the smallest 
 
 **Step 3:** iterate until convergence
 
-**Step 3.1:** update $u_{k+1}$ = $\frac{A^{-1}*u_{k}}{||A^{-1}*u_{k}||_{2}}$
+**Step 3.1:** update $u_{k+1}$ = $\frac{A^{-1}*u_{k}}{\|\|A^{-1}*u_{k}\|\|_{2}}$
 
 **Step 4:** min_eigenvector = u
 
-**Step 5:** min_lambda = $||A*u||_{2}$ # Take a note that we are using the original matrix A isntead of the inverse
+**Step 5:** min_lambda = $\|\|A*u\|\|_{2}$ # Take a note that we are using the original matrix A isntead of the inverse
 
 -----------------------------------------------------------
 **OUTPUT** min_eigenvector, min_lambda
