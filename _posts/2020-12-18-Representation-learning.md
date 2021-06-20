@@ -129,6 +129,8 @@ SVD decomposition can be seen as a generalization of the eigenvalue decompositio
 
 We implement the **power method** for calculating the eigenvector with the highest eigenvalue. A very nice explanation can be found here: [https://www.youtube.com/watch?v=OzeDqsVoTFc](https://www.youtube.com/watch?v=OzeDqsVoTFc).
 
+UPDATE
+
 --------------------------------------------------------------
 **INPUT**: A matrix of $X \in R^{nxn}$, convergence_threshold
 
@@ -137,7 +139,7 @@ We implement the **power method** for calculating the eigenvector with the highe
 
 **Step 2.** iterate until convergence
 
-  **Step 1.** update $u_{k+1}$ = $\frac{Au_{k}}{\|\|Au_{k}\|\|_{2}}$
+  **Step 1.** update $u_{k+1}$ = $\frac{Au_k}{\|\|Au_k\|\|_{2}}$
 
 **Step 3.** max_eigenvector = u
 
