@@ -289,7 +289,7 @@ It is a standard eigendecomposition problem. The optimal solution for $w$ is the
 
 **Noise Removal** $X_{noise reduced} = U_{:k}Y_{reconstruction}$ + Undo Centering
 
-**OUTPUT** $Y_{reconsturction}$ or $anomaly\_score(X)$ or $X_{noise\_reduced}$
+**OUTPUT** $Y_{reconstruction}$ or $anomaly score(X)$ or $X_{noise reduced}$
 
 -----------------------------------------------------------
 
