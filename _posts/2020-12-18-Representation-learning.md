@@ -138,11 +138,11 @@ We implement the **power method** for calculating the eigenvector with the highe
 
 **Step 2.** iterate until convergence
 
-  **Step 1.** update $u_{k+1}$ = $\frac{Au_k}{\|\|Au_k\|\|_{2}}$
+  **Step 2.1.** update $u_{k+1}$ = $\frac{Au_k}{\|\|Au_k\|\|_{2}}$
 
 **Step 3.** max_eigenvector = u
 
-**Step 4.** max_lambda = $\|\|A*u\|\|_{2}$
+**Step 4.** max_lambda = $\|\|Au\|\|_{2}$
 
 -----------------------------------------------------------
 **OUTPUT** max_eigenvector, max_lambda
