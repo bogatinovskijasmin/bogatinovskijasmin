@@ -406,13 +406,17 @@ One interesting thing that can be also observed with such formulation of the pro
 \begin{equation}
 Y = U^{T}X
 \end{equation}
+
 \begin{equation}
 X = UY = UU^{T}X
 \end{equation}
+
 \begin{equation}
 min_{u} ||X - UU^{T}X||_{2}^{2}
 \end{equation}
+
 or more in the nonlinear case where the data are transformed
+
 \begin{equation}
 min_{u} ||\phi{(X)} - UU^{T}\phi{(X)}||_{2}^{2}
 \end{equation}
