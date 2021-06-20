@@ -271,9 +271,9 @@ To solve it we can adopt any optimization strategy e.g. utilizing the Lagrangian
 
 It is a standard eigendecomposition problem. The optimal solution for $w$ is the eigenvector corresponding to the largest eigenvalue, at the same time, it preserves the direction of maximal variation in the data. One can prove this by replacing the last equation with the optimization function and replacing the constraint $w^{T}w=I$. The mean can be denoted as $mean(X)=\mu_{x}$. The $k$ represents the number of dimensions to preserve the $X$.
 
-
-### The algorithm for PCA is as follows:
 --------------------------------------------------------------
+### The algorithm for PCA is as follows:
+
 **INPUT**: A matrix of $X \in R^{dxn}$, integer $k<d$, dimensions to preserve
 
 
@@ -348,15 +348,15 @@ note $\lambda$ is a matrix of eigenvalues of the sample coveriance matrix. As su
 
 ### Kernel PCA and relation to auto-encoders
 
-Kernel PCA is another method for dimenisionality reduction. It addresses the limmitation of PCA that assumes that the data exist on a linear manifold (or a subset). To do this it adhers to the "kernel trick". See details in the kernel section. In short, the kernels are functions, that satisfy the symmetry and the positve-semidefinitness properties (Mercer condtions) and their value corresponds to the dot-product of the mapping of the input arguments in some, usually higher order dimension.
+Kernel PCA is another method for dimensionality reduction. It addresses the limitation of PCA that assumes that the data exist on a linear manifold (or a subset). To do it, one uses the "kernel trick". See details in the kernel section. In short, the kernels are functions, that satisfy the symmetry and the positive-semidefinite properties (Mercer conditions) and their value correspond to the dot-product of the mapping of the input arguments in some, usually higher-order dimension.
 
 \begin{equation}
 K(X, X) = \phi{(X)}^T \phi{(X)}
 \end{equation}
 
-The main benefit is that we are not required to know the exact form of $\phi{(X)}$, that in the most general case can be a mapping to inifite dimensional space (e.g Gaussian kernel). Thus, there does not exist any inverse mapping (or reverse image). The kernel can be seen as similarity (recall cosine similariy) between two functions of our input in arbitrary dimensional space. In such high dimensional space the "curse of dimensionality" becomes "bless of dimensionality" since the poitns are easly separable (e.g a linear classifier can be very effective since almost everything is linear there).
+The main benefit is that we are not required to know the exact form of $\phi{(X)}$, which in the most general case can be a mapping to infinite-dimensional space (e.g Gaussian kernel). Thus, there may not exist any inverse mapping (or reverse image) for the mapping function in the most general case. Nevertheless, this mapping is not needed. The kernel can be seen as similarity (recall cosine similarity) between two functions of our input in arbitrary dimensional space. In such high dimensional space the "curse of dimensionality" becomes "bless of dimensionality" since the points are easily separable (e.g a linear classifier can be very effective since almost everything is linear there).
 
-To derive the Kernel PCA method we can refer to the Dual PCA and whenver we have X we will replace it with $\phi{(X)}$.
+To derive the Kernel PCA method we can refer to the Dual PCA and whenever we have X we will replace it with $\phi{(X)}$. The luxury for doing this originates from the fact that the identity function is the kernel on itself, hence $X^{T}X$ is a (linear) kernel.
 
 
 \begin{equation}
@@ -387,17 +387,17 @@ replacing the above equations:
 \phi{(X)}_{rec} = \phi{(X)}V \lambda^{-1}\lambda V^{T} = \phi{(X)}VV^{T}
 \end{equation}
 
-for one point $x$ out of sample projection:
+for one point $x$ out of sample projection to reduced space (possible):
 \begin{equation}
 y = U^{T}\phi{(X)} = \lambda^{-1}V^{T}\phi{(X)}^{T}\phi{(x_{new})}
 \end{equation}
 
-for one point $x$ out of sample reconsturction:
+for one point $x$ out of sample reconstruction (not possible):
 \begin{equation}
 x_{rec} = UY = \phi{(X)}V\lambda^{-1}\lambda^{-1}V^{T}\phi{(X)}^{T}\phi{(x_{new})}
 \end{equation}
 
-Recalling that in most general form we do not know what is the mapping $\phi{(X)}$, it is pretty obvious that not all steps from the Dual PCA are possible. We can project a new point to the $p-$dimensional space and can provide out of sample reconstruction. However, we cannot project back any training point back to the orignal space, nor can recounstruct out of sample point back, because they explicitly involve the mapping $\phi{(X)}$ not their dot-product. Again as in the case of Dual PCA, we need to calculate the right eigenvectors and the eigenvalues of the kernel matrix. Additional catch one should take in care is that it needs to centralize the kernel data in the kernel space (an operation that boils down to summation and substraction of kernels). The summation of two kernels is again a kernel function so we do not have any problems there.
+Recalling that in the most general form we do not know what is the mapping $\phi{(X)}$, it is pretty obvious that not all steps from the Dual PCA are possible. We can project a new point to the $p-$dimensional space. However, we cannot project back any training point back to the original space, nor can reconstruct out of sample point back, because they explicitly involve the mapping $\phi{(X)}$ not their dot-product. Again as in the case of Dual PCA, we need to calculate the right eigenvectors and the eigenvalues of the kernel matrix. An additional catch one should take into care is that it needs to centralize the kernel data in the kernel space (an operation that boils down to summation and subtraction of kernels). The summation of two kernels is again a kernel function so we do not have any problems there.
 
 
 ###### Autoencoders
