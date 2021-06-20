@@ -144,7 +144,6 @@ We implement the **power method** for calculating the eigenvector with the highe
 
 **Step 4.** max_lambda = $\|\|Au\|\|_{2}$
 
------------------------------------------------------------
 **OUTPUT** max_eigenvector, max_lambda
 
 -----------------------------------------------------------
@@ -186,7 +185,6 @@ Sometimes we are faced to produce the eigenvector corresponding to the smallest 
 
 **Step 5:** min_lambda = $\|\|Au\|\|_{2}$ # Take a note that we are using the original matrix A isntead of the inverse
 
------------------------------------------------------------
 **OUTPUT** min_eigenvector, min_lambda
 
 -----------------------------------------------------------
@@ -239,16 +237,16 @@ print("Output from sklearn \n", np.linalg.eig(X))
 
 ## Principle Component Analysis (PCA)
 
-Principle component analysis is a dimensionality reduction technique. To be applied, it assumes that the data lie on a linear manifold.
-It provides a transformation method to be applied for out of sample estimates.
+Principle component analysis is a dimensionality reduction technique. To be applied as a dimensionality reduction technique, it assumes that the data lie on a linear manifold.
+It provides a transformation function applicable for out of sample estimates.
 
 The main idea is to find vectors that can transform the data in a way that the preserved variance in the data will be maximized. We refer to these vectors as principal components. The first principle component maximizes the variance of the overall data, the second principle components maximize the projection of the data on the first component and so on.
 
-Let's assume that we are given X and vector w.
-Following a simple rules from basic probability course we know that given a random variable x with mean $mean(x)$ and variance $var(x)$, if we multiply its mean by a constant c, then the mean transforms as $mean(cx)=c*mean(x)$, while the variance (sample covariance matrix) transforms as $VAR(cx)=c^{2}*VAR(x)$. Similalry, for X being mutlivariate we have, $mean(wx)=w*mean(x)$, while for the variance we have $VAR(wX)=w^{T}*VAR(x)*w$.
+Let's assume that we are given $X\inR^{d}$ and vector w.
+Following a simple rules from basic probability course we know that given a random variable x with mean $mean(x)$ and variance $var(x)$, if we multiply its mean by a constant c, then the mean transforms as $mean(cx)=c\*mean(x)$, while the variance (sample covariance matrix) transforms as $VAR(cx)=c^{2}*VAR(x)$. Similalry, for X being mutlivariate we have, $mean(wx)=w*mean(x)$, while for the variance we have $VAR(wX)=w^{T}*VAR(x)*w$.
 
-Since the definition of the first principle component is cast as maximization problem, following the previously described rule we can write the problem as $argmax_{w} w^{T}VAR(X)w$.
-This is an ill-constrained problem, from an optimization perspective since it does not poses constrain on the w. However, we are just interested in finding the direction of the maximal variation of the data. Hence any arbitrary constraint on the vector $w$ will suffice.
+Since the definition of the first principle component given as maximization problem, following the previously described rule, we can write the problem as $argmax_{w} w^{T}VAR(X)w$.
+The latter is an ill-constrained problem, from an optimization perspective because it does not poses constrain on the w. However, we are just interested in finding the direction of the maximal variation of the data. Therefore, any arbitrary constraint on the vector $w$ will suffice.
 
 Thus the PCA problem can be defined as follows:
 
@@ -259,7 +257,7 @@ Thus the PCA problem can be defined as follows:
     w^{T}w = I
 \end{equation}
 
-To solve this problem we can adopt any optimization strategy e.g. utilizing the Lagrangian method.
+To solve it we can adopt any optimization strategy e.g. utilizing the Lagrangian method.
 
 \begin{equation}
     L(w, \lambda) = w^{T}VAR(X)w + \lambda(I-w^{T}w)
