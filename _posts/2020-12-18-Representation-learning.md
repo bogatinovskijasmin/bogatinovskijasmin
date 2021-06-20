@@ -137,7 +137,7 @@ We implement the **power method** for calculating the eigenvector with the highe
 
 **Step 2.** iterate until convergence
 
-  **Step 1.** update $u_{k+1}$ = $\frac{Au_{k}}{|Au_{k}||_{2}}$
+  **Step 1.** update $u_{k+1}$ = $\frac{Au_{k}}{\|\|Au_{k}\|\|_{2}}$
 
 **Step 3.** max_eigenvector = u
 
@@ -273,7 +273,7 @@ To solve this problem we can adopt any optimization strategy e.g. utilizing the 
 It is a standard eigendecomposition problem. The optimal solution for $w$ is the eigenvector corresponding to the largest eigenvalue, at the same time, it preserves the direction of maximal variation in the data. One can prove this by replacing the last equation with the optimization function and replacing the constraint $w^{T}w=I$. The mean can be denoted as $mean(X)=\mu_{x}$. The $k$ represents the number of dimensions to preserve the $X$.
 
 
-### The algorihm for PCA is as follows:
+### The algorithm for PCA is as follows:
 --------------------------------------------------------------
 **INPUT**: A matrix of $X \in R^{dxn}$, integer $k<d$, dimensions to preserve
 
