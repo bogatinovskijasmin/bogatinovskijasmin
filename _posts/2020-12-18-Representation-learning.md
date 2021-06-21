@@ -1035,7 +1035,7 @@ We can also refer to the sources as independent components.
 There are various viewpoints of the ICA method and approaches to it. Here a description of the "InfoMax" method for ICA will be presented.
 
 #### InfoMax ICA
-Let's assume that there $s$  comes from uknown densitiy $P_s{(s)}$, parametarized with $W$ or it can be written as $P_s{(Wx)}$. Our goal is to estimate this probability $P^*_{s}{(s)}=\prod_{i=1}^N P_{s_i}^{*}(s_i)$ given the obesrvations, under the independence assumption.
+Let's assume that there $s$  comes from uknown densitiy $P_s{(s)}$, parametarized with $W$ or it can be written as $P_s{(Wx)}$. Our goal is to estimate this probability $P_{s}^{\*}{(s)}=\prod_{i=1}^N P_{s_i}^{*}(s_i)$ given the obesrvations, under the independence assumption.
 Thus we can write our cost functions as minimization of the KL divergence of these two probabilities with respect to the unmixing matrix W.
 
 \begin{equation}
