@@ -464,9 +464,11 @@ where X and Y are random variables obtained from n observations drawn from $p(x,
 
 
 Combining this 3 preqrequsists one can derive the **Hilber-Schmidt Independnce Criteria (HSIC)** as testing for independence between two random variables:
+
 \begin{equation}
 p(x, y) = p(x)p(y)
 \end{equation}
+
 Using MMD we can derive the expression for HSIC:
 \begin{equation}
 ||p(x, y) - p(x)p(y)||_2^2
