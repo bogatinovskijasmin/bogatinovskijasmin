@@ -1004,14 +1004,14 @@ Combining all of these results in a block matrix form we get:
 \end{equation}
 
 This is a generalized eigenvalue equation solvable with a standard eigenvalue solver.
-It can be extended on more than two variables and we can utilize also Kernel versions of it.
-To capture nonlinear dependencies use kernel. Hence we have **kCCA** (kernel Canonical Component Analysis).
+It can be extended on more than two variables. To capture nonlinear dependencies use kernel. Hence we have **kCCA** (kernel Canonical Component Analysis).
 
 \begin{equation}
 [0| K_{xy}; K_{yx} | 0][\alpha_x; \alpha_y] = \alpha [K_{x}^2| 0; 0 | K_{y}^2][\alpha_x; \alpha_y]  
 \end{equation}
 
 To recover $w_x$ use $w_x=X\alpha_x$ same for $w_y$.
+
 There is also a temporal kernel CCA. When variables are coupled with delay.  tkCCA finds canonical convolution and correlogram. It is given as:
 
 \begin{equation}
