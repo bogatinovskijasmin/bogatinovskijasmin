@@ -890,7 +890,7 @@ Let's assume $x \in R^{dxn}$ and $y \in R^{pxn}$. The kernels are able to preser
 |x_{i}-x_{j}|^2 =  |\phi(x_{i})-\phi(x_{j})|^2 = K_{ii} + K_{jj} -2K_{ij}
 \end{equation}
 
-We are looking for a kernel such that, if $x_{i}$ and $x_{j}$ are neighbours, their difference is given as $\|x_{i}-x_{j}\|^2 = K_{ii} + K_{jj} -2K_{ij}$. Since K is kernel in needs to be positive-semi definite, K should also be symmetric and centred. Next, we need to define a cost function to optimize.  If we recall that the PCA was performing maximization of the variance, a natural step is to maximize $Tr(K)$ as a measure of the variance of the embedding.
+We are looking for a kernel such that, if $x_{i}$ and $x_{j}$ are neighbours, their difference is given as $\|x_{i}-x_{j}\|^2 = K_{ii} + K_{jj} -2K_{ij}$. Since K is kernel it needs to be positive-semi definite, K should also be symmetric and centred. Next, we need to define a cost function to optimize. If we recall that the PCA was performing maximization of the variance, a natural step is to maximize $Tr(K)$ as a measure of the variance of the embedding.
 
 Finally, the first part of the problem for Maximum Variance Unfolding can be formulated as:
 \begin{equation}
@@ -915,25 +915,25 @@ Preserving the locallity:
 
 This problem belongs to the category of [semi-definite programming](https://en.wikipedia.org/wiki/Semidefinite_programming) and it can be solved using standard approaches from semi-definite programming. Once the kernel is found, run kernel PCA on top of it and you will obtain the solution of MVU. One solver is by [Helnberg-Kojima-Monterio interior point](https://www.springer.com/gp/book/9783540545095) method.
 
-### Nystorm approximation
+### Nystrom approximation
+One issue with all of the discussed methods is that they do not scale well. Nystrom approximation provides efficient workaround to make the methods more scalble.
 
-One issue with all of the discussed methods is that they do not scale well. Nystorm apprpximation is a technique that makes the methods scalable.
+#### Definition
+Let's assume we are given a matrix $K=[A | B; B^T | C]$. The claim in Nystrom approximation that if we know A and B we can reconstruct C.
+One can show that $C = B^TA^{-1}B$. If the rank(C)=m, and we choose m rows for the matrix A, we can reconstruct C, otherwise, we cannot. Intuitively, knowing some partial distances of the points, we can put a constraint on where the other points in the space can be located. Therefore, we do not need to work with all the points just with a fraction of them and obtain approximate results.
 
-Lets assume we are given a matrix $K=[A | B; B^T | C]$. The claim is that if we know A and B we can reconstruct C.
-One can show that $C = B^TA^{-1}B$. If the rank(C)=m, and we choose m rows for the matrix A, we can reconsutct C,  otherwise we cannot. Knowing some partial distances put constraint on where the other points in the space can be located.
+To speed up the computation, one adheres to calculating the properties locally and try to approximate the other points with Nystrom approximation. As long as we choose good values for $m$ (being above the rank(K)) we are good even if we do that at random.
 
-To spped up the computations one adhers to calculating of the properties locally and try to appriximate the other points with Nystorm approximation. As long as we choose good values for m (being above the rank(K)) we are good even if we do that at random.
-
-Proof that Nystorm approximation works:
+Proof that Nystrom approximation works:
 Let K is a kernel function such that $K=X^TX$ and $X \in R^{dxn}$. Let m be an integer representing the number of chosen rows of the matrix K. We will write $X=[R; S]$ where $R \in R^{dxm}$ and $S \in R^{dxn-m}$. Then the matrix
 $K=[R^TR | R^TS; S^TR | S^TS] = [A|B; B^T|C]$.
 
 The matrix R can be found as an SVD decomposition of matrix A. $R = \sigma^{0.5} U$, where $\sigma$ and $U$ are the diagonal matrix of eigenvalues and eigenvectors of matrix A. $B=R^TS$, replacing the solution for R we have $B=U\sigma^{0.5}S <=> U^TB=\sigma^{0.5}S <=> \sigma^{-0.5}U^TB=S$. Since $C=S^TS$, replacing for S we have $C=S^TS=B^T\sigma^{-0.5}\sigma^{-0.5}U^TB=B^TU\sigma{-1}U^TB <=>C=B^TA^{-1}B$.
 This approximation is exact if rank(K) is at most m.
 
-Under this umbrella we can fit all the fast versions of the methods: FastMDS,  Fast ISOPMAP etc.
-Fast MDS: 1) Select $m<<n$ data points; 2) calculate pairwisie distance between the m points; 3) calculate the distance between m and all other n-m points.
-There is a paper that shows that all fast (or landmark) works are different reinventions of the Nystorm approximation method.
+Under this umbrella, we can fit all the fast versions of the methods: FastMDS,  Fast ISOPMAP etc.
+Fast MDS: 1) Select $m<<n$ data points; 2) calculate pairwise distance between the $m$ points; 3) calculate the distance between m and all other n-m points.
+There is a paper that shows that all fast works are different reinventions of the Nystrom approximation method.
 
 ### Non-negative matrix factorization.
 
