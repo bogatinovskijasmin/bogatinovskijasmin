@@ -607,13 +607,10 @@ One can also obtain the solution for MDS using eigenvalue decomposition where: $
 
 Additional versions can involve normalization like Sammons mapping. This kind of mapping can preserve the structure in higher dimensional space which highly depends on the utilized pairwise distance measures. It converges to PCA if the data is in a linear manifold.
 
-
-
-
 ## Isomap
 
-Isomap is MDS where insetead of Euclidean distance we are using Geodesic distance. This method assumes that the data lie on a manifold. First we construct a graph of all of the points. The distance between point is defined as the minimal critical distance between the points in the graph.
-We refer to this distance as Geodesic distance since it takes into account the structure of the graph. This method works by projecting the geodestic distance into a lower dimensionl space using the geodesic distance.
+Isomap is MDS where instead of Euclidean distance we are using [**Geodesic**](https://en.wikipedia.org/wiki/Geodesic) distance. This method assumes that the data lie on a manifold. To preserve the structure of the manifold, we construct a graph of all of the points. The distance between two points is defined as the minimal critical distance between the points in the graph. Any arbitrary distance between points can be calculated. However, most commonly we use Euclidean distance.
+We refer to this distance as Geodesic distance since it takes into account the structure of the graph.
 
 -------------------------
 Input: X, k
@@ -629,19 +626,20 @@ Input: X, k
 
 **Step 5** Y = $\lambda^{\frac{1}{2}}V$ in p-dimensions
 
-**Step 6** $Y_{new} = U^TG(X_{new})$ NO!!
+**Step 6** $Y_{new} = U^TG(X_{new})$ not possible!!
 
-As it can be seen by Step 6 this method is usefull for the representation of the training data. It is not able to provide out of sample estimates since it requires construction of the graph of all points to find the neighbours of the $X_{new}$.
+**Few notes on ISOMAP**
 
-One important detail is that K may not be positve-semidefinite matrix. Thus there is no gurantee that one can decompose the K matrix to positive eigenvalues. To solve this one needs to map the K matrix to a cone of a semi-positive matrix e.g via applying $abs(K(X))$.
+As it can be seen by Step 6 this method is useful for the representation of the training data.  However, it is not able to provide out of sample estimates since it requires the construction of the graph of all points to find the neighbours of the $X_{new}$.
 
-It is very important for the graph to be connected so the distances can be calculated correctly.
+One important detail is that K may not be a positive-semidefinite matrix. Thus there is no guarantee that one can decompose the K matrix to positive eigenvalues. To solve this one needs to map the K matrix to a cone of a semi-positive matrix e.g via applying $abs(K(X))$.
+
+The graph needs to be connected so the distances can be calculated correctly.
 
 ## Local-linear embedding (LLE)
-LLE is another approach for dimensionality reduction. It assumes that the data locally lie on a subspace. It tires to capture the locallity properties of the manifold given the data and then reconsturcts the same locallities in the lower-dimensional space.
+LLE is another approach for dimensionality reduction. It assumes that the data locally lie on a subspace. It tries to capture the locality properties of the manifold given the data and then reconstructs the same localities in the lower-dimensional space.
 
-It assumes that each point is linearly related with $k$-neighbouring data points. As such it allows to calculate the linear dependency of a particular point to the others. Afterwards, tries to find a subset of points of smaller size that adhere to the same local linear properties as the original subspaces, patches, in the original space.
-The goal in both cases is to minimize the corresponding functions in sequential order.
+It assumes that each point is linearly related with $k$-neighbouring data points. As such it allows calculating the linear dependency of a particular point to the others. Afterwards, tries to find a subset of points of smaller size that adhere to the same local linear properties as the original subspace. The goal in both cases is to minimize the corresponding functions in sequential order.
 
 \begin{equation}
 J_{original}=\sum_{i}||x_{i}-\sum_{j}^{k}w_{i,j}x_{i}||_2^2
@@ -652,7 +650,7 @@ J_{embedding}=\sum_{i}||y_{i}-\sum_{j}^{k}w_{i,j}y_{i}||_2^2
 \end{equation}
 where $x\in R^d$ and $y \in R^q$ $d>q$.
 
-After the $w$ weights are obtined with simple linear regression fits, then the solution for $y$ can be done using an iterative gradient descent method. However, as a second effective solution one can rewrite the two cost functions and come to an elegant solution for the calculation of the optimial representations as the eigenvectors corresponding to the smallest eigenvalues of a specifically computed matrix which derivation and overall solution of the problem is given in the following.
+After the $w$ weights are obtained with simple linear regression fits, then the solution for $y$ can be done using an iterative gradient descent method. However, as a second effective solution, one can rewrite the two cost functions and come to an elegant solution for the calculation of the optimal representations as the eigenvectors corresponding to the smallest eigenvalues of a specifically computed matrix which derivation and solution of the problem are given in the following.
 
 _________________________
 Input X, k
@@ -680,7 +678,7 @@ w_i = [w_{i1}; ... w_{ik};] \in R^{kx1}
 x_i = x_ie_i^Tw_i
 \end{equation}
 
-It is very important for the graph to be connected so the distances can be calculated correctly. Small k results in disconnected graph. Large k results in linear method since we no longer have locallity. Same as ISOMAP. Appropriate choice of k is mandatory.
+The graph needs to be connected so the distances can be calculated correctly. Small k results in a disconnected graph. Large k results in linear method since we no longer have locality. Same as ISOMAP. Appropriate choice of k is mandatory.
 
 Using the above definition of the matricies we rewrite them in the following way:
 
@@ -729,14 +727,14 @@ y_{i} = YI_{:i}
 \sum_{j} w_{ij} y_{j} = YW_{:i}
 \end{equation}
 
-in the second optimization function of the problem and following the fact that the Frobenious norm can be written as $|A|_F^2 = Tr(AA^T)$
+in the second optimization function of the problem and following the fact that the Frobenius norm can be written as $|A|_F^2 = Tr(AA^T)$
 
 \begin{equation}
 \min_{Y} \sum_i^n|YI_{:i}-YW_{:i}|^2 <=> \min_{Y} |YW - YW|^2 <=> \min_{Y} |Y(I-W)|^2 <=> \min_{Y} Tr((Y^T(I-W)^T(I-W)Y)
 \end{equation}
 , since it is ill defined problem we need to define it. That is why we add a constrain of the form $YY^T=I$
 
-The solution of the optmial values for Y are the eigenvectors corresponding to the bottom $p+1$ eigenvalues. The last eigenvalue is always 0 and need to be discarded. This is due to the fact that $I-W$ is a Laplacian of the construted graph. The property of the Laplacian graph suggest that the number of 0 values on its eigendecomposition, corresponds to the number of fully connected subgraphs in the graph.
+The solution of the optimal values for Y are the eigenvectors corresponding to the bottom $p+1$ eigenvalues. The last eigenvalue is always 0 and needs to be discarded. This is because $I-W$ is a Laplacian of the constructed graph. The property of the Laplacian graph suggests that the number of 0 values on its eigendecomposition, corresponds to the number of fully connected subgraphs in the graph.
 
 
 ### Spectral clustering
