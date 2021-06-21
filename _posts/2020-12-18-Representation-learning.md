@@ -513,7 +513,7 @@ add constrain of form
 \begin{equation}
 U^TU=I
 \end{equation}
-To solve this problem we can use the Lagrangian, similar as in PCA. We first write the Lagrangian dual form, optimize, and the values for U are the eigenvectors of the matrix $eig(XHBHX^T)$ where $XH = x-\mu_{x}, \maspto XHIHX^T$ is the covarinace matrix. Interestingly if one set $B=I$, it results into original definition of the PCA as a special case of supervised PCA.
+To solve this problem we can use the Lagrangian, similar as in PCA. We first write the Lagrangian dual form, optimize, and the values for U are the eigenvectors of the matrix $eig(XHBHX^T)$ where $XH = x-\mu_{x}, \mapsto XHIHX^T$ is the covarinace matrix. Interestingly if one set $B=I$, it results into original definition of the PCA as a special case of supervised PCA.
 
 
 The previous algorithm for supervised PCA is written in its linear form. However, we can use the kernel trick and rewrite it in a kernelzied form as follows.
