@@ -1052,19 +1052,19 @@ This is a long process and we are going to state just the result:
 H = -\int du^{\*}P_u(u^{\*})lnP_u(u^{\*})
 \end{equation}
 
-this can be observed as the entropy of the flattened reconstructed sources. The intuition is that "If you like a matrix W that transforms something to statistically independent things you should maximize the entropy. For multivariate variables with some pdf and if the pdfs are flat, then the entropy is maximal if and only if the sources are independent".
+The result for H, can be seen as the entropy of the flattened reconstructed sources. The intuition is that "If you like a matrix W that transforms something to statistically independent quantity you should maximize the entropy. For multivariate variables with some pdf and if the pdfs are flat, then the entropy is maximal if and only if the sources are independent".
 
 Following this formulation one can derive the following cost function:
 
 \begin{equation}
-E^G=ln(|det(W)|) + \int dx*P_x(x)\sum^N_{l=1} ln f^{*'}_l(\sum_{k=1}^Nw_{lk}x_k))
+E^G=ln(|det(W)|) + \int dx*P_x(x)\sum^N_{l=1} ln f_l^{*'}(\sum_{k=1}^Nw_{lk}x_k))
 \end{equation}
 
 The problem with this equation is that we cannot calculate the integral. One workaround is to utilize the ERM principle and replace it with the sum. ERM principle allows replacing the mathematical expectation with an empirical average. This allows us to rewrite the equation in the following form:
 
 
 \begin{equation}
-E^T=ln(|det(W)|) + \frac{1}{p}\sum_{\alpha=1}^p \sum_{l=1}^N f^{*'}_l(\sum_{k=1}^Nw_{lk}x_k^{\alpha}))
+E^T=ln(|det(W)|) + \frac{1}{p}\sum_{\alpha=1}^p \sum_{l=1}^N f_l^{*'}(\sum_{k=1}^Nw_{lk}x_k^{\alpha}))
 \end{equation}
 
 This formulation of the problem can be solved using the gradient ascent algorithm. However, there is a problem with this formulation. It requires calculation of a determinant of the matrix. To go around that problem one may use the Natural gradient instead of the gradient. The natural gradient acts is similar to normal gradient descient with a difference that instead of finding the optimal step for the current update of the parameter in the Euclidiean space, it tries to find optmial updated in a space of distributions. This allows to eliminate the calculation of the gradient of the determinant of the unmixing matrix and provide a solution for the problem.
