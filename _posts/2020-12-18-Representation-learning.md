@@ -947,7 +947,7 @@ Also, one can use the [R1D algorithm](https://uwaterloo.ca/data-analytics/sites/
 ### Component analysis
 
 #### Canonical Component Analysis (CCA)
-The main idea behind this method is that given $X \in R{n}$ and $Y \in R{m}$ find a representation Z such that it is maximally related to both of them. One can look at X and Y being conditionally independent given Z.
+The main idea behind this method is that given $X \in R^{n}$ and $Y \in R^{m}$ find a representation Z such that it is maximally related to both of them. One can look at X and Y being conditionally independent given Z.
 
 Find the projections $w_x \in R^{m}$ and  $w_y\in R^{n}$. The objective function can be formulates as:
 \begin{equation}
@@ -1155,7 +1155,7 @@ Algorithm
 3) return $\theta$ and $\phi$
 
 
-There are various instances of the VAE framework. Adding a regularizing parameter in front of the KL term allows to implicitly control for the amount of independence enforced on the output. Thus one can either use simulated annealing or add it as a large constant (e.g beta VAE). It results in representations with different richness. For example, with large beta's one allows for emphasised independence between the latent factors enforced with the isotropic covariance of the latent factor embedding that encodes it. This has interesting observation in causality learning. Another interesting extension is the recurrent variational autoencoder (RVAE). It is an extension of the VAE framework but at the same time, it takes into account the previous state encoded by a hidden layer in an LSTM for example. Another interesting extension is regularizing the value for beta using a closed-loop system when the value for the regularization parameter using the KL divergence as input (PID-VAE). Despite VAE, there are other probabilistic based methods that aim to reconstruct probabilities e.g. normalizing flows that basically implement the transformation method of random variable change. Therefore, resulting in a model learned representation. 
+There are various instances of the VAE framework. Adding a regularizing parameter in front of the KL term allows to implicitly control for the amount of independence enforced on the output. Thus one can either use simulated annealing or add it as a large constant (e.g beta VAE). It results in representations with different richness. For example, with large beta's one allows for emphasised independence between the latent factors enforced with the isotropic covariance of the latent factor embedding that encodes it. This has interesting observation in causality learning. Another interesting extension is the recurrent variational autoencoder (RVAE). It is an extension of the VAE framework but at the same time, it takes into account the previous state encoded by a hidden layer in an LSTM for example. Another interesting extension is regularizing the value for beta using a closed-loop system when the value for the regularization parameter using the KL divergence as input (PID-VAE). Despite VAE, there are other probabilistic based methods that aim to reconstruct probabilities e.g. normalizing flows that basically implement the transformation method of random variable change. Therefore, resulting in a model learned representation.
 
 
 
