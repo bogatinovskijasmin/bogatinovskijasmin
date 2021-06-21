@@ -659,7 +659,7 @@ Local-linear embedding algorithm
 
 * **Step 1** Construct a k-nearest neighbour graph
 
-* **Step 2** Compute $W_{ij}$ via minimization $\sum_i\|\|x_{i}-\sum_j^k w_{i,j}x_{i}\|\|_2^2$ for all points i. to be a well defined problem we further assume $\sum_{i,j} w_{i,j}=1$
+* **Step 2** Compute $W_{ij}$ via minimization $\sum_i\|\|x_i-\sum_j^k w_{i,j}x_{i}\|\|_2^2$ for all points i. to be a well defined problem we further assume $\sum_{i,j} w_{i,j}=1$
 
 * **Step 3** Compute $Y_i$ via minimization of $\sum_{i}\|\|y_{i}-\sum_{j}^{k}w_{i,j}y_{i}\|\|_2^2$
 _________________________
