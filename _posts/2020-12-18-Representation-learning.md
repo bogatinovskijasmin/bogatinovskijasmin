@@ -605,7 +605,7 @@ The algorithm goes as follows:
 
 One can also obtain the solution for MDS using eigenvalue decomposition where: $Y = \lambda^{-0.5}V^T$. This is identical to the solution of dual PCA where instead of singular values of the diagonal we have their square root. The square root of eigenvalues corresponds to the singular values. V is the eingevectors of $X^TX$. This method is also linear. We need double centring of the $X^TX$.
 
-Additional versions can involve normalization like Sammons mapping. This kind of mapping can preserve the structure in higher dimensional space which highly depends on the implemented pairwise distance measures. It converges to PCA if the data is in a linear manifold.
+Additional versions can involve normalization like Sammons mapping. This kind of mapping can preserve the structure in higher dimensional space which highly depends on the utilized pairwise distance measures. It converges to PCA if the data is in a linear manifold.
 
 
 
