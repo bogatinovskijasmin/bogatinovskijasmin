@@ -939,24 +939,24 @@ There is a paper that shows that all fast works are different reinventions of th
 
 ### Non-negative matrix factorization.
 
-The goal is that given a matrix $A \in R^{mxn}_{+}$, find matricies W and H such that $A=WH$.
+The goal of non-negative matrix factorization is given a matrix $A \in R^{mxn}_{+}$, find matrices W and H such that $A=WH$.
 
-
-There are many algorthims one can use to solve this problem. One for example is using gradient descent:
+There are many algorithms one can use to solve this problem. One, for example, is using gradient descent:
 \begin{equation}
 \max_{W, H} ||A-WH||_2^2
 \end{equation}
 
-starting from some initial random values (or some careful intialization) one can find both the bases (W) and the factors (H).
-Also, one can use the R1D algortihm to find the bases. The intution follows from "Leading singular value of a nonnegative matrix is nonnegative. (Theorem)". Utilizing this notion one can write the problem of fidning W and H as eigenvectors.
+starting from some initial random values (or some careful initialization) one can find both the bases (W) and the factors (H).
+Also, one can use the [R1D algorithm](https://uwaterloo.ca/data-analytics/sites/ca.data-analytics/files/uploads/files/nonegative-matrix-factorization-via-rank-one-downdate.pdf) to find the bases. The intuition follows from "Leading singular value of a nonnegative matrix is nonnegative. (Theorem)". Utilizing this notion one can write the problem of finding W and H as eigenvectors.
 
 ### Stochastic neighbour embedding (SNE)
 
-Stochastic neighbour embedding is used for representation of the data in a lower space. The main idea is that it assumes that the local neighbourhood of a datapoint in the original high dimensional $X \in R^{dxn}$ space can be embedd under a Gaussian. This results in conversion of distances to probabilities. The same assumption is made for the lower dimensional representation $Y \in R^{pxn}, p<<d$ . Then it tries to minimize the KL divergence between these two distributions in an iterative way.
-The conversion of distances to proabiltities is given with:
+Stochastic neighbour embedding is used for the representation of the data in a lower space. The main idea is that it assumes that the local neighbourhood of a data point in the original high dimensional $X \in R^{dxn}$ space can be embedded under a Gaussian. This results in the conversion of distances to probabilities. The same assumption is made for the lower-dimensional representation $Y \in R^{pxn}, p<<d$ . Then in SNE, we try to minimize the KL divergence between these two distributions in an iterative way.
+The conversion of distances to probabilities is given with:
+
 
 \begin{equation}
-p_{j|i}=\frac{\frac{e^|x_{i}-x_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}\frac{e^|x_{i}-x_{j}|^2}{2\sigma_{i}}}
+p_{j|i}=\frac{e^\frac{|x_{i}-x_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}\frac{e^|x_{i}-x_{j}|^2}{2\sigma_{i}}}
 \end{equation}
 
 where each $\sigma_{i}$ is different for each point.
