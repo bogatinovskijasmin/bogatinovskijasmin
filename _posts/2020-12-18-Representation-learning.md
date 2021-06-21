@@ -853,7 +853,7 @@ eigenvectors corresponding to the $p+1$ minimal eigenvalues.
 
 number $k$ of clusters to construct.
 
-**Output:** Clusters $A_1 \dots A_k$ with $A_i = \{j| y_j \in C_i\}$.
+**Output:** Clusters $A_1 \dots A_k$ with $A_i = \{j \| y_j \in C_i\}$.
 
 
 
