@@ -700,7 +700,7 @@ w_{i}=\frac{\lambda}{2}G^{-1}e
 \end{equation}
 as long as $\sum{w_i}=1$ the value for $\lambda$ does not matter.
 
-
+To connect the second optimization problem we will introduce the following matrices:
 
 \begin{equation}
 Y_i = [y_{i1}, y_{i2} ... y_{il}] \in R^{pxn}
@@ -732,7 +732,7 @@ y_{i} = YI_{:i}
 \sum_{j} w_{ij} y_{j} = YW_{:i}
 \end{equation}
 
-in the second optimization function of the problem and following the fact that the Frobenius norm can be written as $|A|_F^2 = Tr(AA^T)$
+in the second optimization function of the problem and following the fact that the Frobenius norm can be written as $\|A\|_F^2 = Tr(AA^T)$
 
 \begin{equation}
 \min_{Y} \sum_i^n|YI_{:i}-YW_{:i}|^2 <=> \min_{Y} |YW - YW|^2 <=> \min_{Y} |Y(I-W)|^2 <=> \min_{Y} Tr((Y^T(I-W)^T(I-W)Y)
