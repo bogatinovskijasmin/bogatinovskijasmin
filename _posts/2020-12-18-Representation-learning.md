@@ -1083,7 +1083,7 @@ Repeat until convergence:
 4. Compute the natural gradient $\nabla_{\theta}L(\theta) = F^{-1}\nabla_{\theta}$
 5. Update the parameter: $\theta = \theta - \alpha \nabla_{\theta}L(\theta)$  , where α  is the learning rate.
 
-In practice, it is difficult to compute the F matrix (it is the negative Hessian). Fisher Information Matrix can be seen as a curvature of the negative expected loglikelihood of the loss function [1](https://wiseodd.github.io/techblog/2018/03/14/natural-gradient/). Also, it can be defined as the variance of the log of maximal likelihood estimate as a score for the goodness of the estimate $\nabla_{\theta}log(p(x|\theta))$.
+In practice, it is difficult to compute the F matrix (it is the negative Hessian). Fisher Information Matrix can be seen as a curvature of the negative expected loglikelihood of the loss function [1](https://wiseodd.github.io/techblog/2018/03/14/natural-gradient/). Also, it can be defined as the variance of the log of maximal likelihood estimate as a score for the goodness of the estimate $\nabla_{\theta}log(p(x\|\theta))$.
 
 ### Variational Autoencoder
 
