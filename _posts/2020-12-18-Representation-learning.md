@@ -1110,23 +1110,23 @@ KL(p||q) ~= \sum -p(x)log q(x) + \sum p(x)log(p(x)) = \sum p(x)log p(x)/q(x)
 
 The properties of the KL divergence are: it is positive and it is not symmetric.
 
-$p(z|x) = p(x,z)/p(x)$
+$p(z\|x) = \frac{p(x,z)}{p(x)}$
 
 It is difficult to compute p(x)
 To that end we use:
 1) Monte Carlo methods or
 2) Variational inference
 
-With variational inference, we try to approximate p(z|x) with a known q(z).
+With variational inference, we try to approximate $p(z\|x)$ with a known q(z).
 We want to make q close to p. That means we want to
 \begin{equation}
 min KL(q(z)||p(z|x)) = -\sum q(z) log \frac{p(z|x)}{q(z)}.
-\end{equation}tli
-This can further be decomposed and equivalent
+\end{equation}
+
+This can further be decomposed end set equivalence to:
 \begin{equation}
 p(z|x) = \frac{p(x|z)p(z)}{p(x)}= \frac{p(x,z)}{p(x)} = -\sum q(z)log \frac{\frac{p(x,z)}{p(x)}}{q(z)} = -\sum q(z) log \frac{p(x,z)}{q(z)} * \frac{1}{p(x)} = - \sum q(z)[log \frac{p(x, z)}{q(z)} -log p(x)] = -\sum_z q(z)log \frac{p(x,z)}{q(z)} + \sum_z q(z)log p(x) = -\sum_z q(z) log \frac{p(x,z)}{q(z)} + log p(x) * \sum_z p(z) -> 1 <=> log p(x) = KL (q(z) || p(z|x)) +  \sum q(z) log \frac{p(x,z)}{q(z)}
 \end{equation}
-
 
 $log p(x) = const.$ it is fixed number if x is given. That means it does not depend on q(z).
 Since the objective is to minizine the  KL divergence. that means that we want to maximize the lower bound $L=\sum q(z) log \frac{p(x,z)}{q(z)}$. This is called a variational lower bound. We can maximize this variational bound instead of minimizing the KL divergence. However, this bound is not tight and that will have additional reflections in the result since the KL divergence will not exactly be minimized.
@@ -1136,9 +1136,9 @@ Since the objective is to minizine the  KL divergence. that means that we want t
 max L = \sum q(z) \frac{p(x,z)}{q(z)}  = \sum q(z)[log(p(x|z) + log\frac{p(z)}{q(z)}] = \sum q(z)log(p(x|z)) + \sum q(z)\frac{p(z)}{q(z)} = \sum q(z)log(p(x|z)) - KL(q(z)||p(z)) = E_{q(z)}logp(x|z) - KL(q(z)||p(z))
 \end{equation}
 
-If we interpret VAE as a graphical model: one can use $z->x$ and map it to probability p(z|x), while at the same time it can make an assumption of existing recursive relationship $x->z$ to represent the mapping $q(x|z)$. Then the latter can be seen as an encoder and the former as a decoder. This practically means that we choose some distribution for $z$ that we want to reconstruct. With the minimisation of the above quantity, one can try to learn how to map the corresponding chosen distribution. VAE is using variational inference to provide estimates of untractable probabilities.
+If we interpret VAE as a graphical model: one can use $z->x$ and map it to probability $p(z\|x)$, while at the same time it can make an assumption of existing recursive relationship $x->z$ to represent the mapping $q(x\|z)$. Then the latter can be seen as an encoder and the former as a decoder. This practically means that we choose some distribution for $z$ that we want to reconstruct. With the minimisation of the above quantity, one can try to learn how to map the corresponding chosen distribution. VAE is using variational inference to provide estimates of untractable probabilities.
 
-In case of Gaussian E_{q(z)}logp(x|z) results in $E_{q(z)}log(exp(-|x-x^*|^2)$ which is equivalent to minimization of the reconstruction error thus:
+In case of Gaussian $E_{q(z)}logp(x\|z)$ results in $E_{q(z)}log(exp(-|x-x^*|^2)$ which is equivalent to minimization of the reconstruction error thus:
 \begin{equation}
 \max E_{q(z)}logp(x|z) - KL(q(z)||p(z))  <=> \max -E_{q(z)}logp(x|z) - KL(q(z)||p(z)) <=> \min recon\_error +  KL(q(z)||p(z))
 \end{equation}
