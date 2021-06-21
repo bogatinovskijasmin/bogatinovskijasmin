@@ -882,7 +882,7 @@ Laplacian eigenmaps as a dimensionality reduction technique concerned with findi
 
 ### Maximum Variance Unfloding
 
-All the methods for dimensionality redcution discussed so far are KPCAs with different kernels. Follwing this observation the question that arises is related to: Can we learn kernels from the data?
+All the methods for dimensionality reduction discussed so far can be seen as KPCAs with different kernels. Following this observation the question that arises is related to: Can we learn kernels from the data?
 
 This can be done via semi-definite programming casting of the problem.
 Let's assume $x \in R^{dxn}$ and $y \in R^{pxn}$. The kernels are able to preserve the local properties of the data (e.g nearest neighbour).
@@ -890,7 +890,7 @@ Let's assume $x \in R^{dxn}$ and $y \in R^{pxn}$. The kernels are able to preser
 |x_{i}-x_{j}|^2 =  |\phi(x_{i})-\phi(x_{j})|^2 = K_{ii} + K_{jj} -2K_{ij}
 \end{equation}
 
-We are lookging for a kernel such that, if $x_{i}$ and $x_{j}$ are neighbours:$|x_{i}-x_{j}|^2 = K_{ii} + K_{jj} -2K_{ij}$. Since K is kernel in need to be positie-semi definite, K should be also be symmetric and centered. Next, we need to define a cost fucntion to optmize. This is very easy. If we recall that the PCA was performing maximization of the variance, as a natural step is to do maximization of $Tr(K)$ as a measure of variance of the embedding.
+We are looking for a kernel such that, if $x_{i}$ and $x_{j}$ are neighbours, their difference is given as $\|x_{i}-x_{j}\|^2 = K_{ii} + K_{jj} -2K_{ij}$. Since K is kernel in needs to be positive-semi definite, K should also be symmetric and centred. Next, we need to define a cost function to optimize.  If we recall that the PCA was performing maximization of the variance, a natural step is to maximize $Tr(K)$ as a measure of the variance of the embedding.
 
 Finally, the first part of the problem for Maximum Variance Unfolding can be formulated as:
 \begin{equation}
@@ -913,8 +913,7 @@ Preserving the locallity:
 ||x_{i}-x_{j}||^2_2 = K_{ii}^2 + K_{jj}^2 -2K_{ij}^2
 \end{equation}
 
-
-This problem belongs to the cateogry of semi-definite programming and it can be solved using standard approaches from semi-definite progrmming for solution. Once the kernel is found, run kernel PCA on top of it and you will obtain the solution of MVU. One solver is by Helnberg-Kojima-Monterio interior point method.
+This problem belongs to the category of [semi-definite programming](https://en.wikipedia.org/wiki/Semidefinite_programming) and it can be solved using standard approaches from semi-definite programming. Once the kernel is found, run kernel PCA on top of it and you will obtain the solution of MVU. One solver is by [Helnberg-Kojima-Monterio interior point](https://www.springer.com/gp/book/9783540545095) method.
 
 ### Nystorm approximation
 
