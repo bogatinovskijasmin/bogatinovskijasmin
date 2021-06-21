@@ -458,10 +458,10 @@ The second important part of HSCI is the definition of independence of two rando
 The third important consideration for HSIC is related to the maximal mean discrepancy as a distance measure between probabilities functions of two random variables.  It is given as:
 
 \begin{equation}
-MMD(X, Y) = ||\frac{1}{n}\phi(X) - \frac{1}{m}\phi(Y)||_{2}^{2} = (\frac{1}{n}\phi(X) - \frac{1}{n}\phi(Y))^{T}(\frac{1}{n}\phi(X) - \frac{1}{m}\phi(Y)) = \frac{1}{n^2} \sum_{i,j}
+MMD(X, Y) = ||\frac{1}{n}\phi(X) - \frac{1}{m}\phi(Y)||_{2}^{2} = (\frac{1}{n}\phi(X) - \frac{1}{n}\phi(Y))^{T}(\frac{1}{n}\phi(X) - \frac{1}{m}\phi(Y)) = \frac{1}{n^2}
 \end{equation}
 
-<!-- (\phi(X_i)^{T}\phi(X_j)) -->
+<!-- \sum_{i,j}(\phi(X_i)^{T}\phi(X_j)) -->
 
 <!-- + \frac{1}{m^2}\sum_{i,j}(\phi(Y_i)^{T}\phi(Y_j))-\frac{2}{mn}\sum_{i,j}(\phi(X_i)^{T}\phi(Y_j)) -->
 
