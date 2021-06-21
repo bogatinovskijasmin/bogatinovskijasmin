@@ -1125,7 +1125,32 @@ min KL(q(z)||p(z|x)) = -\sum q(z) log \frac{p(z|x)}{q(z)}.
 
 This can further be decomposed end set equivalence to:
 \begin{equation}
-p(z|x) = \frac{p(x|z)p(z)}{p(x)}= \frac{p(x,z)}{p(x)} = -\sum q(z)log \frac{\frac{p(x,z)}{p(x)}}{q(z)} = -\sum q(z) log \frac{p(x,z)}{q(z)} * \frac{1}{p(x)} = - \sum q(z)[log \frac{p(x, z)}{q(z)} -log p(x)] = -\sum_z q(z)log \frac{p(x,z)}{q(z)} + \sum_z q(z)log p(x) = -\sum_z q(z) log \frac{p(x,z)}{q(z)} + log p(x) * \sum_z p(z) -> 1 <=> log p(x) = KL (q(z) || p(z|x)) +  \sum q(z) log \frac{p(x,z)}{q(z)}
+p(z|x) = \frac{p(x|z)p(z)}{p(x)}= \frac{p(x,z)}{p(x)} =
+=  =  = =
+\end{equation}
+
+\begin{equation}
+-\sum q(z)log \frac{\frac{p(x,z)}{p(x)}}{q(z)} =
+\end{equation}
+
+\begin{equation}
+-\sum q(z) log \frac{p(x,z)}{q(z)} * \frac{1}{p(x)} =
+\end{equation}
+
+\begin{equation}
+- \sum q(z)[log \frac{p(x, z)}{q(z)} -log p(x)] =
+\end{equation}
+
+\begin{equation}
+-\sum_z q(z)log \frac{p(x,z)}{q(z)} + \sum_z q(z)log p(x) =
+\end{equation}
+
+\begin{equation}
+-\sum_z q(z) log \frac{p(x,z)}{q(z)} + log p(x) * \sum_z p(z) -> 1  <=>
+\end{equation}
+
+\begin{equation}
+log p(x) = KL (q(z) || p(z|x)) +  \sum q(z) log \frac{p(x,z)}{q(z)}
 \end{equation}
 
 $log p(x) = const.$ it is fixed number if x is given. That means it does not depend on q(z).
