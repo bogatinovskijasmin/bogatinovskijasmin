@@ -652,17 +652,18 @@ where $x\in R^d$ and $y \in R^q$ $d>q$.
 
 After the $w$ weights are obtained with simple linear regression fits, then the solution for $y$ can be done using an iterative gradient descent method. However, as a second effective solution, one can rewrite the two cost functions and come to an elegant solution for the calculation of the optimal representations as the eigenvectors corresponding to the smallest eigenvalues of a specifically computed matrix which derivation and solution of the problem are given in the following.
 
-_________________________
+---------------
 Local-linear embedding algorithm
 
 * Input X, k
 
 * **Step 1** Construct a k-nearest neighbour graph
 
-* **Step 2** Compute $W_{ij}$ via minimization $\sum_{i}$ $\|\|x_i-\sum_j^k w_{i,j}x_{i}\|\|^2$ for all points i. to be a well defined problem we further assume $\sum_{i,j} w_{i,j}=1$
+* **Step 2** Compute $W_{ij}$ via minimization $\sum_{i}$ $\|\|x_i-\sum_j^k w_{i,j}x_{i}\|\|^2$ for all points i. To be a well defined problem we further assume $\sum_{i,j} w_{i,j}=1$
 
 * **Step 3** Compute $Y_i$ via minimization of $\sum_{i}\|\|y_{i}-\sum_{j}^{k}w_{i,j}y_{i}\|\|^2$
-_________________________
+
+---------------
 
 We define the following matrices $V_i$ as all neighbors of point $i$:
 \begin{equation}
