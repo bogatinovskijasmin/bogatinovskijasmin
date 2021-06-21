@@ -551,12 +551,13 @@ Another supervised approach for dimensionality reduction resides in the method o
 Recall that: $\mu(cx)=c\mu(x)$ and $VAR(cx)=c^2VAR(x)$, $Tr(a)=a$ and $\|\|*\|\|$ is a scalar.
 The previous descripiton of the FDA approach can be written as: \|\|$w^T\mu_{x1}$ - $w^T\mu_{x2}\|\|^2$ = ($w^T\mu_{x1}$ - $w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2})$ = $\mu_{x1}^Tww^T\mu_{x1}$ - 2$\mu_{x2}^Tww^T\mu_{x1}$  + $\mu_{x2}^Tww^T\mu_{x2}$, where $\mu_{x1}$ and $\mu_{x2}$ denote the means of class 1 and class 2.
 
-\begin{equation}
-\sigma_{b} = Tr(||w^T\mu_{x1} - w^T\mu_{x2}||_2^2) = Tr((w^T\mu_{x1} - w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2})) = Tr(\mu_{x1}^Tww^T\mu_{x1} - 2\mu_{x2}^TTww^T\mu_{x1}  + \mu_{x2}^Tww^T\mu_{x2}) =
-Tr(w^T\mu_{x1}\mu_{x1}^Tw - 2w^T\mu_{x1}\mu_{x2}^TTw  + w^T\mu_{x2}\mu_{x2}^Tw) = Tr(w^T(\mu_{x1}-\mu_{x2})(\mu_{x1}-\mu_{x2})^Tw) = Tr(w^T\sigma_{between}w)
-\end{equation},
+
+$\sigma_{b} = Tr(||w^T\mu_{x1} - w^T\mu_{x2}||_2^2)$ = $Tr((w^T\mu_{x1} - w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2}))$ = $Tr(\mu_{x1}^Tww^T\mu_{x1} - 2\mu_{x2}^TTww^T\mu_{x1}  + \mu_{x2}^Tww^T\mu_{x2})$ =
+$Tr(w^T\mu_{x1}\mu_{x1}^Tw - 2w^T\mu_{x1}\mu_{x2}^TTw  + w^T\mu_{x2}\mu_{x2}^Tw)$ = $Tr(w^T(\mu_{x1}-\mu_{x2})(\mu_{x1}-\mu_{x2})^Tw)$ = $Tr(w^T\sigma_{between}w)$
+
 
 $\sigma_{between}$ is a rank 1 matrix in the k=2 class dimensionl case, or k-1 in k dimensional case.For the covariance matrix we have:
+
 \begin{equation}
 \sigma_{total}=w^T\sigma_{x1}w + w^T\sigma_{x2}w  = w^T(\sigma_{x1} + \sigma_{x2})w  = w^T\sigma_{within}w
 \end{equation}
