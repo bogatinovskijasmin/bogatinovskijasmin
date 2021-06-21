@@ -910,7 +910,7 @@ K \geq 0
 
 Preserving the locallity:
 \begin{equation}
-||x_{i}-x_{j}||^2_2 = K_{ii}^2 + K_{jj}^2 -2K_{ij}^2
+\|\|x_{i}-x_{j}\|\|^2 = K_{ii}^2 + K_{jj}^2 -2K_{ij}^2
 \end{equation}
 
 This problem belongs to the category of [semi-definite programming](https://en.wikipedia.org/wiki/Semidefinite_programming) and it can be solved using standard approaches from semi-definite programming. Once the kernel is found, run kernel PCA on top of it and you will obtain the solution of MVU. One solver is by [Helnberg-Kojima-Monterio interior point](https://www.springer.com/gp/book/9783540545095) method.
