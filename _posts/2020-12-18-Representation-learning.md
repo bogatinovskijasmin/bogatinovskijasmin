@@ -580,7 +580,7 @@ We can write the Lagrangian from here and obtain: $\sigma_{within}^{-1}\sigma_{b
 # Again Unsupervised
 ## Multi-dimensional scaling (MDS)
 
-MDS is an approach for lower dimensional embedding. It requires just a pairwise distance computation between the points. It tries to find the lower-dimensional representation such that the distances in the original space are preserved.
+MDS is an approach for lower dimensional reduction. It requires just a pairwise distance computation between the points. It tries to find the lower-dimensional representation such that the distances in the original space are preserved.
 
 \begin{equation}
 cost= \sum_{i<j} ||d_x(i, j)-d_y(i, j)||_2^2
@@ -603,7 +603,7 @@ The algorithm goes as follows:
 
 **Few notes on MDS**
 
-One can also obtain the solution for MDS using eigenvalue decomposition where: $Y = \lambda^{-0.5}V^T$. This is identical to the solution of dual PCA where instead of singular values of the diagonal we have their square root. The square root of eigenvalues corresponds to the singular values. V is the eingevectors of $X^TX$. This method is also linear. We need double centring of the X^TX.
+One can also obtain the solution for MDS using eigenvalue decomposition where: $Y = \lambda^{-0.5}V^T$. This is identical to the solution of dual PCA where instead of singular values of the diagonal we have their square root. The square root of eigenvalues corresponds to the singular values. V is the eingevectors of $X^TX$. This method is also linear. We need double centring of the $X^TX$.
 
 Additional versions can involve normalization like Sammons mapping. This kind of mapping can preserve the structure in higher dimensional space which highly depends on the implemented pairwise distance measures. It converges to PCA if the data is in a linear manifold.
 
