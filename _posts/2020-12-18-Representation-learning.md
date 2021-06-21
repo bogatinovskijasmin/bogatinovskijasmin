@@ -1205,7 +1205,7 @@ p_{ij}=\frac{\frac{e^|x_{i}-x_{j}|^2}{2\sigma}}{\sum_{k!=i}\frac{e^|x_{i}-x_{j}|
 q_{ij}=\frac{\frac{1}{1+|y_{i}-y_{j}|^2}}{\sum_{k!=i}\frac{1}{1+\|y_{i}-y_{k}\|^2}}
 \end{equation}
 
-where each $\sigma$ is the same. We again optimize $KL(P||Q)$, for y.
+where each $\sigma$ is the same. We again optimize $KL(P\|\|Q)$, for y.
 
 
 
