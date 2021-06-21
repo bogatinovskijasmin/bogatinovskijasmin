@@ -40,13 +40,7 @@ A list of the described methods is given in the following:
 
 14) Independent Component Analysis (ICA),
 
-15) Variational autoencoder
-
-16) $\beta$ VAE
-
-17) Recurrent VAE (RVAE)
-
-18) PID-VAE
+15) Variational autoencoder (VAE)
 
 To define some of these methods we define the following concepts:
 
@@ -1024,9 +1018,6 @@ argmax_{w_x(\tau), w_y} Corr(\sum{w_x(\tau)^Tx(t-\tau), w_y^Ty(t)})
 \end{equation}
 
 
-
-
-
 ### Independent Component Analysis (ICA) Bell 1995
 
 ICA solves the "cocktail party problem". This problem refers that there exist multipe sources of signals that are linarly mixed between one another. This assumption of linar mixing is valid since it relfects the baisc principle of superposition. Moreover, it imples an important assumption of independance between the different sources. Formally, the problem is defined as follows:
@@ -1164,7 +1155,10 @@ Algorithm
 3) return $\theta$ and $\phi$
 
 
-There are various difference ascepts of the VAE framework. Adding a regularizing parameter infront of the KL term, allows to implicitly contorl for the amount of independece enforced on the output. Thus one can either use simmulated annealing, or add it as large constant (e.g beta VAE). Thus one can end up in representations with different richness. For example, with large beta's one allows for emphasised independance between the latent factors enfored with the isotropic covarince of the latent factor embedding that encodes it. This is has interesting observation in causality learning. Another interesting extension is the recurrent variational autoencoder. It is extension of the VAE framework but at the same time it takes into account the previos state encoded by a hidden layer in an LSTM for example. Another interesting extension is regularizing the value for beta using a closed-loop system when the value for the regularization parameter using the KL divergence as input.
+There are various instances of the VAE framework. Adding a regularizing parameter in front of the KL term allows to implicitly control for the amount of independence enforced on the output. Thus one can either use simulated annealing or add it as a large constant (e.g beta VAE). It results in representations with different richness. For example, with large beta's one allows for emphasised independence between the latent factors enforced with the isotropic covariance of the latent factor embedding that encodes it. This has interesting observation in causality learning. Another interesting extension is the recurrent variational autoencoder (RVAE). It is an extension of the VAE framework but at the same time, it takes into account the previous state encoded by a hidden layer in an LSTM for example. Another interesting extension is regularizing the value for beta using a closed-loop system when the value for the regularization parameter using the KL divergence as input (PID-VAE). Despite VAE, there are other probabilistic based methods that aim to reconstruct probabilities e.g. normalizing flows that basically implement the transformation method of random variable change. Therefore, resulting in a model learned representation. 
+
+
+
 
 
 ### Stochastic neighbour embedding (SNE)
