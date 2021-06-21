@@ -1004,7 +1004,7 @@ Combining all of these results in a block matrix form we get:
 \end{equation}
 
 This is a generalized eigenvalue equation solvable with a standard eigenvalue solver.
-It can be extended on more than 2 variables and we can utilize also Kernel versions of it.
+It can be extended on more than two variables and we can utilize also Kernel versions of it.
 To capture nonlinear dependencies use kernel. Hence we have **kCCA** (kernel Canonical Component Analysis).
 
 \begin{equation}
