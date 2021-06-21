@@ -946,8 +946,10 @@ Also, one can use the [R1D algorithm](https://uwaterloo.ca/data-analytics/sites/
 
 ### Component analysis
 
+In the following we discuss two commonly occurring decomposition of data; one is tabular, while the other one is concerned with finding independent components from time varying data.
+
 #### Canonical Component Analysis (CCA)
-The main idea behind this method is that given $X \in R^{n}$ and $Y \in R^{m}$ find a representation Z such that it is maximally related to both of them. One can look at X and Y being conditionally independent given Z.
+The main idea behind this method is that given $X \in R^{n}$ and $Y \in R^{m}$ find a representation Z such that it is maximally related to both of them. One can look at X and Y being conditionally independent given the component Z.
 
 Find the projections $w_x \in R^{m}$ and  $w_y\in R^{n}$. The objective function can be formulates as:
 \begin{equation}
@@ -1067,7 +1069,7 @@ The problem with this equation is that we cannot calculate the integral. One wor
 E^T=ln(|det(W)|) + \frac{1}{p}\sum_{\alpha=1}^p \sum_{l=1}^N f_l^{*'}(\sum_{k=1}^Nw_{lk}x_k^{\alpha}))
 \end{equation}
 
-This formulation of the problem can be solved using the gradient ascent algorithm. However, there is a problem with this formulation. It requires the calculation of a determinant of the matrix. To go around that problem one may use the Natural gradient instead of the gradient. The natural gradient acts similar to normal gradient descent with a difference that instead of finding the optimal step for the current update of the parameter in the Euclidean space, it tries to find optimal updated in a space of distributions. This allows to eliminate the calculation of the gradient of the determinant of the unmixing matrix and provide a solution for the problem. It returns as output the source, mixing and unmixing matrices. Good implementation of the method can be found on the following [link](https://github.com/AbelHLG/easy_ica). 
+This formulation of the problem can be solved using the gradient ascent algorithm. However, there is a problem with this formulation. It requires the calculation of a determinant of the matrix. To go around that problem one may use the Natural gradient instead of the gradient. The natural gradient acts similar to normal gradient descent with a difference that instead of finding the optimal step for the current update of the parameter in the Euclidean space, it tries to find optimal updated in a space of distributions. This allows to eliminate the calculation of the gradient of the determinant of the unmixing matrix and provide a solution for the problem. It returns as output the source, mixing and unmixing matrices. Good implementation in Python of the method can be found on the following [link](https://github.com/AbelHLG/easy_ica).
 
 ##### A few words on Natural gradient descent:
 
@@ -1078,10 +1080,9 @@ This formulation of the problem can be solved using the gradient ascent algorith
 
 Repeat until convergence:
 1. Do forward pass on our model and compute loss $L(\theta)$
-2. Compute the gradient $\nabla_{\theta}L(\theta)$
-3. Compute the Fisher Information Matrix F, or its empirical version (wrt. our training data).
-4. Compute the natural gradient $\nabla_{\theta}L(\theta) = F^{-1}\nabla_{\theta}$
-5. Update the parameter: $\theta = \theta - \alpha \nabla_{\theta}L(\theta)$  , where \alpha  is the learning rate.
+2. Compute the Fisher Information Matrix F, or its empirical version (wrt. our training data).
+3. Compute the natural gradient $\nabla_{\theta}L(\theta) = F^{-1}\nabla_{\theta}$
+4. Update the parameter: $\theta = \theta - \alpha \nabla_{\theta}L(\theta)$  , where \alpha  is the learning rate.
 
 In practice, it is difficult to compute the F matrix (it is the negative Hessian). Fisher Information Matrix can be seen as a curvature of the negative expected loglikelihood of the loss function [1](https://wiseodd.github.io/techblog/2018/03/14/natural-gradient/). Also, it can be defined as the variance of the log of maximal likelihood estimate as a score for the goodness of the estimate $\nabla_{\theta}log(p(x\|\theta))$.
 
@@ -1089,10 +1090,8 @@ In practice, it is difficult to compute the F matrix (it is the negative Hessian
 
 ### Variational Autoencoder
 
-VAE is using variational inference to provide esimates of untractable probabiltitites.
-
 To define all the things we need we start with first defining what is information
-**Information** is quantified with the $I=-log(p(x))$, where x is some event. For example, the probability of raining snow in July is low, since it is very unlikly. However, if someone tells that the snow will rain that means that that information has very great information within.
+**Information** is quantified with the $I=-log(p(x))$, where x is some event. For example, the probability of raining snow in July is low, since it is very unlikely. However, if someone tells that the snow will rain that means that that information has very great information within.
 
 
 The average of information is **entropy**. The mathematical expectation of the information is entorpy $E(x)= \int -p(x)log(p(x)dx$.
@@ -1129,22 +1128,22 @@ p(z|x) = \frac{p(x|z)p(z)}{p(x)}= \frac{p(x,z)}{p(x)} = -\sum q(z)log \frac{\fra
 \end{equation}
 
 
-$log p(x) = const.$ it is fixed number if x is given. That means it does not depends on q(z).
-Since the objective is to minizie the  KL divergnece. that means that we want to maximize the lower bound $L=\sum q(z) log \frac{p(x,z)}{q(z)}$. This is called a variational lower bound. We can maximize this variational bound instead of minimizing the KL divergence. However, this bound is not tight and that will have additional reflections in the result since the KL divergence will not exactly be minimized.
+$log p(x) = const.$ it is fixed number if x is given. That means it does not depend on q(z).
+Since the objective is to minizine the  KL divergence. that means that we want to maximize the lower bound $L=\sum q(z) log \frac{p(x,z)}{q(z)}$. This is called a variational lower bound. We can maximize this variational bound instead of minimizing the KL divergence. However, this bound is not tight and that will have additional reflections in the result since the KL divergence will not exactly be minimized.
 
 
 \begin{equation}
 max L = \sum q(z) \frac{p(x,z)}{q(z)}  = \sum q(z)[log(p(x|z) + log\frac{p(z)}{q(z)}] = \sum q(z)log(p(x|z)) + \sum q(z)\frac{p(z)}{q(z)} = \sum q(z)log(p(x|z)) - KL(q(z)||p(z)) = E_{q(z)}logp(x|z) - KL(q(z)||p(z))
 \end{equation}
 
-In fact if we interpret VAE as a graphical model: one can use $z->x$ and map it to probability p(z|x), while at the same time it can make assumpuion of exsiting recursive relationship $x->z$ to represent the mapping $q(x|z)$. Then the later can be seen as encoder, and the former as decoder. This practically means that we choose some distribution for $z$ that we want to reconstruct. With minizmiation of the above quantity one can actually try to learn how to map the corresponding chosen distribution.
+If we interpret VAE as a graphical model: one can use $z->x$ and map it to probability p(z|x), while at the same time it can make an assumption of existing recursive relationship $x->z$ to represent the mapping $q(x|z)$. Then the latter can be seen as an encoder and the former as a decoder. This practically means that we choose some distribution for $z$ that we want to reconstruct. With the minimisation of the above quantity, one can try to learn how to map the corresponding chosen distribution. VAE is using variational inference to provide estimates of untractable probabilities.
 
 In case of Gaussian E_{q(z)}logp(x|z) results in $E_{q(z)}log(exp(-|x-x^*|^2)$ which is equivalent to minimization of the reconstruction error thus:
 \begin{equation}
 \max E_{q(z)}logp(x|z) - KL(q(z)||p(z))  <=> \max -E_{q(z)}logp(x|z) - KL(q(z)||p(z)) <=> \min recon\_error +  KL(q(z)||p(z))
 \end{equation}
 
-It is important to note that in the bottleneck we are aiming to reconstruct not the code of the distribution but the code for its parameters $\mu$ and $\sigma$. Then we sample from this distribution and pass the sample through the decode. This is reered to as reparametarization trick. And we can use this model as generative model in that sence. We are using the reparametarization trick to do this. Read the original paper "VAE 2013" for more details.
+It is important to note that in the bottleneck we are aiming to reconstruct not the code of the distribution but the code for its parameters $\mu$ and $\sigma$. Then we sample from this distribution and pass the sample through the decode. This is referred to as the reparameterization trick. And we can use this model as a generative model in that sense. We are using the reparameterization trick to do this. Read the original paper ["Auto-encoding Variational Bayes"](https://arxiv.org/pdf/1312.6114.pdf) for more details.
 
 
 -------
@@ -1166,10 +1165,6 @@ Algorithm
 
 
 There are various instances of the VAE framework. Adding a regularizing parameter in front of the KL term allows to implicitly control for the amount of independence enforced on the output. Thus one can either use simulated annealing or add it as a large constant (e.g beta VAE). It results in representations with different richness. For example, with large beta's one allows for emphasised independence between the latent factors enforced with the isotropic covariance of the latent factor embedding that encodes it. This has interesting observation in causality learning. Another interesting extension is the recurrent variational autoencoder (RVAE). It is an extension of the VAE framework but at the same time, it takes into account the previous state encoded by a hidden layer in an LSTM for example. Another interesting extension is regularizing the value for beta using a closed-loop system when the value for the regularization parameter using the KL divergence as input (PID-VAE). Despite VAE, there are other probabilistic based methods that aim to reconstruct probabilities e.g. normalizing flows that basically implement the transformation method of random variable change. Therefore, resulting in a model learned representation.
-
-
-
-
 
 ### Stochastic neighbour embedding (SNE)
 
