@@ -1000,7 +1000,7 @@ w_y^TC_{yx}w_y = \beta w_y^TC_{yy}w_y
 
 Combining all of these results in a block matrix form we get:
 \begin{equation}
-[0| C_{xy}; C_{yx} | 0][w_x; w_y] = \alpha [C_{xx}| 0; 0 | C_{yy}][w_x; w_y]  
+[0| C_{xy}; C_{yx} | 0][w_x; w_y] = \gamma [C_{xx}| 0; 0 | C_{yy}][w_x; w_y]  
 \end{equation}
 
 This is a generalized eigenvalue equation solvable with a standard eigenvalue solver.
@@ -1019,9 +1019,9 @@ argmax_{w_x(\tau), w_y} Corr(\sum{w_x(\tau)^Tx(t-\tau), w_y^Ty(t)})
 \end{equation}
 
 
-### Independent Component Analysis (ICA) Bell 1995
+#### Independent Component Analysis (ICA) Bell 1995
 
-ICA solves the "cocktail party problem". This problem refers that there exist multipe sources of signals that are linarly mixed between one another. This assumption of linar mixing is valid since it relfects the baisc principle of superposition. Moreover, it imples an important assumption of independance between the different sources. Formally, the problem is defined as follows:
+ICA tries to find independent components within signals. It solves the "cocktail party problem". This problem refers that there exist multipe sources of signals that are linarly mixed between one another. This assumption of linar mixing is valid since it relfects the baisc principle of superposition. Moreover, it imples an important assumption of independance between the different sources. Formally, the problem is defined as follows:
 \begin{equation}
 X = AS
 \end{equation}
