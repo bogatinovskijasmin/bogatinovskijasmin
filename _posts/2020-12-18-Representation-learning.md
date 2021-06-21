@@ -801,7 +801,7 @@ It is given as:
 
 $$ratiocut(A, A^{l}) = \frac{cut(A, A^{l})}{|A|} + \frac{cut( A^{l},A)}{|A^{l}|}$$
 
-, where $$|A|$$ denotes the cardinality (the number of points in the group).
+, where $\|A\|$ denotes the cardinality (the number of points in the group).
 
 
 Our optimization problem is to minimize this function. We cannot do it
