@@ -1021,7 +1021,7 @@ argmax_{w_x(\tau), w_y} Corr(\sum{w_x(\tau)^Tx(t-\tau), w_y^Ty(t)})
 
 #### Independent Component Analysis (ICA) Bell 1995
 
-ICA tries to find independent components within signals. It solves the "cocktail party problem". This problem refers that there exist multipe sources of signals that are linarly mixed between one another. This assumption of linar mixing is valid since it relfects the baisc principle of superposition. Moreover, it imples an important assumption of independance between the different sources. Formally, the problem is defined as follows:
+ICA tries to find independent components within signals. It solves the "cocktail party problem". The 'cocktail problem' refers to the problem where multiple sources of signals that are linearly mixed between one another exist. The goal is to find the independent signals. This assumption of linear mixing is valid since it reflects the basic principle of superposition. Moreover, it implies an important assumption of independence between the different sources. Formally, the problem is defined as follows:
 \begin{equation}
 X = AS
 \end{equation}
@@ -1032,7 +1032,7 @@ S = WX
 \end{equation}
 
 We can also refer to the sources as independent components.
-There are various view points of the ICA method and various approaches to it. Here a description of the "InfoMax" method for ICA will be presented.
+There are various viewpoints of the ICA method and approaches to it. Here a description of the "InfoMax" method for ICA will be presented.
 
 #### InfoMax ICA
 Let's assume that there $s$  comes from uknown densitiy $P_s{(s)}$, parametarized with $W$ or it can be written as $P_s{(Wx)}$. Our goal is to estimate this probability $P^*_{s}{(s)}=\prod_{i=1}^N P_{s_i}^{*}(s_i)$ given the obesrvations, under the independence assumption.
