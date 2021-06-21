@@ -513,7 +513,7 @@ add constrain of form
 \begin{equation}
 U^TU=I
 \end{equation}
-To solve this problem we can use the Lagrangian, similar as in PCA. We first write the Lagrangian dual form, optimize, and the values for U are the eigenvectors of the matrix $eig(XHBHX^T)$ where $XH = x-\mu_{x}, \mapsto XHIHX^T$ is the covarinace matrix. Interestingly if one set $B=I$, it results into original definition of the PCA as a special case of supervised PCA.
+To solve this problem we can use the Lagrangian, similar as in PCA. We first write the Lagrangian dual form, optimize, and the values for U are the eigenvectors of the matrix $eig(XHBHX^T)$ where $XH = x-\mu_{x}$, is centered $XHIHX^T$ is the covarinace matrix. Interestingly if one set $B=I$, it results into original definition of the PCA as a special case of supervised PCA.
 
 
 The previous algorithm for supervised PCA is written in its linear form. However, we can use the kernel trick and rewrite it in a kernelzied form as follows.
@@ -549,13 +549,15 @@ The solution of this problem is generalized eigen decomposition. So to calculate
 ## Fisher Discriminat Analysis (FDA)
 Another supervised approach for dimensionality reduction recides in the method of Fisher Discriminant Analysis (FDA). This method tries to find a projection of the data such that the distance of the means of the lower dimensional projection of the data is maximized, while the within variation of the projection is minimized.
 
-Recall that: $\mu(cx)=c\mu(x)$ and $VAR(cx)=c^2VAR(x)$, $Tr(a)=a$ and $||*||$ is a scalar.
+Recall that: $\mu(cx)=c\mu(x)$ and $VAR(cx)=c^2VAR(x)$, $Tr(a)=a$ and $\|\|*\|\|$ is a scalar.
 
 The previous descripiton of the FDA approach can be written as:
 \begin{equation}
 ||w^T\mu_{x1} - w^T\mu_{x2}||_2^2 = (w^T\mu_{x1} - w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2}) = \mu_{x1}^Tww^T\mu_{x1} - 2\mu_{x2}^TTww^T\mu_{x1}  + \mu_{x2}^Tww^T\mu_{x2}
 \end{equation},
+
 where $\mu_{x1}$ and $\mu_{x2}$ denote the means of class 1 and class 2.
+
 \begin{equation}
 \sigma_{b} = Tr(||w^T\mu_{x1} - w^T\mu_{x2}||_2^2) = Tr((w^T\mu_{x1} - w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2})) = Tr(\mu_{x1}^Tww^T\mu_{x1} - 2\mu_{x2}^TTww^T\mu_{x1}  + \mu_{x2}^Tww^T\mu_{x2}) =
 Tr(w^T\mu_{x1}\mu_{x1}^Tw - 2w^T\mu_{x1}\mu_{x2}^TTw  + w^T\mu_{x2}\mu_{x2}^Tw) = Tr(w^T(\mu_{x1}-\mu_{x2})(\mu_{x1}-\mu_{x2})^Tw) = Tr(w^T\sigma_{between}w)
