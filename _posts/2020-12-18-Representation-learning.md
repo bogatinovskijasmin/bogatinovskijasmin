@@ -949,51 +949,11 @@ There are many algorithms one can use to solve this problem. One, for example, i
 starting from some initial random values (or some careful initialization) one can find both the bases (W) and the factors (H).
 Also, one can use the [R1D algorithm](https://uwaterloo.ca/data-analytics/sites/ca.data-analytics/files/uploads/files/nonegative-matrix-factorization-via-rank-one-downdate.pdf) to find the bases. The intuition follows from "Leading singular value of a nonnegative matrix is nonnegative. (Theorem)". Utilizing this notion one can write the problem of finding W and H as eigenvectors.
 
-### Stochastic neighbour embedding (SNE)
-
-Stochastic neighbour embedding is used for the representation of the data in a lower space. The main idea is that it assumes that the local neighbourhood of a data point in the original high dimensional $X \in R^{dxn}$ space can be embedded under a Gaussian. This results in the conversion of distances to probabilities. The same assumption is made for the lower-dimensional representation $Y \in R^{pxn}, p<<d$ . Then in SNE, we try to minimize the KL divergence between these two distributions in an iterative way.
-The conversion of distances to probabilities is given with:
-
-
-\begin{equation}
-p_{j|i}=\frac{e^\frac{|x_{i}-x_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}e^\frac{|x_{i}-x_{j}|^2}{2\sigma_{i}}}
-\end{equation}
-
-where each $\sigma_{i}$ is different for each point.
-
-\begin{equation}
-q_{j|i}=\frac{e^\frac{|y_{i}-y_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}e^\frac{|y_{i}-y_{j}|^2}{2\sigma_{i}}}
-\end{equation}
-
-the $\sigma_{i}=\frac{1}{\sqrt{2\pi}}$ in Y space is set to constant.
-
-The cost function is than:
-\begin{equation}
-J=\min_{y_i, y_j}KL(P||Q) = \sum_{i,j}p_{j|i}log\frac{p_{j|i}}{q_{j|i}}
-\end{equation}
-
-
-One of the problem we are faced with such formulation is the "crowding" problem. This problem arises in the case when we want to map data from higher dimension to lower dimension. Owning to the uneven volumes of the both spaces the compression of the volume results in the observation that points that are on medium and large distance in a higher dimensional space to be mapped very far from one another in the lower dimensional space. To eliminate this problem in SNE, tSNE is introduced.
-
-
-#### t-SNE
-It builds on the top of SNE, but with two differences. Instead of using separate $\gamma_{i}$ for all points separately it uses one $\gamma$ for all points. The second important thing is that the Gaussian distribution in the lower dimensional space is replaced with t-student distribution. The main intuition is that the t-student distribution has thicker tails. This results in preserving the large distances as compared to SNE since it can accommodate greater volume in the lower dimensional space.
-
-\begin{equation}
-p_{ij}=\frac{\frac{e^|x_{i}-x_{j}|^2}{2\sigma}}{\sum_{k!=i}\frac{e^|x_{i}-x_{j}|^2}{2\sigma}}
-\end{equation}
-
-\begin{equation}
-q_{ij}=\frac{\frac{1}{1+|y_{i}-y_{j}|^2}}{\sum_{k!=i}\frac{1}{1+|y_{i}-y_{k}|^2}}
-\end{equation}
-
-where each $\sigma$ is the same. We again optimize $KL(P||Q)$, for y.
-
 
 ### Component analysis
 
-Canonical Component Analysis (CCA)
-The main idea behind this method is that given $X \in R{n}$ and $Y \in R{m}$ find a representation Z such that it is maximally related to both of them. One can look as X and Y being conditionally independent given Z.
+#### Canonical Component Analysis (CCA)
+The main idea behind this method is that given $X \in R{n}$ and $Y \in R{m}$ find a representation Z such that it is maximally related to both of them. One can look at X and Y being conditionally independent given Z.
 
 Find the projections $w_x \in R^{m}$ and  $w_y\in R^{n}$. The objective function can be formulates as:
 \begin{equation}
@@ -1009,7 +969,7 @@ w_xXX^Tw_x = 1
 w_yYY^Tw_y = 1
 \end{equation}
 
-We assume that the data is centered.
+We assume that the data is centred.
 Compute the cross-covariance matricies:
 \begin{equation}
 C_{xy} = \frac{1}{N}XY^T
@@ -1048,21 +1008,22 @@ Combining all of these results in a block matrix form we get:
 [0| C_{xy}; C_{yx} | 0][w_x; w_y] = \alpha [C_{xx}| 0; 0 | C_{yy}][w_x; w_y]  
 \end{equation}
 
-This is a generalized eigenvalue equation solvable with standard eingenvalue solver.
-It can be extended on more then 2 variables and we can utlized also Kernel versions of it.
-To capture nonlinear dependecies use kernel. Hence we have **kCCA** (kernel Canoical Component Analysis).
+This is a generalized eigenvalue equation solvable with a standard eigenvalue solver.
+It can be extended on more than 2 variables and we can utilize also Kernel versions of it.
+To capture nonlinear dependencies use kernel. Hence we have **kCCA** (kernel Canonical Component Analysis).
 
 \begin{equation}
 [0| K_{xy}; K_{yx} | 0][\alpha_x; \alpha_y] = \alpha [K_{x}^2| 0; 0 | K_{y}^2][\alpha_x; \alpha_y]  
 \end{equation}
+
 To recover $w_x$ use $w_x=X\alpha_x$ same for $w_y$.
-There is also a temporal kernel CCA. When variables are copuled with delay.  
+There is also a temporal kernel CCA. When variables are coupled with delay.  tkCCA finds canonical convolution and correlogram. It is given as:
 
 \begin{equation}
 argmax_{w_x(\tau), w_y} Corr(\sum{w_x(\tau)^Tx(t-\tau), w_y^Ty(t)})
 \end{equation}
 
-tkCCA finds canonical convolution and correlogram.
+
 
 
 
@@ -1204,6 +1165,48 @@ Algorithm
 
 
 There are various difference ascepts of the VAE framework. Adding a regularizing parameter infront of the KL term, allows to implicitly contorl for the amount of independece enforced on the output. Thus one can either use simmulated annealing, or add it as large constant (e.g beta VAE). Thus one can end up in representations with different richness. For example, with large beta's one allows for emphasised independance between the latent factors enfored with the isotropic covarince of the latent factor embedding that encodes it. This is has interesting observation in causality learning. Another interesting extension is the recurrent variational autoencoder. It is extension of the VAE framework but at the same time it takes into account the previos state encoded by a hidden layer in an LSTM for example. Another interesting extension is regularizing the value for beta using a closed-loop system when the value for the regularization parameter using the KL divergence as input.
+
+
+### Stochastic neighbour embedding (SNE)
+
+Stochastic neighbour embedding is used for the representation of the data in a lower space. The main idea is that it assumes that the local neighbourhood of a data point in the original high dimensional $X \in R^{dxn}$ space can be embedded under a Gaussian. This results in the conversion of distances to probabilities. The same assumption is made for the lower-dimensional representation $Y \in R^{pxn}, p<<d$ . Then in SNE, we try to minimize the KL divergence between these two distributions in an iterative way.
+The conversion of distances to probabilities is given with:
+
+
+\begin{equation}
+p_{j|i}=\frac{e^\frac{|x_{i}-x_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}e^\frac{|x_{i}-x_{j}|^2}{2\sigma_{i}}}
+\end{equation}
+
+where each $\sigma_{i}$ is different for each point.
+
+\begin{equation}
+q_{j|i}=\frac{e^\frac{|y_{i}-y_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}e^\frac{|y_{i}-y_{j}|^2}{2\sigma_{i}}}
+\end{equation}
+
+the $\sigma_{i}=\frac{1}{\sqrt{2\pi}}$ in Y space is set to constant.
+
+The cost function is than:
+\begin{equation}
+J=\min_{y_i, y_j}KL(P||Q) = \sum_{i,j}p_{j|i}log\frac{p_{j|i}}{q_{j|i}}
+\end{equation}
+
+
+One of the problem we are faced with such formulation is the "crowding" problem. This problem arises in the case when we want to map data from higher dimension to lower dimension. Owning to the uneven volumes of the both spaces the compression of the volume results in the observation that points that are on medium and large distance in a higher dimensional space to be mapped very far from one another in the lower dimensional space. To eliminate this problem in SNE, t-SNE is introduced.
+
+
+#### t-SNE
+t-SNE builds on top of SNE, but with two differences. Instead of using separate $\gamma_{i}$ for all points, it uses one $\gamma$ for all points. The second important thing is that the Gaussian distribution in the lower dimensional space is replaced with the t-student distribution. The main intuition is that the t-student distribution has thicker tails. It results in preserving the large distances compared to SNE because it can accommodate greater volume in the lower dimensional space.
+
+\begin{equation}
+p_{ij}=\frac{\frac{e^|x_{i}-x_{j}|^2}{2\sigma}}{\sum_{k!=i}\frac{e^|x_{i}-x_{j}|^2}{2\sigma}}
+\end{equation}
+
+\begin{equation}
+q_{ij}=\frac{\frac{1}{1+|y_{i}-y_{j}|^2}}{\sum_{k!=i}\frac{1}{1+\|y_{i}-y_{k}\|^2}}
+\end{equation}
+
+where each $\sigma$ is the same. We again optimize $KL(P||Q)$, for y.
+
 
 
 
