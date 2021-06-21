@@ -962,7 +962,7 @@ p_{j|i}=\frac{e^\frac{|x_{i}-x_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}\frac{e^|x_{i}-x
 where each $\sigma_{i}$ is different for each point.
 
 \begin{equation}
-q_{j|i}=\frac{\frac{e^|y_{i}-y_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}\frac{e^|y_{i}-y_{j}|^2}{2\sigma_{i}}}
+q_{j|i}=\frac{\frac{e^|y_{i}-y_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}e^\frac{|y_{i}-y_{j}|^2}{2\sigma_{i}}}
 \end{equation}
 
 the $\sigma_{i}=\frac{1}{\sqrt{2\pi}}$ in Y space is set to constant.
