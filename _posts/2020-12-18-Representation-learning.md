@@ -1067,7 +1067,7 @@ The problem with this equation is that we cannot calculate the integral. One wor
 E^T=ln(|det(W)|) + \frac{1}{p}\sum_{\alpha=1}^p \sum_{l=1}^N f_l^{*'}(\sum_{k=1}^Nw_{lk}x_k^{\alpha}))
 \end{equation}
 
-This formulation of the problem can be solved using the gradient ascent algorithm. However, there is a problem with this formulation. It requires calculation of a determinant of the matrix. To go around that problem one may use the Natural gradient instead of the gradient. The natural gradient acts is similar to normal gradient descient with a difference that instead of finding the optimal step for the current update of the parameter in the Euclidiean space, it tries to find optmial updated in a space of distributions. This allows to eliminate the calculation of the gradient of the determinant of the unmixing matrix and provide a solution for the problem.
+This formulation of the problem can be solved using the gradient ascent algorithm. However, there is a problem with this formulation. It requires the calculation of a determinant of the matrix. To go around that problem one may use the Natural gradient instead of the gradient. The natural gradient acts similar to normal gradient descent with a difference that instead of finding the optimal step for the current update of the parameter in the Euclidean space, it tries to find optimal updated in a space of distributions. This allows to eliminate the calculation of the gradient of the determinant of the unmixing matrix and provide a solution for the problem.
 
 ##### A few words on Natural gradient descent:
 
@@ -1083,7 +1083,7 @@ Repeat until convergence:
 4. Compute the natural gradient $\nabla_{\theta}L(\theta) = F^{-1}\nabla_{\theta}$
 5. Update the parameter: $\theta = \theta - \alpha \nabla_{\theta}L(\theta)$  , where α  is the learning rate.
 
-In practice it is difficult to compute F matrix (it is the negative Hessian). Fisher Information Matrix can be seen as a curviture of the negative expected logliklihood of the loss function. [cite the blog from Augustinus Kristiadi]. Also it can be defined as the variance of the log of maximal liklihood estimate as a score for the goodness of the estimate $\nabla_{\theta}log(p(x|\theta))$.
+In practice, it is difficult to compute the F matrix (it is the negative Hessian). Fisher Information Matrix can be seen as a curvature of the negative expected loglikelihood of the loss function [1](https://wiseodd.github.io/techblog/2018/03/14/natural-gradient/). Also, it can be defined as the variance of the log of maximal likelihood estimate as a score for the goodness of the estimate $\nabla_{\theta}log(p(x|\theta))$.
 
 ### Variational Autoencoder
 
