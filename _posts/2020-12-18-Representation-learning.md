@@ -552,7 +552,7 @@ Recall that: $\mu(cx)=c\mu(x)$ and $VAR(cx)=c^2VAR(x)$, $Tr(a)=a$ and $\|\|*\|\|
 The previous descripiton of the FDA approach can be written as: \|\|$w^T\mu_{x1}$ - $w^T\mu_{x2}\|\|^2$ = ($w^T\mu_{x1}$ - $w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2})$ = $\mu_{x1}^Tww^T\mu_{x1}$ - 2$\mu_{x2}^Tww^T\mu_{x1}$  + $\mu_{x2}^Tww^T\mu_{x2}$, where $\mu_{x1}$ and $\mu_{x2}$ denote the means of class 1 and class 2.
 
 
-$\sigma_{b} = Tr(||w^T\mu_{x1} - w^T\mu_{x2}||_2^2)$ = $Tr((w^T\mu_{x1} - w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2}))$ = $Tr(\mu_{x1}^Tww^T\mu_{x1} - 2\mu_{x2}^TTww^T\mu_{x1}  + \mu_{x2}^Tww^T\mu_{x2})$ =
+$\sigma_{b}$ = $Tr(||w^T\mu_{x1}$ - $w^T\mu_{x2}||_2^2)$ = $Tr((w^T\mu_{x1} - w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2}))$ = $Tr(\mu_{x1}^Tww^T\mu_{x1} - 2\mu_{x2}^TTww^T\mu_{x1}  + \mu_{x2}^Tww^T\mu_{x2})$ =
 $Tr(w^T\mu_{x1}\mu_{x1}^Tw - 2w^T\mu_{x1}\mu_{x2}^TTw  + w^T\mu_{x2}\mu_{x2}^Tw)$ = $Tr(w^T(\mu_{x1}-\mu_{x2})(\mu_{x1}-\mu_{x2})^Tw)$ = $Tr(w^T\sigma_{between}w)$
 
 
