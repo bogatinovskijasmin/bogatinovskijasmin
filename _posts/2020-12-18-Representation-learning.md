@@ -976,7 +976,7 @@ C_{xx} = \frac{1}{N}XX^T
 Now we can write the Lagrangian:
 
 
-$L = w_x^TC_{xy}w_y$ - $\frac{1}{2}\alpha (w_x^TC_{xx}w_x - 1)- \frac{1}{2 \beta (w_y^TC_{yy}w_y - 1)$
+$L = w_x^TC_{xy}w_y$ - $\frac{1}{2}\alpha (w_x^TC_{xx}w_x - 1)- \frac{1}{2} \beta (w_y^TC_{yy}w_y - 1)$
 
 We calculate the partial derivatives:
 \begin{equation}
