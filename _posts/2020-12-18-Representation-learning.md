@@ -618,7 +618,7 @@ Input: X, k
 
 **Step 1** Construct a k-nearest neighbour graph on n data points $X \in R^{dxn}$
 
-**Step 2** Compute shortest path between all points as estimation $D^{g}(X) = geodesic_distance(X)$
+**Step 2** Compute shortest path between all points as estimation $D^{g}(X) = geodesic distance(X)$
 
 **Step 3** $K = -0.5HKH$, H is centring matrix $H = I - \frac{1}{n}ee^T$
 
@@ -653,15 +653,18 @@ where $x\in R^d$ and $y \in R^q$ $d>q$.
 After the $w$ weights are obtained with simple linear regression fits, then the solution for $y$ can be done using an iterative gradient descent method. However, as a second effective solution, one can rewrite the two cost functions and come to an elegant solution for the calculation of the optimal representations as the eigenvectors corresponding to the smallest eigenvalues of a specifically computed matrix which derivation and solution of the problem are given in the following.
 
 _________________________
-Input X, k
+Local-linear embedding algorithm
 
-**Step 1** Construct a k-nearest neighbour graph
+* Input X, k
 
-**Step 2** Compute $W_{ij}$ via minimization $\sum_{i}\|\|x_{i}-\sum_{j}^{k}w_{i,j}x_{i}\|\|_2^2$ for all points i. to be a well defined problem we further assume $\sum_{i,j} w_{i,j}=1$
+* **Step 1** Construct a k-nearest neighbour graph
 
-**Step 3** Compute $Y_i$ via minimization of $\sum_{i}\|\|y_{i}-\sum_{j}^{k}w_{i,j}y_{i}\|\|_2^2$
+* **Step 2** Compute $W_{ij}$ via minimization $\sum_{i}\|\|x_{i}-\sum_{j}^{k}w_{i,j}x_{i}\|\|_2^2$ for all points i. to be a well defined problem we further assume $\sum_{i,j} w_{i,j}=1$
 
-We define the following matricies $V_i$ as all neighbours of point $i$:
+* **Step 3** Compute $Y_i$ via minimization of $\sum_{i}\|\|y_{i}-\sum_{j}^{k}w_{i,j}y_{i}\|\|_2^2$
+_________________________
+
+We define the following matrices $V_i$ as all neighbors of point $i$:
 \begin{equation}
 V_i = [x_{i1}, x_{i2} ... x_{il}] \in R^{dxk}
 \end{equation}
@@ -679,8 +682,7 @@ x_i = x_ie_i^Tw_i
 \end{equation}
 
 The graph needs to be connected so the distances can be calculated correctly. Small k results in a disconnected graph. Large k results in linear method since we no longer have locality. Same as ISOMAP. Appropriate choice of k is mandatory.
-
-Using the above definition of the matricies we rewrite them in the following way:
+Using the above definition of the matrices we rewrite them in the following way:
 
 \begin{equation}
 min_{w_i}||x_ie_i^Tw_i-V_{i}w_{i}||_2^2 = min_{w_i}w_i^T(x_ie_i^T - V_i)^T(x_ie_i^T - V_i)w_i = min_{w_i}w_i^TGw_i
