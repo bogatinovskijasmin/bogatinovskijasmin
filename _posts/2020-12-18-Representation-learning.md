@@ -556,15 +556,15 @@ $\sigma_{b}$ = $Tr(||w^T\mu_{x1}$ - $w^T\mu_{x2}||^2)$ = $Tr((w^T\mu_{x1} - w^T\
 $Tr(w^T\mu_{x1}\mu_{x1}^Tw - 2w^T\mu_{x1}\mu_{x2}^TTw  + w^T\mu_{x2}\mu_{x2}^Tw)$ = $Tr(w^T(\mu_{x1}-\mu_{x2})(\mu_{x1}-\mu_{x2})^Tw)$ = $Tr(w^T\sigma_{between}w)$
 
 
-$\sigma_{between}$ is a rank 1 matrix in the k=2 class dimensionl case, or k-1 in k dimensional case.For the covariance matrix we have:
+$\sigma_{between}$ is a rank 1 matrix in the k=2 class dimensionl case, or k-1 in k dimensional case. For the covariance matrix we have:
 
 \begin{equation}
 \sigma_{total}=w^T\sigma_{x1}w + w^T\sigma_{x2}w  = w^T(\sigma_{x1} + \sigma_{x2})w  = w^T\sigma_{within}w
 \end{equation}
 
-Following this formulation we define an optmization problem of the following form:
+Following this formulation we define an optimization problem of the following form:
 \begin{equation}
-argmax_{w}\sigma_{b}/\sigma_{total}
+argmax_{w}\frac{\sigma_{between}}{\sigma_{total}}
 \end{equation}
 
 This is ill-defined optimization problem since it miss on the constrain. We need to define a constrain. Utilizing Ryglihg-Cauchy optimization procedure we can define the problem in the following form:
