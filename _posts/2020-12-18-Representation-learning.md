@@ -963,8 +963,8 @@ w_xXX^Tw_x = 1
 w_yYY^Tw_y = 1
 \end{equation}
 
-We assume that the data is centred.
-Compute the cross-covariance matricies:
+We assume that the data is centered. Compute the cross-covariance matrices:
+
 \begin{equation}
 C_{xy} = \frac{1}{N}XY^T
 \end{equation}
@@ -974,6 +974,7 @@ C_{xx} = \frac{1}{N}XX^T
 \end{equation}
 
 Now we can write the Lagrangian:
+
 \begin{equation}
 L = w_x^TC_{xy}w_y - \frac{1}{2}\alpha (w_x^TC_{xx}w_x - 1)- \frac{1}{2 \beta (w_y^TC_{yy}w_y - 1)
 \end{equation}
