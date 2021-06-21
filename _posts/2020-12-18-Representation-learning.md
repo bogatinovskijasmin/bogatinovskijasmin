@@ -569,7 +569,7 @@ argmax_{w}\frac{\sigma_{between}}{\sigma_{total}}
 
 This is ill-defined optimization problem since it miss on the constrain. We need to define a constrain. Utilizing Ryglihg-Cauchy optimization procedure we can define the problem in the following form:
 \begin{equation}
-argmax_{w}\frac{\sigma_{b}}{\sigma_{total}}
+argmax_{w}\frac{\sigma_{between}}{\sigma_{total}}
 \end{equation},
 subject to
 \begin{equation}
@@ -580,28 +580,34 @@ We can write the Lagrangian from here and obtain: $\sigma_{within}^{-1}\sigma_{b
 # Again Unsupervised
 ## Multi-dimensional scaling (MDS)
 
-MDS is an approach for lower dimensional embedding. It requires just a pairwise distance computation between the points. It tries to find the lower dimensional representation such that the distances in the original space are preserved.
+MDS is an approach for lower dimensional embedding. It requires just a pairwise distance computation between the points. It tries to find the lower-dimensional representation such that the distances in the original space are preserved.
 
 \begin{equation}
 cost= \sum_{i<j} ||d_x(i, j)-d_y(i, j)||_2^2
 \end{equation}
-where d(i, j) is the pairwise distances in the original space $ X \in R^d$, while $Y \in R^p$ where $p<d$.
+where $d(i, j)$ is the pairwise distances in the original space $ X \in R^d$, while $Y \in R^p$ where $p<d$.
 
+
+--------------------------------------------------------------
 The algorithm goes as follows:
 
-Input D(X) pairwise distances of X
+**Input** D(X) pairwise distances of X
 
-**Step 1** Random initialization of points from $Y \in R^p$
+* **Step 1** Random initialization of points from $Y \in R^p$
 
-**Step 2** until convergence do
+* **Step 2** until convergence do
 
-**Step 2.1** Calculate distances between the target Y
+* **Step 2.1** Calculate distances between the target Y
 
-**Step 2.2** update y with a gradient step calculated from the cost function
+* **Step 2.2** update y with a gradient step calculated from the cost function
 
-One can also obtain the soludion for MDS using eigenvalue decomposition where: $Y = \lambda^{-0.5}V^T$. This is identical to the solution of dual PCA where instead of signaluar values of the diagonal we have their square root. The square root of eigenvalues correspond to the singular values. V is the eingevectors of $X^TX$. This method is also linear. We need double centring of the X^TX.
+**Few notes on MDS**
 
-Additional versions can involve normalization like Sammons mapping. This kind of mapping can preserve the structure in higher dimensioal space which highly depdnts on the implemented pairwise distance measures. It converges to PCA if the data is in linear manifold.
+One can also obtain the solution for MDS using eigenvalue decomposition where: $Y = \lambda^{-0.5}V^T$. This is identical to the solution of dual PCA where instead of singular values of the diagonal we have their square root. The square root of eigenvalues corresponds to the singular values. V is the eingevectors of $X^TX$. This method is also linear. We need double centring of the X^TX.
+
+Additional versions can involve normalization like Sammons mapping. This kind of mapping can preserve the structure in higher dimensional space which highly depends on the implemented pairwise distance measures. It converges to PCA if the data is in a linear manifold.
+
+
 
 
 ## Isomap
