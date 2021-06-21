@@ -1039,15 +1039,16 @@ Let's assume that there $s$  comes from uknown densitiy $P_s{(s)}$, parametarize
 Thus we can write our cost functions as minimization of the KL divergence of these two probabilities with respect to the unmixing matrix W.
 
 \begin{equation}
-D_{KL} = D_{KL}[P_s(s), P_{s}^{\*}(s)] = \int ds P_s(s)ln\frac{P_s(s)}{\prod_{i=1}^N P_{s_i}^{\*}(s_i)} (1)
+D_{KL} = D_{KL}[P_s(s), P_{s}^{\*}(s)] = \int  P_s(s)ln\frac{P_s(s)}{\prod_{i=1}^N P_{s_i}^{\*}(s_i)} ds (1)
 \end{equation}
 
-To solve this one may think of the infomax principle. From Wikipedia **"Infomax is an optimization principle for artificial neural networks and other information processing systems. It prescribes that a function that maps a set of input values I to a set of output values O should be chosen or learned so as to maximize the average Shannon mutual information between I and O, subject to a set of specified constraints and/or noise processes"** .More specifically, we would like to apply a specific non-linear transformation of our reconsturcted sources (to each of them individually) $u(s^*)$ such that the $P(u)=const.$. This reflects an intuition that the reconstructed sources will be as much unrelated as possible.
+To solve this one may think of the infomax principle. **"Infomax is an optimization principle for artificial neural networks and other information processing systems. It prescribes that a function that maps a set of input values I to a set of output values O should be chosen or learned so as to maximize the average Shannon mutual information between I and O, subject to a set of specified constraints and/or noise processes"** [Wiki](https://de.wikipedia.org/wiki/Infomax) . More specifically, we would like to apply a specific non-linear transformation of our reconsturcted sources (to each of them individually) $u(s^*)$ such that $P(u)=const$. This reflects an intuition that the reconstructed sources will be as much unrelated as possible.
 
-Using the nonlinear transformation $u^{*}_i = f^{*}_{i}(e_i^TWx)$ and following the law of conservation of probability (or the rule of change of variables) we can derive the infomax princile, starting from equation (1).
+Using the nonlinear transformation $u_i^{\*} = f^{*}_{i}(e_i^TWx)$ and following the law of conservation of probability (or the rule of change of variables) we can derive the infomax princile, starting from equation (1).
+
 This is a long process and we are going to state just the result:
 \begin{equation}
-H = -\int du^*P_u(u^*)lnP_u(u^*)
+H = -\int du^{\*}P_u(u^{\*})ln P_u(u^*)
 \end{equation}
 this can be obesrved as entropy of the flattent reconstructed sources. The intuition is that "If you like a matrix W that transforms something to statistically independent thing you should maximize the entropy. For multivariate variabels with some pdf and if the pdfs are flat, then the entorpy is maximal if and only if the sources are independet".
 
