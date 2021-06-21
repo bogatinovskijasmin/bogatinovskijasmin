@@ -548,6 +548,8 @@ The solution to this problem is generalized eigendecomposition. So to calculate 
 
 ## Fisher Discriminat Analysis (FDA)
 Another supervised approach for dimensionality reduction resides in the method of Fisher Discriminant Analysis (FDA). This method tries to find a projection of the data such that the distance of the means of the lower-dimensional projection of the data is maximized, while the within the variation of the projection is minimized.
+
+
 Recall that: $\mu(cx)=c\mu(x)$ and $VAR(cx)=c^2VAR(x)$, $Tr(a)=a$ and $\|\|*\|\|$ is a scalar.
 The previous descripiton of the FDA approach can be written as: \|\|$w^T\mu_{x1}$ - $w^T\mu_{x2}\|\|^2$ = ($w^T\mu_{x1}$ - $w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2})$ = $\mu_{x1}^Tww^T\mu_{x1}$ - 2$\mu_{x2}^Tww^T\mu_{x1}$  + $\mu_{x2}^Tww^T\mu_{x2}$, where $\mu_{x1}$ and $\mu_{x2}$ denote the means of class 1 and class 2.
 
@@ -737,51 +739,146 @@ in the second optimization function of the problem and following the fact that t
 \begin{equation}
 \min_{Y} \sum_i^n|YI_{:i}-YW_{:i}|^2 <=> \min_{Y} |YW - YW|^2 <=> \min_{Y} |Y(I-W)|^2 <=> \min_{Y} Tr((Y^T(I-W)^T(I-W)Y)
 \end{equation}
-, since it is ill defined problem we need to define it. That is why we add a constrain of the form $YY^T=I$
+, since it is ill defined problem we need to add a constraint. That is why we add a constrain of the form $YY^T=I$
 
-The solution of the optimal values for Y are the eigenvectors corresponding to the bottom $p+1$ eigenvalues. The last eigenvalue is always 0 and needs to be discarded. This is because $I-W$ is a Laplacian of the constructed graph. The property of the Laplacian graph suggests that the number of 0 values on its eigendecomposition, corresponds to the number of fully connected subgraphs in the graph.
+The solution of the optimal values for Y are the eigenvectors corresponding to the bottom $p+1$ eigenvalues (note it is a minimization problem). The last eigenvalue is always 0 and needs to be discarded. This is because $I-W$ is a Laplacian of the constructed graph. The property of the Laplacian graph suggests that the number of 0 values on its eigendecomposition, corresponds to the number of fully connected subgraphs in the graph.
 
 
 ### Spectral clustering
+To describe the Laplacian eigenmaps method we will first introduce Spectral clustering.
 
-Spectral clustering is an unsupervised approach used to produce groups of data given a set of $n$ unlabelled observations on which we can define some similairty measure. It creates the maximal connected graph out of them. Since the goal of spectral clustering is to produce subgraphs of the original graph where each point is the most similar with the points in the group it belongs to we need to choose where to cut the original graph.
+Spectral clustering is used to produce groups of different samples originating from a  set of $n$ unlabelled observations on which we can define some similarity measure.
+As a method, it originates from graph theory. We first introduce some basic concepts from graph theory.
 
-In graph theory this is know as the $cut(A, A*)=\sum_{i,j}w_{ij}$ problem. Given the graph $G=(V, E)$ where $V=A$U$A*$ and A and A* are disjoint sets of verticies, the goal is to find the optimal set of verticies such that $cut(A, A*)=\sum_{i,j}w_{ij}$ is minimized. The problem with this formulation of the problem is that it can be highly influenced by the distances $w_{ij}$ that are very dissmilar. Those distance will be high and than we will have issues. To that end we opt to minimize the ratiocut. Ratiocut is a similarity measure between two sets of verticies from a graph that accoutns for the large differences in similarities.
+**Graph** is a mathematical abstraction that is useful for modelling
+a various set of problems. Formally, a graph object is composed of two sets of objects.
+The first set is a set of **vertices**, while the second is referred to as a set of **edges**.
+The edges are connecting two vertices in the graph.
+A subset of connected vertices and their edges form a subgraph.
+A **connected component** is a maximal subgraph of nodes that all have paths to the rest of the nodes in the subgraph.
+In some sense, the goal of spectral clustering is to identify such subgraphs. A graph can be
+further represented with is **adjacency matrix**. Adjacency matrix ($A$)
+is a matrix where the rows and columns represent the vertices, while
+the corresponding intersections indicate if there is a connection between
+two vertices. Another important component is the **degree matrix**.
+Degree matrix ($D$) is a diagonal matrix that shows how many vertices a
+given vertex is connected to. **Laplacian matrix** is obtained when the
+values from the **degree matrix** are substracted with the values from
+the **adjacency matrix** $L=D-A$. Important for spectral clustering is that the eigenvalues of the Laplacian are
+related to the number of connected components. The first nonzero
+eigenvalue is further called the **spectral gap**. The second eigenvalue is called the **Fiedler value**. It approximates the minimum **graph cut**
+needed to separate the graph into two connected components.
+
+Given this terminology, we can build first some intuition about what spectral clustering is all about.
+Given a set of samples from some set $S$, we can imagine that they are vertices connected with edges that are part of some graph $G$. We can define a split on the graph such that each of the vertices is grouped into two smaller subsets. The samples belonging to the
+two different partitions form separate clusters. As such, spectral
+clustering can be viewed as a way to produce subgraphs of the original
+graph where each point is the most similar to the samples in the
+subgraph it belongs. The natural question arises into how to create the
+separation or formally referred to as **cut of the graph**. Spectral clustering uses information from the eigenvalues of the
+Laplacian matrix of the graph to build the subgraphs. More specifically,
+to find the number of clusters we look for the **maximal gap** in the
+eigenvalues of the Laplacian.
+
+In the following, we provide mathematical proof to verify that finding
+the clusters in spectral clustering is equivalent to performing
+eigenvalue decomposition of the Laplacian. The
+[cut](https://en.wikipedia.org/wiki/Cut_(graph_theory))
+of the graph, formally, is defined as a partition of vertices that splits the vertices of the graph into two disjoint sets.
+We denote the **cut** as $cut(A, A^{l})=\sum_{i,j}w_{ij}$, where A and $A^{l}$ are two disjoint sets of vertices (data points) $i$ is a point from set A, and $j$ is a point from set $A^{l}$ and $w_{ij}$ is the distance between the points. The distance is usually Euclidean.
+
+
+Given the graph $G=(V, E)$ where $V=A$U$A^{l}$ and $A$ and $A^{l}$ are disjoint sets of vertices, the goal is to find the optimal set of
+vertices such that $argmin_{A, A^{l}}cut(A, A^{l})=\sum_{i,j}w_{ij}$ is
+minimized. The problem with this formulation of the problem is that it
+can be highly influenced by outlier points. They will have large
+distances $w_{ij}$ to the other points and the partitioning can fail. To
+that end, we opt to minimize the **ratiocut**. **Ratiocut** is a
+similarity measure between two sets of vertices from the graph that
+accounts for the large differences in their distances.
 
 It is given as:
-\begin{equation}
-ratiocut(A, A^{*}) = \frac{cut(A, A^{*})}{|A|} + \frac{cut( A^{*},A)}{|A^{*}|}
-\end{equation}
 
-In order to minimize this function we find an equivalence function that we minimize. To this end we first introduce
-label for each point given as:
-\begin{equation}
-f_{i} = \sqrt{\frac{|A^{*}|}{|A|}}, i \in A
-\end{equation}
-\begin{equation}
-f_{i} = -\sqrt{\frac{|A|}{|A^{*}|}}, i \in A^{*}
-\end{equation}
+$$ratiocut(A, A^{l}) = \frac{cut(A, A^{l})}{|A|} + \frac{cut( A^{l},A)}{|A^{l}|}$$
 
-The introduction of this label with respect to the being part of the sets allows to write the loss function in temrs of
-\begin{equation}
-min_w \sum_{ij}w_{ij}(f_i-f_j)^2
-\end{equation}
+, where $$|A|$$ denotes the cardinality (the number of points in the group).
 
-Proof:
-\begin{equation}
-min_w \sum_{ij}w_{ij}(f_i-f_j)^2 = \sum_{i \in A j \in A^{*}}w_{ij}(\sqrt{\frac{|A^{*}|}{|A|}} + \sqrt{\frac{|A|}{|A^{*}|}})^2 +  \sum_{i \in A^{*} j \in A}w_{ij}(-\sqrt{\frac{|A^{*}|}{|A|}} - \sqrt{\frac{|A|}{|A^{*}|}})^2 =
-(\frac{|A^{*}|}{|A|} + \frac{|A|}{|A^{*}|}+2)(\sum_{i \in A j \in A^{*}}w_{ij}+\sum_{ i \in A^{*}, j \in A}w_{ij})=
-K(cut(A, A^{*}) + cut(A^{*}, A))=K(\frac{cut(A, A^{*})}{|A|} + \frac{cut(A^{*}, A)}{|A^{*}|}) => ratiocut(A, A^{*})
-\end{equation}
 
-Furthermore, with straiightforward representation calculation of $f^TLf = f^T(D-W)f$ one can show that $f^TLf <=> \frac{1}{2}\sum_{ij}w_{ij}(f_i-f_j)^2$, where L is the Laplacian of the connected graph, W is the weight matrix of the graph and D is the diagonal nodes of the degree of each node in the graph. Adding the contraint $f^Tf=I$, one can show that the optimial solution for the f's being the $p+1$ eigenvectors of the matrix L. The last column is discarded since it represents the number of partitions the graph has. D is diagional matrix and the sum of the rows of W equal the corresponding diagonal element in the row. Note that this is minimization problem.
+Our optimization problem is to minimize this function. We cannot do it
+directly. Thus we find an equivalence function that we can
+minimize.
 
-In order to do more clusters, one is prespecifing the number of clusters $p$ it wants and runs corresponding k-means algorithm on the $p+1$ eigenvectors corresponding to the $p+1$ minimal eigenvalues.
+
+First we inroduce a label for each point as:
+
+$$f_{i} = \sqrt{\frac{|A^{l}|}{|A|}}, i \in A$$
+
+$$f_{i} = -\sqrt{\frac{|A|}{|A^{l}|}}, i \in A^{l}$$
+
+The introduction of this label with respect to being part of the sets
+allows writing the **ratiocut** in terms of the labels as:
+
+$$min_w \sum_{ij}w_{ij}(f_i-f_j)^2$$
+
+
+**Proof:**
+
+$$min_w \sum_{ij}w_{ij}(f_i-f_j)^2 = \sum_{i \in A j \in A^{l}}w_{ij}(\sqrt{\frac{|A^{l}|}{|A|}} + \sqrt{\frac{|A|}{|A^{l}|}})^2 +  \sum_{i \in A^{l} j \in A}w_{ij}(\sqrt{\frac{|A^{l}|}{|A|}} - \sqrt{\frac{|A|}{|A^{l}|}})^2 =$$
+
+$$(\frac{|A^{l}|}{|A|} + \frac{|A|}{|A^{l}|}+2)(\sum_{i \in A j \in A^{l}}w_{ij}+\sum_{ i \in A^{l}, j \in A}w_{ij})$$
+
+$$=
+K(cut(A, A^{l}) + cut(A^{l}, A))=K(\frac{cut(A, A^{l})}{|A|} + \frac{cut(A^{l}, A)}{|A^{l}|}) => ratiocut(A, A^{l})$$
+
+, where K is a constant.
+
+Furthermore, with a straightforward calculation of $f^TLf = f^T(D-A)f$
+one can show that $f^TLf <=> \frac{1}{2}\sum_{ij}w_{ij}(f_i-f_j)^2$,
+where L is the Laplacian of the connected graph, A is the adjacency
+matrix of the graph and D is the degree matrix of each node in the
+graph. Adding the constraint $f^Tf=I$, one can show that the optimal
+solution for the $f$ is the $p+1$ eigenvectors of the matrix L. The
+last column represents the number of partitions the graph has. D is
+a diagonal matrix and the sum of the rows of A equal the corresponding
+diagonal element in the row. Note that this is a minimization problem.
+
+To do more clusters, one is prespecified the number of clusters
+$p$ it wants and runs another clustering approach (e.g k means algorithm) on the $p+1$
+eigenvectors corresponding to the $p+1$ minimal eigenvalues.
+
+------------------------------------------------------------------------
+**Algorithm:**
+
+**Input:** Similarity matrix $S \in R^{nxn}$;
+
+number $k$ of clusters to construct.
+
+**Output:** Clusters $A_1 \dots A_k$ with $A_i = \{j| y_j \in C_i\}$.
+
+
+
+Step 1) Construct a similarity graph. Let A be its weighted adjacency
+matrix.
+
+Step 2) Compute the unnormalized Laplacian L.
+
+Step 3) Compute the first $k$ eigenvectors $u_1,\dots , u_k$ of L,
+corresponding to the smallest eigenvalues.
+
+Step 4) Let $U \in R^{nxk}$ be the matrix containing the vectors
+$u_1,\dots , u_k$ as columns.
+
+Step 5) For $i = 1 \dots n$
+
+Step 5.1) let $y_i \in R^k$ be the vector corresponding to the i-th row
+of $U$.
+
+Step 5.2) Cluster the points $y_i$ $i=1, \dots n$ in $R^k$ with the
+**kmeans** algorithm into clusters $C_1 \dots C_k$.
+
 
 ### Laplacian Eigenmaps
-Laplacian eigenmaps as a dimensionality reduction technique concerned with finding the lowest dimensions. One can proof that they correspond to the optimal values find in the Spectral clustering. The difference between kmeans and spectral clustering is that kmeans is kmeans on original space, while spectral clustering is kmeans on the reconsturcted lower dimensional p-space.
-
-
+Laplacian eigenmaps as a dimensionality reduction technique concerned with finding the lowest dimensions. One can prove that they correspond to the optimal values found in the Spectral clustering. The difference between k-means and spectral clustering is that k-means is k-means on original space, while spectral clustering is k-means on the reconstructed lower-dimensional p-space.
 
 ### Maximum Variance Unfloding
 
