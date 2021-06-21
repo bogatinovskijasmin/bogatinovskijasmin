@@ -682,13 +682,15 @@ w_i = [w_{i1}; ... w_{ik};] \in R^{kx1}
 x_i = x_ie_i^Tw_i
 \end{equation}
 
-The graph needs to be connected so the distances can be calculated correctly. Small k results in a disconnected graph. Large k results in linear method since we no longer have locality. Same as ISOMAP. Appropriate choice of k is mandatory.
+The graph needs to be connected so the distances can be calculated correctly. Small k results in a disconnected graph. Large k results in linear method since we no longer have locality. Same as ISOMAP, appropriate choice of k is mandatory.
 Using the above definition of the matrices we rewrite them in the following way:
 
 \begin{equation}
-min_{w_i}||x_ie_i^Tw_i-V_{i}w_{i}||_2^2 = min_{w_i}w_i^T(x_ie_i^T - V_i)^T(x_ie_i^T - V_i)w_i = min_{w_i}w_i^TGw_i
+min_{w_i}\|\|x_ie_i^Tw_i-V_{i}w_{i}\|\|^2 = min_{w_i}w_i^T(x_ie_i^T - V_i)^T(x_ie_i^T - V_i)w_i = min_{w_i}w_i^TGw_i
 \end{equation}
+
 s.t
+
 \begin{equation}
 e^Tw_{i}=1
 \end{equation}
