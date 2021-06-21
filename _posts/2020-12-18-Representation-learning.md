@@ -1057,7 +1057,7 @@ The result for H, can be seen as the entropy of the flattened reconstructed sour
 Following this formulation one can derive the following cost function:
 
 \begin{equation}
-E^G=ln(|det(W)|) + \int dx*P_x(x)\sum^N_{l=1} ln f_l^{*'}(\sum_{k=1}^Nw_{lk}x_k))
+E^G=ln(|det(W)|) + \int P_x(x)\sum^N_{l=1} ln f_l^{*'}(\sum_{k=1}^Nw_{lk}x_k)) dx
 \end{equation}
 
 The problem with this equation is that we cannot calculate the integral. One workaround is to utilize the ERM principle and replace it with the sum. **ERM principle allows replacing the mathematical expectation with an empirical average**. This allows us to rewrite the equation in the following form:
