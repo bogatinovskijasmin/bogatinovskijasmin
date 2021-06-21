@@ -956,13 +956,13 @@ The conversion of distances to probabilities is given with:
 
 
 \begin{equation}
-p_{j|i}=\frac{e^\frac{|x_{i}-x_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}\frac{e^|x_{i}-x_{j}|^2}{2\sigma_{i}}}
+p_{j|i}=\frac{e^\frac{|x_{i}-x_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}e^\frac{|x_{i}-x_{j}|^2}{2\sigma_{i}}}
 \end{equation}
 
 where each $\sigma_{i}$ is different for each point.
 
 \begin{equation}
-q_{j|i}=\frac{\frac{e^|y_{i}-y_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}e^\frac{|y_{i}-y_{j}|^2}{2\sigma_{i}}}
+q_{j|i}=\frac{e^\frac{|y_{i}-y_{j}|^2}{2\sigma_{i}}}{\sum_{k!=i}e^\frac{|y_{i}-y_{j}|^2}{2\sigma_{i}}}
 \end{equation}
 
 the $\sigma_{i}=\frac{1}{\sqrt{2\pi}}$ in Y space is set to constant.
@@ -973,7 +973,7 @@ J=\min_{y_i, y_j}KL(P||Q) = \sum_{i,j}p_{j|i}log\frac{p_{j|i}}{q_{j|i}}
 \end{equation}
 
 
-One of the problem we are faced with such formulation is the "crowding" problem. This problem arises in the case when we want to map data from higher dimension to lower dimension due to the uneven volumes of the both spaces. It usually will result that the points that are on medium and large distance in a higher dimensional space to be mapped very far from one another in the lower dimensional space. To eliminate this problem in SNE, tSNE is introduced.
+One of the problem we are faced with such formulation is the "crowding" problem. This problem arises in the case when we want to map data from higher dimension to lower dimension. Owning to the uneven volumes of the both spaces the compression of the volume results in the observation that points that are on medium and large distance in a higher dimensional space to be mapped very far from one another in the lower dimensional space. To eliminate this problem in SNE, tSNE is introduced.
 
 
 #### t-SNE
