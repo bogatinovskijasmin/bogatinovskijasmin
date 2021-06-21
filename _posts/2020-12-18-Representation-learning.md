@@ -549,10 +549,7 @@ The solution to this problem is generalized eigendecomposition. So to calculate 
 ## Fisher Discriminat Analysis (FDA)
 Another supervised approach for dimensionality reduction resides in the method of Fisher Discriminant Analysis (FDA). This method tries to find a projection of the data such that the distance of the means of the lower-dimensional projection of the data is maximized, while the within the variation of the projection is minimized.
 Recall that: $\mu(cx)=c\mu(x)$ and $VAR(cx)=c^2VAR(x)$, $Tr(a)=a$ and $\|\|*\|\|$ is a scalar.
-The previous descripiton of the FDA approach can be written as: \|\|w^T\mu_{x1} - w^T\mu_{x2}\|\|_2^2 = (w^T\mu_{x1} - w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2}) = \mu_{x1}^Tww^T\mu_{x1} - 2\mu_{x2}^TTww^T\mu_{x1}  + \mu_{x2}^Tww^T\mu_{x2}
-
-
-
+The previous descripiton of the FDA approach can be written as: $\|\|w^T\mu_{x1} - w^T\mu_{x2}\|\|_2^2 = (w^T\mu_{x1} - w^T\mu_{x2})^T(w^T\mu_{x1} - w^T\mu_{x2}) = \mu_{x1}^Tww^T\mu_{x1} - 2\mu_{x2}^TTww^T\mu_{x1}  + \mu_{x2}^Tww^T\mu_{x2}$
 where $\mu_{x1}$ and $\mu_{x2}$ denote the means of class 1 and class 2.
 
 \begin{equation}
