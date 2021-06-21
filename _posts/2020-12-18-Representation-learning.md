@@ -919,13 +919,15 @@ This problem belongs to the category of [semi-definite programming](https://en.w
 One issue with all of the discussed methods is that they do not scale well. Nystrom approximation provides efficient workaround to make the methods more scalble.
 
 #### Definition
-Let's assume we are given a matrix $K=[A | B; B^T | C]$. The claim in Nystrom approximation that if we know A and B we can reconstruct C.
-One can show that $C = B^TA^{-1}B$. If the rank(C)=m, and we choose m rows for the matrix A, we can reconstruct C, otherwise, we cannot. Intuitively, knowing some partial distances of the points, we can put a constraint on where the other points in the space can be located. Therefore, we do not need to work with all the points just with a fraction of them and obtain approximate results.
+Let's assume we are given a matrix $K=[A | B; B^T | C]$. The claim in Nystrom approximation is that if we know A and B we can reconstruct C.
+One can show that $C = B^TA^{-1}B$. If the rank(C)=m, and we choose m rows for the matrix A, we can reconstruct C, otherwise, we cannot. Intuitively, knowing some partial distances of the points, we can put a constraint on where the other points in the space can be located. Therefore, we do not need to work with all the points just with a fraction of them and obtain approximate results. This improves the performance.
 
-To speed up the computation, one adheres to calculating the properties locally and try to approximate the other points with Nystrom approximation. As long as we choose good values for $m$ (being above the rank(K)) we are good even if we do that at random.
+To speed up the computation, one adheres to calculating the properties locally and try to approximate the other points with Nystrom approximation. As long as we choose a good value for $m$ (i.e. being above the rank(K)) we are good even if we choose the vectors at random.
 
-Proof that Nystrom approximation works:
-Let K is a kernel function such that $K=X^TX$ and $X \in R^{dxn}$. Let m be an integer representing the number of chosen rows of the matrix K. We will write $X=[R; S]$ where $R \in R^{dxm}$ and $S \in R^{dxn-m}$. Then the matrix
+
+#### Proof Nystrom
+
+Let K is a kernel function such that $K=X^TX$ and $X \in R^{dxn}$. Let $m$ be an integer representing the number of chosen rows of the matrix K. We will write $X=[R; S]$ where $R \in R^{dxm}$ and $S \in R^{dx(n-m)}$. Then the matrix
 $K=[R^TR | R^TS; S^TR | S^TS] = [A|B; B^T|C]$.
 
 The matrix R can be found as an SVD decomposition of matrix A. $R = \sigma^{0.5} U$, where $\sigma$ and $U$ are the diagonal matrix of eigenvalues and eigenvectors of matrix A. $B=R^TS$, replacing the solution for R we have $B=U\sigma^{0.5}S <=> U^TB=\sigma^{0.5}S <=> \sigma^{-0.5}U^TB=S$. Since $C=S^TS$, replacing for S we have $C=S^TS=B^T\sigma^{-0.5}\sigma^{-0.5}U^TB=B^TU\sigma{-1}U^TB <=>C=B^TA^{-1}B$.
