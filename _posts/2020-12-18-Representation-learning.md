@@ -393,6 +393,9 @@ x_{rec} = UY = \phi{(X)}V\lambda^{-1}\lambda^{-1}V^{T}\phi{(X)}^{T}\phi{(x_{new}
 
 Recalling that in the most general form we do not know what is the mapping $\phi{(X)}$, it is pretty obvious that not all steps from the Dual PCA are possible. We can project a new point to the $p-$dimensional space. However, we cannot project back any training point back to the original space, nor can reconstruct out of sample point back, because they explicitly involve the mapping $\phi{(X)}$ not their dot-product. Again as in the case of Dual PCA, we need to calculate the right eigenvectors and the eigenvalues of the kernel matrix. An additional catch one should take into care is that it needs to centralize the kernel data in the kernel space (an operation that boils down to summation and subtraction of kernels). The summation of two kernels is again a kernel function so we do not have any problems there.
 
+The following image is taken from the original papper on [KPCA](https://ieeexplore.ieee.org/document/6790375). It depicts the basic idea of KPCA and its difference to learn PCA. 
+
+![image](../assets/img/representation_learning/KPCA.png)
 
 ###### Autoencoders and its relation to PCA
 
@@ -484,6 +487,7 @@ The intuition behind the HSIC is that we can know the correlation between two ra
 #### Supervised PCA (SPCA)
 ---------------------
 Algorithm
+
 INPUT: training data matrix, $X\in R{pxn}$, testing data example, x, kernel
 matrix of target variable, L, and training data size, n, e is a vector of all ones.
 
@@ -495,9 +499,11 @@ OUTPUT: Dimension reduced training and testing data, Z and z
 
 3) Compute basis: U = eigenvectors of Q corresponding to the top d eingenvalues
 
-4) Encode training data: Z = U^{T}X
+4) Encode training data: $Z = U^{T}X$
 
-5) Encode test sample: z = U^{T}X
+5) Encode test sample: $z = U^{T}X$
+
+
 ---------------------
 
 Input $\{(x_i, y_i)\}$ where $x \in R^{d}$ and $y \in R^{q}$, and the HSIC formula. We define:
