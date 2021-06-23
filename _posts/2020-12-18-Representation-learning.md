@@ -14,9 +14,9 @@ A list of the described methods is given in the following:
 
 1) [PCA](http://pca.narod.ru/pearson1901.pdf),
 
-2) Dual PCA [(DPCA)](https://watermark.silverchair.com/089976698300017467.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAp0wggKZBgkqhkiG9w0BBwagggKKMIIChgIBADCCAn8GCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMDF1EEabknC54IijqAgEQgIICUBPrHX9hOHjDkb5ch-W4BBDKPouAXCHwMiZfr8_MCBoPgJYQ1YPriqK149RmDF-bymdJcj0ZY122dthwPv1lu3cw-oMwsINLYJSt4uRfLjK1SAxgdv_QqiiEqH9q0f4JBJ_0fGZb0EF_Y6_7_KG0yAzpCbi_mgsWrLlBtV_hq2IHWaxhTXOLkM1SwJigL4aOS37rFLf4n0tbMmC-iGCZMCN1Fs4Zah7PMeO4wAxnXX_NooV0-AvCYWmVQ548egxFqEK2RPHLk2SVo3pmRXeVSsAmtZ3kfP1EDP_P-R3yf5oa5orGSUERh0Moxk4wWaP61_m_eelQWAshn1wSM9MNF83MY3p3l9jMbu9J2cf1kcbYkqrB-j3A6k9aPLXYHkmLTJzBUq3Nk_3YQVxFsSvjU89Z-xd1Wt7vndw2fLuqgD7vwe-8No5AiHxeJKXhChpUVkG6qXTGZK8FbvaAfoxsX3W9jPKmKy6-h7KSxAaYJvRMMQgMA_zt_GKXvYC3qxQaL8dCFfjN1umo64l6GiZFA0idFYwCKZwrv5AOt6Y6lkq-qOWF5Zr444q1f3S3IINvPwD1sebeNTy8Zc_1Y58QPZNVVVb2T2LBX4pVdGZAy0VBlojygLDn9UnN2McGfCz2OyRRCUSBzsnUmQVFDeTWtJi99vHR5nblzJ8VKVP4bbdgML0k0ECABETSgptPX62TNcghxPI_aG51O_FrQcrlIy-C32elhAIOioIDYF2Xce69sii8hXV88mxWPGU7WtS84X4K7-jMGMFQXDM5qf88cqo),
+2) Dual PCA [(DPCA)](https://ieeexplore.ieee.org/document/6790375),
 
-3) Kernel PCA [(KPCA)](https://watermark.silverchair.com/089976698300017467.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAp0wggKZBgkqhkiG9w0BBwagggKKMIIChgIBADCCAn8GCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMDF1EEabknC54IijqAgEQgIICUBPrHX9hOHjDkb5ch-W4BBDKPouAXCHwMiZfr8_MCBoPgJYQ1YPriqK149RmDF-bymdJcj0ZY122dthwPv1lu3cw-oMwsINLYJSt4uRfLjK1SAxgdv_QqiiEqH9q0f4JBJ_0fGZb0EF_Y6_7_KG0yAzpCbi_mgsWrLlBtV_hq2IHWaxhTXOLkM1SwJigL4aOS37rFLf4n0tbMmC-iGCZMCN1Fs4Zah7PMeO4wAxnXX_NooV0-AvCYWmVQ548egxFqEK2RPHLk2SVo3pmRXeVSsAmtZ3kfP1EDP_P-R3yf5oa5orGSUERh0Moxk4wWaP61_m_eelQWAshn1wSM9MNF83MY3p3l9jMbu9J2cf1kcbYkqrB-j3A6k9aPLXYHkmLTJzBUq3Nk_3YQVxFsSvjU89Z-xd1Wt7vndw2fLuqgD7vwe-8No5AiHxeJKXhChpUVkG6qXTGZK8FbvaAfoxsX3W9jPKmKy6-h7KSxAaYJvRMMQgMA_zt_GKXvYC3qxQaL8dCFfjN1umo64l6GiZFA0idFYwCKZwrv5AOt6Y6lkq-qOWF5Zr444q1f3S3IINvPwD1sebeNTy8Zc_1Y58QPZNVVVb2T2LBX4pVdGZAy0VBlojygLDn9UnN2McGfCz2OyRRCUSBzsnUmQVFDeTWtJi99vHR5nblzJ8VKVP4bbdgML0k0ECABETSgptPX62TNcghxPI_aG51O_FrQcrlIy-C32elhAIOioIDYF2Xce69sii8hXV88mxWPGU7WtS84X4K7-jMGMFQXDM5qf88cqo),
+3) Kernel PCA [(KPCA)](https://ieeexplore.ieee.org/document/6790375),
 
 4) Supervised PCA [(SPCA)](https://www.sciencedirect.com/science/article/pii/S0031320310005819),
 
@@ -556,7 +556,7 @@ The solution to this problem is generalized eigendecomposition. So to calculate 
 
 ![image](../assets/img/representation_learning/SPCA.png "This image was taken from the orignal paper on supervised PCA [SPCA]")
 
-The Figure for SPCA
+<!-- The Figure for SPCA -->
 
 ## Fisher Discriminat Analysis (FDA)
 Another supervised approach for dimensionality reduction resides in the method of Fisher Discriminant Analysis (FDA). This method tries to find a projection of the data such that the distance of the means of the lower-dimensional projection of the data is maximized, while the within the variation of the projection is minimized.
