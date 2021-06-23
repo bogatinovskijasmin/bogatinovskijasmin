@@ -217,3 +217,19 @@ Algorithm
 -------
 
 There are various instances of the VAE framework. Adding a regularizing parameter in front of the KL term allows to implicitly control for the amount of independence enforced on the output. Thus one can either use simulated annealing or add it as a large constant (e.g beta VAE). It results in representations with different richness. For example, with large beta's one allows for emphasised independence between the latent factors enforced with the isotropic covariance of the latent factor embedding that encodes it. This has interesting observation in causality learning. Another interesting extension is the recurrent variational autoencoder (RVAE). It is an extension of the VAE framework but at the same time, it takes into account the previous state encoded by a hidden layer in an LSTM for example. Another interesting extension is regularizing the value for beta using a closed-loop system when the value for the regularization parameter using the KL divergence as input (PID-VAE). Despite VAE, there are other probabilistic based methods that aim to reconstruct probabilities e.g. normalizing flows that basically implement the transformation method of random variable change. Therefore, resulting in a model learned representation.
+
+
+##### A few words on Natural gradient descent:
+
+**Definition:** Natural gradient is defined as:
+\begin{equation}
+\nabla_{\theta}L(\theta) = F^{-1}\nabla_{\theta}
+\end{equation}
+
+Repeat until convergence:
+1. Do forward pass on our model and compute loss $L(\theta)$
+2. Compute the Fisher Information Matrix F, or its empirical version (wrt. our training data).
+3. Compute the natural gradient $\nabla_{\theta}L(\theta) = F^{-1}\nabla_{\theta}$
+4. Update the parameter: $\theta = \theta - \alpha \nabla_{\theta}L(\theta)$  , where \alpha  is the learning rate.
+
+In practice, it is difficult to compute the F matrix (it is the negative Hessian). Fisher Information Matrix can be seen as a curvature of the negative expected loglikelihood of the loss function [1](https://wiseodd.github.io/techblog/2018/03/14/natural-gradient/). Also, it can be defined as the variance of the log of maximal likelihood estimate as a score for the goodness of the estimate $\nabla_{\theta}log(p(x\|\theta))$.

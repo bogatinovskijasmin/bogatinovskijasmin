@@ -34,11 +34,11 @@ A list of the described methods is given in the following:
 
 11) Nystrom approximation,
 
-12) t-SNE (Stochastic neighborhood embedding),
+12) [t-SNE](https://www.jmlr.org/papers/v9/vandermaaten08a.html); (Stochastic Neighborhood Embedding),
 
-13) Canonical Component Analysis (CCA),
+13) Canonical Component Analysis [(CCA)](https://www.jstor.org/stable/2333955?seq=1#metadata_info_tab_contents),
 
-14) Independent Component Analysis (ICA),
+14) Independent Component Analysis [(ICA)](https://www.sciencedirect.com/science/article/abs/pii/0165168494900299),
 
 To define some of these methods we define the following concepts:
 
@@ -1099,6 +1099,8 @@ There is also a temporal kernel CCA. When variables are coupled with delay.  tkC
 argmax_{w_x(\tau), w_y} Corr(\sum{w_x(\tau)^Tx(t-\tau), w_y^Ty(t)})
 \end{equation}
 
+A good overview of the topic is given in this [paper](https://eprints.soton.ac.uk/259225/).
+
 
 #### Independent Component Analysis (ICA) Bell 1995
 
@@ -1149,6 +1151,12 @@ E^T=ln(|det(W)|) + \frac{1}{p}\sum_{\alpha=1}^p \sum_{l=1}^N f_l^{*'}(\sum_{k=1}
 \end{equation}
 
 This formulation of the problem can be solved using the gradient ascent algorithm. However, there is a problem with this formulation. It requires the calculation of a determinant of the matrix. To go around that problem one may use the Natural gradient instead of the gradient. The natural gradient acts similar to normal gradient descent with a difference that instead of finding the optimal step for the current update of the parameter in the Euclidean space, it tries to find optimal updated in a space of distributions. This allows to eliminate the calculation of the gradient of the determinant of the unmixing matrix and provide a solution for the problem. It returns as output the source, mixing and unmixing matrices. Good implementation in Python of the method can be found on the following [link](https://github.com/AbelHLG/easy_ica).
+
+An example of the problem ICA is solving is given in the following image. The image is taken from a paper in the following [link](https://mail.tqmp.org/RegularArticles/vol06-1/p031/p031.pdf).
+![image](../assets/img/representation_learning/ICA.png)
+
+
+
 
 ##### A few words on Natural gradient descent:
 
@@ -1208,6 +1216,10 @@ q_{ij}=\frac{\frac{1}{1+|y_{i}-y_{j}|^2}}{\sum_{k!=i}\frac{1}{1+\|y_{i}-y_{k}\|^
 where each $\sigma$ is the same. We again optimize $KL(P\|\|Q)$, for y.
 
 In dimensionality reduction there are other dimensions and areas of research like 1) sufficient dimensionality reduction, where the goal is to find $P(y\|x) = P(y\|u^{T}x)$;  or 2) metric learning where the goal is to find the semi-positive definiteness matrix A such that it is optimized some criteria involving the Mahalanobis distance. However, we give them here as keywords, without going further in detail. The curious reader may further investigate these terms.
+
+The following image depicts 6000 images from MNIST, depicted with t-SNE and Sammons mapping. The image is obtained from the original [paper](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf) where the method is introduced.
+
+![image](../assets/img/representation_learning/tsne.png)
 
 # Conclusion
 
