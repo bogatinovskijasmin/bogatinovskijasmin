@@ -26,7 +26,7 @@ A list of the described methods is given in the following:
 
 7) [Isomap](https://science.sciencemag.org/content/290/5500/2319),
 
-8) Local Linear Embedding (LLE),
+8) Local Linear Embedding [(LLE)](https://science.sciencemag.org/content/sci/290/5500/2323.full.pdf),
 
 9) Laplacian Eigenmaps
 
@@ -804,6 +804,10 @@ in the second optimization function of the problem and following the fact that t
 
 The solution of the optimal values for Y are the eigenvectors corresponding to the bottom $p+1$ eigenvalues (note it is a minimization problem). The last eigenvalue is always 0 and needs to be discarded. This is because $I-W$ is a Laplacian of the constructed graph. The property of the Laplacian graph suggests that the number of 0 values on its eigendecomposition, corresponds to the number of fully connected subgraphs in the graph.
 
+
+The idea of LLE is given in the following. The image was taken from the original [paper](https://science.sciencemag.org/content/sci/290/5500/2323.full.pdf).
+
+![image](../assets/img/representation_learning/LLE.png)
 
 ### Spectral clustering
 To describe the Laplacian eigenmaps method we will first introduce Spectral clustering.
