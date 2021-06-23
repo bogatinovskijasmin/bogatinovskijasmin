@@ -24,7 +24,7 @@ A list of the described methods is given in the following:
 
 6) MultiDimensional Scaling [(MDS)](https://link.springer.com/article/10.1007%2FBF02289565),
 
-7) Isomap,
+7) [Isomap](https://science.sciencemag.org/content/290/5500/2319),
 
 8) Local Linear Embedding (LLE),
 
@@ -694,7 +694,10 @@ As it can be seen by Step 6 this method is useful for the representation of the 
 
 One important detail is that K may not be a positive-semidefinite matrix. Thus there is no guarantee that one can decompose the K matrix to positive eigenvalues. To solve this one needs to map the K matrix to a cone of a semi-positive matrix e.g via applying $abs(K(X))$.
 
-The graph needs to be connected so the distances can be calculated correctly.
+The graph needs to be connected so the distances can be calculated correctly. The following example illustrates the idea behind Isomap. The image is taken from the original [paper](https://science.sciencemag.org/content/sci/290/5500/2319.full.pdf).
+
+![image](../assets/img/representation_learning/ISOMAP.png)
+
 
 ## Local-linear embedding (LLE)
 LLE is another approach for dimensionality reduction. It assumes that the data locally lie on a subspace. It tries to capture the locality properties of the manifold given the data and then reconstructs the same localities in the lower-dimensional space.
