@@ -20,7 +20,7 @@ A list of the described methods is given in the following:
 
 4) Supervised PCA [(SPCA)](https://www.sciencedirect.com/science/article/pii/S0031320310005819),
 
-5) Fishier Discriminat Analysis (FDA),
+5) Fishier Discriminat Analysis [(FDA)](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1938.tb02189.x),
 
 6) MultiDimensional Scaling (MDS),
 
@@ -393,7 +393,7 @@ x_{rec} = UY = \phi{(X)}V\lambda^{-1}\lambda^{-1}V^{T}\phi{(X)}^{T}\phi{(x_{new}
 
 Recalling that in the most general form we do not know what is the mapping $\phi{(X)}$, it is pretty obvious that not all steps from the Dual PCA are possible. We can project a new point to the $p-$dimensional space. However, we cannot project back any training point back to the original space, nor can reconstruct out of sample point back, because they explicitly involve the mapping $\phi{(X)}$ not their dot-product. Again as in the case of Dual PCA, we need to calculate the right eigenvectors and the eigenvalues of the kernel matrix. An additional catch one should take into care is that it needs to centralize the kernel data in the kernel space (an operation that boils down to summation and subtraction of kernels). The summation of two kernels is again a kernel function so we do not have any problems there.
 
-The following image is taken from the original papper on [KPCA](https://ieeexplore.ieee.org/document/6790375). It depicts the basic idea of KPCA and its difference to learn PCA. 
+The following image is taken from the original papper on [KPCA](https://ieeexplore.ieee.org/document/6790375). It depicts the basic idea of KPCA and its difference to learn PCA.
 
 ![image](../assets/img/representation_learning/KPCA.png)
 
@@ -596,6 +596,10 @@ subject to
 w^T\sigma_{within}w = I
 \end{equation}
 We can write the Lagrangian from here and obtain: $\sigma_{within}^{-1}\sigma_{b}w = \lambda w$. The solution for $w$ is again an eigenvector decomposition of the general eigenvalue problem, which we already saw how can be computed. The idea is that now when building the feature vectors the information for the target is also included because the mean and the sample covarinace matricies are calculated per class. The overall discussion can be applied and for K classes. It is important there to know that the between class covariance matrix is calculated as a difference of the total covariance matrix and the sum of the witihn covariance matricies for each of the k classes.
+
+The following image depicts the difference between Linear Discriminant Analysis (oftentimes LDA is refered to as FDA) and PCA. The image was taken from the paper on this [link](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=908974).
+
+![image](../assets/img/representation_learning/LDA.png)
 
 # Again Unsupervised
 ## Multi-dimensional scaling (MDS)
