@@ -22,7 +22,7 @@ A list of the described methods is given in the following:
 
 5) Fishier Discriminat Analysis [(FDA)](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1938.tb02189.x),
 
-6) MultiDimensional Scaling (MDS),
+6) MultiDimensional Scaling [(MDS)](https://link.springer.com/article/10.1007%2FBF02289565),
 
 7) Isomap,
 
@@ -630,6 +630,42 @@ The algorithm goes as follows:
 One can also obtain the solution for MDS using eigenvalue decomposition where: $Y = \lambda^{-0.5}V^T$. This is identical to the solution of dual PCA where instead of singular values of the diagonal we have their square root. The square root of eigenvalues corresponds to the singular values. V is the eingevectors of $X^TX$. This method is also linear. We need double centring of the $X^TX$.
 
 Additional versions can involve normalization like Sammons mapping. This kind of mapping can preserve the structure in higher dimensional space which highly depends on the utilized pairwise distance measures. It converges to PCA if the data is in a linear manifold.
+
+
+
+An example of MDS representation is given on the following image. The image and the representation of the image are taken from the following [link](http://statweb.stanford.edu/~jtaylo/courses/stats306B/mds.html).
+
+![image](../assets/img/representation_learning/MDS.png)
+
+
+```python
+
+def MDS(d, dim=2):
+    """
+    Compute classical (metric) MDS embedding of a given dimension
+    based on a matrix of distances d.
+    """
+
+    n = d.shape[0]
+    A = -d**2/2.
+    a = A.mean(0)
+
+    # Compute matrix of
+    # similarities based on distances
+
+    B = (A - a[np.newaxis,:] - a[:,np.newaxis] + a.mean())
+
+    # Lowrank (rank=dim) approximation of B
+
+    l, v = np.linalg.eigh(B) # this can be much more efficient for
+                             # large B!
+
+    # reorder the eigenvalues / eigenvectors
+    a = l.argsort()[::-1]
+    A = v[:,a[:dim]] * np.sqrt(l[a[:dim]])
+    return A
+```
+
 
 ## Isomap
 
