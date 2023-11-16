@@ -1,9 +1,9 @@
 # main text of home
-title: John Doe
-bio: A Person who travels the world eating noodles
+title: Jasmin Bogatinovski
+bio: Hi there! My name is Jasmin. I am an applied researcher who enjoys doing AI, and machine learning, solving problems with data, and learning about learning. Check the About page for more info on me and the scholar link (bellow) for a list of my papers.
 
 # twitter summary info
-description: A blog about technology and stuff related
+description: Personal web page of Jasmin Bogatinovski
 
 # if it's an external image, update below for true
 # better with square images
@@ -18,9 +18,9 @@ dark-theme: auto
 # and specify source (external or local).
 resume: true
 resume-external: true
-resume-url: https://google.com/?q=my+resume
+resume-url: https://github.com/bogatinovskijasmin/Artificial-Intelligence-for-IT-Operations/blob/main/Bogatinovski_CV_long.pdf
 
-url: https://sergiokopplin.github.io/indigo
+url: https://bogatinovskijasmin.github.io
 # your url: https://USERNAME.github.io
 
 permalink: /:title/
@@ -34,26 +34,27 @@ disqus:
   categories: [blog, project] # only show disqus for posts that have these categories
 
 # if you don't have any of social below, comment the line
-facebook: myfacebook
-twitter: mytwitter
-instagram: myinstagram
-linkedin: mylinkedin
-github: mygithub
-email: myemail@gmail.com
+# scholar: https://scholar.google.com/citations?user=GgMAEc0AAAAJ&hl=en
+# scholar: GgMAEc0AAAAJ&hl=en
+twitter: GgMAEc0AAAAJ&hl
+# instagram: myinstagram
+linkedin: jasmin-bogatinovski-6b697a116
+github: bogatinovskijasmin
+email: jasmin.bogatinovski@gmail.com
 
 authors:
-  johndoe:
-    name: John Doe
-    bio: A Man who travels the world eating noodles
+  jasminbogatinovski:
+    name: Jasmin Bogatinovski
+    bio: I love learning
     external-image: false
     picture: assets/images/profile.jpg
-    twitter: johndoe
-  jamesfoster:
-    name: James Foster
-    bio: A Man who develops software with coffee
-    external-image: false
-    picture: assets/images/james.jpg
-    twitter: jamesfoster
+    github: https://github.com/bogatinovskijasmin
+  # jamesfoster:
+  #   name: James Foster
+  #   bio: A Man who develops software with coffee
+  #   external-image: false
+  #   picture: assets/images/james.jpg
+  #   twitter: jamesfoster
 
 # do you want a larger site? change the option below
 # options: [normal, large] | default: normal
@@ -69,11 +70,13 @@ pagination:
   permalink: "/:num/" # pagination link that will be appended
 
 # if you don't need projects, comment the *projects* configs below
-projects: true
+projects: false
+
+papers: false
 
 # if you don't need "about" or "blog", comment them out below
 about: true
-blog: true
+blog: false
 
 # do you want to show the "read time" of the posts?
 read-time: true
@@ -85,7 +88,7 @@ show-tags: true
 related: true
 
 # Display links for next and previous posts for the specified categories
-post-advance-links: [blog]
+# post-advance-links: [blog]
 
 # show author block at the end of a post ?
 show-author: true
