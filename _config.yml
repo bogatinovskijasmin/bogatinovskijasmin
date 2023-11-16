@@ -18,7 +18,7 @@ dark-theme: auto
 # and specify source (external or local).
 resume: true
 resume-external: true
-resume-url: <a href="https://github.com/bogatinovskijasmin/bogatinovskijasmin/blob/main/assets/CV/Bogatinovski_CV.pdf">CV</a>
+resume-url: https://github.com/bogatinovskijasmin/bogatinovskijasmin/blob/main/assets/CV/Bogatinovski_CV.pdf
 
 url: https://bogatinovskijasmin.github.io/bogatinovskijasmin
 # your url: https://USERNAME.github.io
