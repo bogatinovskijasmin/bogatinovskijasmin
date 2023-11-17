@@ -6,7 +6,7 @@ layout: default
 
 <div style="text-align: justify"> 
 <p>
-Greetings! I am a researcher in the area of Artificial intelligence, with a focus on NLP, generative AI, and deep learning. Particularly, my research centres on developing methods for analysis of heterogeneous data types from complex IT systems (e.g., data centres), with technical objectives related to enhancing their reliability. I am also interested in meta-learning, and multi-label classification. As an applied scientist, I closely collaborate with <a href="https://huaweiresearchcentergermanyaustria.teamtailor.com/departments/intelligent-cloud-technologies-laboratory"> Huawei Munich Research Center's Ultra-scale AIOps laboratory</a>, led by <a href="https://jorge-cardoso.github.io/">Dr Jorge Cardoso</a>, allowing me to work on industrial projects for more than 4 years, and conduct my research using production data. 
+Greetings! I am a researcher in the area of Artificial intelligence, with a focus on NLP, generative AI, and deep learning, working at the Distributed and Operating Systems group at the Technical University Berlin. Particularly, my research centres on developing methods for analysis of heterogeneous data types from complex IT systems (e.g., data centres), with technical objectives related to enhancing their reliability. I am also interested in meta-learning, and multi-label classification. As an applied scientist, I closely collaborate with <a href="https://huaweiresearchcentergermanyaustria.teamtailor.com/departments/intelligent-cloud-technologies-laboratory"> Huawei Munich Research Center's Ultra-scale AIOps laboratory</a>, allowing me to work on industrial projects for more than 4 years, and conduct my research using production data. 
 </p>
 </div>
 
